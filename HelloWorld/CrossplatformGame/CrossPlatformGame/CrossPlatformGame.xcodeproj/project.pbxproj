@@ -1,0 +1,801 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		264EC11F22E4AD3600B4F007 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC11E22E4AD3600B4F007 /* AppDelegate.swift */; };
+		264EC12122E4AD3600B4F007 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC12022E4AD3600B4F007 /* GameViewController.swift */; };
+		264EC12422E4AD3600B4F007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264EC12222E4AD3600B4F007 /* Main.storyboard */; };
+		264EC12722E4AD3600B4F007 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264EC12522E4AD3600B4F007 /* LaunchScreen.storyboard */; };
+		264EC12C22E4AD3600B4F007 /* CrossPlatformGame.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 264EC12B22E4AD3600B4F007 /* CrossPlatformGame.app */; };
+		264EC13222E4AD3600B4F007 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264EC13022E4AD3600B4F007 /* Interface.storyboard */; };
+		264EC13922E4AD3600B4F007 /* CrossPlatformGame Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 264EC13822E4AD3600B4F007 /* CrossPlatformGame Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		264EC13E22E4AD3600B4F007 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC13D22E4AD3600B4F007 /* InterfaceController.swift */; };
+		264EC14022E4AD3600B4F007 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC13F22E4AD3600B4F007 /* ExtensionDelegate.swift */; };
+		264EC15722E4AD3600B4F007 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC15622E4AD3600B4F007 /* AppDelegate.swift */; };
+		264EC15922E4AD3600B4F007 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC15822E4AD3600B4F007 /* GameViewController.swift */; };
+		264EC15C22E4AD3600B4F007 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 264EC15A22E4AD3600B4F007 /* Main.storyboard */; };
+		264EC15E22E4AD3600B4F007 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 264EC11322E4AD3300B4F007 /* Actions.sks */; };
+		264EC16022E4AD3600B4F007 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 264EC11322E4AD3300B4F007 /* Actions.sks */; };
+		264EC16122E4AD3600B4F007 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 264EC11422E4AD3300B4F007 /* GameScene.sks */; };
+		264EC16222E4AD3600B4F007 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 264EC11422E4AD3300B4F007 /* GameScene.sks */; };
+		264EC16422E4AD3600B4F007 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 264EC11422E4AD3300B4F007 /* GameScene.sks */; };
+		264EC16522E4AD3600B4F007 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC11522E4AD3300B4F007 /* GameScene.swift */; };
+		264EC16622E4AD3600B4F007 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC11522E4AD3300B4F007 /* GameScene.swift */; };
+		264EC16822E4AD3600B4F007 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264EC11522E4AD3300B4F007 /* GameScene.swift */; };
+		264EC16922E4AD3600B4F007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264EC11622E4AD3600B4F007 /* Assets.xcassets */; };
+		264EC16A22E4AD3600B4F007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264EC11622E4AD3600B4F007 /* Assets.xcassets */; };
+		264EC16C22E4AD3600B4F007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 264EC11622E4AD3600B4F007 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		264EC12D22E4AD3600B4F007 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 264EC10E22E4AD3300B4F007 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 264EC12A22E4AD3600B4F007;
+			remoteInfo = "CrossPlatformGame watchOS App";
+		};
+		264EC13A22E4AD3600B4F007 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 264EC10E22E4AD3300B4F007 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 264EC13722E4AD3600B4F007;
+			remoteInfo = "CrossPlatformGame watchOS App Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		264EC17222E4AD3600B4F007 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				264EC13922E4AD3600B4F007 /* CrossPlatformGame Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		264EC17622E4AD3600B4F007 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				264EC12C22E4AD3600B4F007 /* CrossPlatformGame.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		264EC11322E4AD3300B4F007 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		264EC11422E4AD3300B4F007 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		264EC11522E4AD3300B4F007 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		264EC11622E4AD3600B4F007 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		264EC11B22E4AD3600B4F007 /* CrossPlatformGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossPlatformGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		264EC11E22E4AD3600B4F007 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		264EC12022E4AD3600B4F007 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		264EC12322E4AD3600B4F007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		264EC12622E4AD3600B4F007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		264EC12822E4AD3600B4F007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		264EC12B22E4AD3600B4F007 /* CrossPlatformGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossPlatformGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		264EC13122E4AD3600B4F007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		264EC13322E4AD3600B4F007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		264EC13822E4AD3600B4F007 /* CrossPlatformGame Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "CrossPlatformGame Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		264EC13D22E4AD3600B4F007 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		264EC13F22E4AD3600B4F007 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		264EC14122E4AD3600B4F007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		264EC14822E4AD3600B4F007 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		264EC14A22E4AD3600B4F007 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		264EC14D22E4AD3600B4F007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		264EC14F22E4AD3600B4F007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		264EC15422E4AD3600B4F007 /* CrossPlatformGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrossPlatformGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		264EC15622E4AD3600B4F007 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		264EC15822E4AD3600B4F007 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		264EC15B22E4AD3600B4F007 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		264EC15D22E4AD3600B4F007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		264EC11822E4AD3600B4F007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		264EC13522E4AD3600B4F007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		264EC15122E4AD3600B4F007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		264EC10D22E4AD3300B4F007 = {
+			isa = PBXGroup;
+			children = (
+				264EC11222E4AD3300B4F007 /* CrossPlatformGame Shared */,
+				264EC11D22E4AD3600B4F007 /* CrossPlatformGame iOS */,
+				264EC12F22E4AD3600B4F007 /* CrossPlatformGame watchOS App */,
+				264EC13C22E4AD3600B4F007 /* CrossPlatformGame watchOS App Extension */,
+				264EC14722E4AD3600B4F007 /* CrossPlatformGame tvOS */,
+				264EC15522E4AD3600B4F007 /* CrossPlatformGame macOS */,
+				264EC11C22E4AD3600B4F007 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		264EC11222E4AD3300B4F007 /* CrossPlatformGame Shared */ = {
+			isa = PBXGroup;
+			children = (
+				264EC11322E4AD3300B4F007 /* Actions.sks */,
+				264EC11422E4AD3300B4F007 /* GameScene.sks */,
+				264EC11522E4AD3300B4F007 /* GameScene.swift */,
+				264EC11622E4AD3600B4F007 /* Assets.xcassets */,
+			);
+			path = "CrossPlatformGame Shared";
+			sourceTree = "<group>";
+		};
+		264EC11C22E4AD3600B4F007 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				264EC11B22E4AD3600B4F007 /* CrossPlatformGame.app */,
+				264EC12B22E4AD3600B4F007 /* CrossPlatformGame.app */,
+				264EC13822E4AD3600B4F007 /* CrossPlatformGame Extension.appex */,
+				264EC15422E4AD3600B4F007 /* CrossPlatformGame.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		264EC11D22E4AD3600B4F007 /* CrossPlatformGame iOS */ = {
+			isa = PBXGroup;
+			children = (
+				264EC11E22E4AD3600B4F007 /* AppDelegate.swift */,
+				264EC12022E4AD3600B4F007 /* GameViewController.swift */,
+				264EC12222E4AD3600B4F007 /* Main.storyboard */,
+				264EC12522E4AD3600B4F007 /* LaunchScreen.storyboard */,
+				264EC12822E4AD3600B4F007 /* Info.plist */,
+			);
+			path = "CrossPlatformGame iOS";
+			sourceTree = "<group>";
+		};
+		264EC12F22E4AD3600B4F007 /* CrossPlatformGame watchOS App */ = {
+			isa = PBXGroup;
+			children = (
+				264EC13022E4AD3600B4F007 /* Interface.storyboard */,
+				264EC13322E4AD3600B4F007 /* Info.plist */,
+			);
+			path = "CrossPlatformGame watchOS App";
+			sourceTree = "<group>";
+		};
+		264EC13C22E4AD3600B4F007 /* CrossPlatformGame watchOS App Extension */ = {
+			isa = PBXGroup;
+			children = (
+				264EC13D22E4AD3600B4F007 /* InterfaceController.swift */,
+				264EC13F22E4AD3600B4F007 /* ExtensionDelegate.swift */,
+				264EC14122E4AD3600B4F007 /* Info.plist */,
+			);
+			path = "CrossPlatformGame watchOS App Extension";
+			sourceTree = "<group>";
+		};
+		264EC14722E4AD3600B4F007 /* CrossPlatformGame tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				264EC14822E4AD3600B4F007 /* AppDelegate.swift */,
+				264EC14A22E4AD3600B4F007 /* GameViewController.swift */,
+				264EC14C22E4AD3600B4F007 /* Main.storyboard */,
+				264EC14F22E4AD3600B4F007 /* Info.plist */,
+			);
+			path = "CrossPlatformGame tvOS";
+			sourceTree = "<group>";
+		};
+		264EC15522E4AD3600B4F007 /* CrossPlatformGame macOS */ = {
+			isa = PBXGroup;
+			children = (
+				264EC15622E4AD3600B4F007 /* AppDelegate.swift */,
+				264EC15822E4AD3600B4F007 /* GameViewController.swift */,
+				264EC15A22E4AD3600B4F007 /* Main.storyboard */,
+				264EC15D22E4AD3600B4F007 /* Info.plist */,
+			);
+			path = "CrossPlatformGame macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		264EC11A22E4AD3600B4F007 /* CrossPlatformGame iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 264EC17722E4AD3600B4F007 /* Build configuration list for PBXNativeTarget "CrossPlatformGame iOS" */;
+			buildPhases = (
+				264EC11722E4AD3600B4F007 /* Sources */,
+				264EC11822E4AD3600B4F007 /* Frameworks */,
+				264EC11922E4AD3600B4F007 /* Resources */,
+				264EC17622E4AD3600B4F007 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				264EC12E22E4AD3600B4F007 /* PBXTargetDependency */,
+			);
+			name = "CrossPlatformGame iOS";
+			productName = "CrossPlatformGame iOS";
+			productReference = 264EC11B22E4AD3600B4F007 /* CrossPlatformGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		264EC12A22E4AD3600B4F007 /* CrossPlatformGame watchOS App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 264EC17322E4AD3600B4F007 /* Build configuration list for PBXNativeTarget "CrossPlatformGame watchOS App" */;
+			buildPhases = (
+				264EC12922E4AD3600B4F007 /* Resources */,
+				264EC17222E4AD3600B4F007 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				264EC13B22E4AD3600B4F007 /* PBXTargetDependency */,
+			);
+			name = "CrossPlatformGame watchOS App";
+			productName = "CrossPlatformGame watchOS App";
+			productReference = 264EC12B22E4AD3600B4F007 /* CrossPlatformGame.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		264EC13722E4AD3600B4F007 /* CrossPlatformGame watchOS App Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 264EC16F22E4AD3600B4F007 /* Build configuration list for PBXNativeTarget "CrossPlatformGame watchOS App Extension" */;
+			buildPhases = (
+				264EC13422E4AD3600B4F007 /* Sources */,
+				264EC13522E4AD3600B4F007 /* Frameworks */,
+				264EC13622E4AD3600B4F007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CrossPlatformGame watchOS App Extension";
+			productName = "CrossPlatformGame watchOS App Extension";
+			productReference = 264EC13822E4AD3600B4F007 /* CrossPlatformGame Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		264EC15322E4AD3600B4F007 /* CrossPlatformGame macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 264EC17D22E4AD3600B4F007 /* Build configuration list for PBXNativeTarget "CrossPlatformGame macOS" */;
+			buildPhases = (
+				264EC15022E4AD3600B4F007 /* Sources */,
+				264EC15122E4AD3600B4F007 /* Frameworks */,
+				264EC15222E4AD3600B4F007 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CrossPlatformGame macOS";
+			productName = "CrossPlatformGame macOS";
+			productReference = 264EC15422E4AD3600B4F007 /* CrossPlatformGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		264EC10E22E4AD3300B4F007 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Heinz-Jörg";
+				TargetAttributes = {
+					264EC11A22E4AD3600B4F007 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					264EC12A22E4AD3600B4F007 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					264EC13722E4AD3600B4F007 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					264EC15322E4AD3600B4F007 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 264EC11122E4AD3300B4F007 /* Build configuration list for PBXProject "CrossPlatformGame" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 264EC10D22E4AD3300B4F007;
+			productRefGroup = 264EC11C22E4AD3600B4F007 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				264EC11A22E4AD3600B4F007 /* CrossPlatformGame iOS */,
+				264EC12A22E4AD3600B4F007 /* CrossPlatformGame watchOS App */,
+				264EC13722E4AD3600B4F007 /* CrossPlatformGame watchOS App Extension */,
+				264EC15322E4AD3600B4F007 /* CrossPlatformGame macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		264EC11922E4AD3600B4F007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264EC16122E4AD3600B4F007 /* GameScene.sks in Resources */,
+				264EC12422E4AD3600B4F007 /* Main.storyboard in Resources */,
+				264EC15E22E4AD3600B4F007 /* Actions.sks in Resources */,
+				264EC12722E4AD3600B4F007 /* LaunchScreen.storyboard in Resources */,
+				264EC16922E4AD3600B4F007 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		264EC12922E4AD3600B4F007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264EC16A22E4AD3600B4F007 /* Assets.xcassets in Resources */,
+				264EC13222E4AD3600B4F007 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		264EC13622E4AD3600B4F007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264EC16222E4AD3600B4F007 /* GameScene.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		264EC15222E4AD3600B4F007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264EC15C22E4AD3600B4F007 /* Main.storyboard in Resources */,
+				264EC16422E4AD3600B4F007 /* GameScene.sks in Resources */,
+				264EC16C22E4AD3600B4F007 /* Assets.xcassets in Resources */,
+				264EC16022E4AD3600B4F007 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		264EC11722E4AD3600B4F007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264EC16522E4AD3600B4F007 /* GameScene.swift in Sources */,
+				264EC12122E4AD3600B4F007 /* GameViewController.swift in Sources */,
+				264EC11F22E4AD3600B4F007 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		264EC13422E4AD3600B4F007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264EC16622E4AD3600B4F007 /* GameScene.swift in Sources */,
+				264EC14022E4AD3600B4F007 /* ExtensionDelegate.swift in Sources */,
+				264EC13E22E4AD3600B4F007 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		264EC15022E4AD3600B4F007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				264EC16822E4AD3600B4F007 /* GameScene.swift in Sources */,
+				264EC15922E4AD3600B4F007 /* GameViewController.swift in Sources */,
+				264EC15722E4AD3600B4F007 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		264EC12E22E4AD3600B4F007 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 264EC12A22E4AD3600B4F007 /* CrossPlatformGame watchOS App */;
+			targetProxy = 264EC12D22E4AD3600B4F007 /* PBXContainerItemProxy */;
+		};
+		264EC13B22E4AD3600B4F007 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 264EC13722E4AD3600B4F007 /* CrossPlatformGame watchOS App Extension */;
+			targetProxy = 264EC13A22E4AD3600B4F007 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		264EC12222E4AD3600B4F007 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				264EC12322E4AD3600B4F007 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		264EC12522E4AD3600B4F007 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				264EC12622E4AD3600B4F007 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		264EC13022E4AD3600B4F007 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				264EC13122E4AD3600B4F007 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		264EC14C22E4AD3600B4F007 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				264EC14D22E4AD3600B4F007 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		264EC15A22E4AD3600B4F007 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				264EC15B22E4AD3600B4F007 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		264EC16D22E4AD3600B4F007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		264EC16E22E4AD3600B4F007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		264EC17022E4AD3600B4F007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 429Q338D7T;
+				INFOPLIST_FILE = "CrossPlatformGame watchOS App Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "schroeder-swol.de.CrossPlatformGame.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "CrossPlatformGame Extension";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		264EC17122E4AD3600B4F007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 429Q338D7T;
+				INFOPLIST_FILE = "CrossPlatformGame watchOS App Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "schroeder-swol.de.CrossPlatformGame.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "CrossPlatformGame Extension";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		264EC17422E4AD3600B4F007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 429Q338D7T;
+				IBSC_MODULE = CrossPlatformGame_Extension;
+				INFOPLIST_FILE = "CrossPlatformGame watchOS App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "schroeder-swol.de.CrossPlatformGame.watchkitapp";
+				PRODUCT_NAME = CrossPlatformGame;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Debug;
+		};
+		264EC17522E4AD3600B4F007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 429Q338D7T;
+				IBSC_MODULE = CrossPlatformGame_Extension;
+				INFOPLIST_FILE = "CrossPlatformGame watchOS App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "schroeder-swol.de.CrossPlatformGame.watchkitapp";
+				PRODUCT_NAME = CrossPlatformGame;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 5.1;
+			};
+			name = Release;
+		};
+		264EC17822E4AD3600B4F007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 429Q338D7T;
+				INFOPLIST_FILE = "CrossPlatformGame iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "schroeder-swol.de.CrossPlatformGame";
+				PRODUCT_NAME = CrossPlatformGame;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		264EC17922E4AD3600B4F007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 429Q338D7T;
+				INFOPLIST_FILE = "CrossPlatformGame iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "schroeder-swol.de.CrossPlatformGame";
+				PRODUCT_NAME = CrossPlatformGame;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		264EC17E22E4AD3600B4F007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 429Q338D7T;
+				INFOPLIST_FILE = "CrossPlatformGame macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "schroeder-swol.de.CrossPlatformGame";
+				PRODUCT_NAME = CrossPlatformGame;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		264EC17F22E4AD3600B4F007 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 429Q338D7T;
+				INFOPLIST_FILE = "CrossPlatformGame macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "schroeder-swol.de.CrossPlatformGame";
+				PRODUCT_NAME = CrossPlatformGame;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		264EC11122E4AD3300B4F007 /* Build configuration list for PBXProject "CrossPlatformGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				264EC16D22E4AD3600B4F007 /* Debug */,
+				264EC16E22E4AD3600B4F007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		264EC16F22E4AD3600B4F007 /* Build configuration list for PBXNativeTarget "CrossPlatformGame watchOS App Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				264EC17022E4AD3600B4F007 /* Debug */,
+				264EC17122E4AD3600B4F007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		264EC17322E4AD3600B4F007 /* Build configuration list for PBXNativeTarget "CrossPlatformGame watchOS App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				264EC17422E4AD3600B4F007 /* Debug */,
+				264EC17522E4AD3600B4F007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		264EC17722E4AD3600B4F007 /* Build configuration list for PBXNativeTarget "CrossPlatformGame iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				264EC17822E4AD3600B4F007 /* Debug */,
+				264EC17922E4AD3600B4F007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		264EC17D22E4AD3600B4F007 /* Build configuration list for PBXNativeTarget "CrossPlatformGame macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				264EC17E22E4AD3600B4F007 /* Debug */,
+				264EC17F22E4AD3600B4F007 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 264EC10E22E4AD3300B4F007 /* Project object */;
+}

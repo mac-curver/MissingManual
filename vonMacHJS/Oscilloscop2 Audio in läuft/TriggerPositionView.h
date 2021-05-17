@@ -1,0 +1,1 @@
+/* TriggerPositionView */#import <Cocoa/Cocoa.h>@interface TriggerPositionView : NSView{    IBOutlet NSSlider	*TriggerPositionSlider;		double				startTrigger;	double				stopTrigger;}- (IBAction)setTriggerPosition:(id)sender;@end

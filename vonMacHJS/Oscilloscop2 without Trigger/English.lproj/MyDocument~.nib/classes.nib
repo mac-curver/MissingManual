@@ -1,0 +1,121 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = HorizontalImageAxis; LANGUAGE = ObjC; SUPERCLASS = ImageAxis; }, 
+        {
+            CLASS = ImageAxis; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {scientificImage = ScientificImage; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = MyCursor; LANGUAGE = ObjC; SUPERCLASS = NSCursor; }, 
+        {
+            CLASS = MyDocument; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {originalImageView = MyImageView; }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {
+            ACTIONS = {
+                changeChannel = id; 
+                changeOffsetMatrix = id; 
+                changeRemanenz = id; 
+                changeScaleMatrix = id; 
+                changeStart = id; 
+                changeTiming = id; 
+                changeTriggerChannel = id; 
+                changeTriggerLevel = id; 
+                changeTriggerMode = id; 
+                changeTriggerPosition = id; 
+                colorBckgnd = id; 
+                colorChannel0 = id; 
+                colorChannel1 = id; 
+                colorChannel2 = id; 
+                colorChannel3 = id; 
+                colorCursor = id; 
+                colorGrid = id; 
+                colorM0 = id; 
+                colorM1 = id; 
+                colorM2 = id; 
+                colorM3 = id; 
+                colorSpecial = id; 
+                doAudio = id; 
+                doTrigger = id; 
+                drawHistogram = id; 
+            }; 
+            CLASS = MyImageView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                alphaText = NSTextField; 
+                audio = NSButton; 
+                channelMatrix = NSMatrix; 
+                colorChannel0 = NSColorWell; 
+                colorChannel1 = NSColorWell; 
+                colorChannel2 = NSColorWell; 
+                colorChannel3 = NSColorWell; 
+                colorWellBckgnd = NSColorWell; 
+                colorWellCursor = NSColorWell; 
+                colorWellGrid = NSColorWell; 
+                colorWellSpecial = NSColorWell; 
+                compositeModeText = NSTextField; 
+                continousButton = NSButton; 
+                densityText = NSTextField; 
+                histogram = NSButton; 
+                myDocument = MyDocument; 
+                remanenzPopUpButton = NSPopUpButton; 
+                test = NSTextField; 
+                timeText = NSTextField; 
+                timingSlider = NSSlider; 
+                triggerLevelText = NSTextField; 
+                triggerMatrix = NSMatrix; 
+                triggerPositionText = NSTextField; 
+                whiteText = NSTextField; 
+                yOffsetMatrix = NSMatrix; 
+                yScaleMatrix = NSMatrix; 
+            }; 
+            SUPERCLASS = ScientificImage; 
+        }, 
+        {
+            ACTIONS = {
+                changeDigit0 = id; 
+                changeDigit1 = id; 
+                changeDigit2 = id; 
+                changeOrder = id; 
+                changeScale = id; 
+                changeText = id; 
+            }; 
+            CLASS = NumberEntry; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                digit0 = NSStepper; 
+                digit1 = NSStepper; 
+                digit2 = NSStepper; 
+                order = NSPopUpButton; 
+                scale = NSStepper; 
+                test = NSTextField; 
+                text = NSTextField; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {zoomIn = id; zoomOut = id; }; 
+            CLASS = ScientificImage; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                horizontalAxis = HorizontalImageAxis; 
+                secondaryAxis = VerticalImageAxis; 
+                verticalAxis = VerticalImageAxis; 
+            }; 
+            SUPERCLASS = NSImageView; 
+        }, 
+        {
+            ACTIONS = {setTriggerPosition = id; }; 
+            CLASS = TriggerPositionView; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {TriggerPositionSlider = NSSlider; }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {CLASS = VerticalImageAxis; LANGUAGE = ObjC; SUPERCLASS = ImageAxis; }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,1 @@
+/* MyParamterArray */#import <Cocoa/Cocoa.h>@interface MyParamterArray : NSObject{	NSMutableArray		*myArray;}@end

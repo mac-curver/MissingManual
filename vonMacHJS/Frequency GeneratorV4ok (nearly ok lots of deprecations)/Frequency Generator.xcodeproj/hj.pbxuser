@@ -1,0 +1,775 @@
+// !$*UTF8*$!
+{
+	089C165DFE840E0CC02AAC07 /* English */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {862, 562}}";
+			sepNavSelRange = "{290, 1}";
+			sepNavVisRange = "{0, 291}";
+			sepNavVisRect = "{{0, 0}, {876, 565}}";
+		};
+	};
+	2619C7F90893AE4F00682CF2 /* Frequency Generator.m:218 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DD407469277004824FB /* Frequency Generator.m */;
+		functionName = "-nextOneSeven:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 218;
+		modificationTime = 329566286.126047;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	2619C8070893B1BE00682CF2 /* Frequency Generator.m:220 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DD407469277004824FB /* Frequency Generator.m */;
+		functionName = "-nextOneSeven:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 220;
+		modificationTime = 329566286.1261219;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	2631034D0770CD0300612632 /* ToneToHertzTransformer.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {862, 562}}";
+			sepNavSelRange = "{93, 0}";
+			sepNavVisRange = "{0, 264}";
+			sepNavVisRect = "{{0, 0}, {876, 576}}";
+		};
+	};
+	2631034E0770CD0300612632 /* ToneToHertzTransformer.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {929, 884}}";
+			sepNavSelRange = "{1121, 0}";
+			sepNavVisRange = "{433, 1290}";
+			sepNavVisRect = "{{0, 432}, {876, 576}}";
+		};
+	};
+	264A34820B3A8B180013BDBB /* Frequency Generator.m:256 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DD407469277004824FB /* Frequency Generator.m */;
+		functionName = "-setupAudio:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 256;
+		location = "Frequency Generator";
+		modificationTime = 329566286.126618;
+		originalNumberOfMultipleMatches = 1;
+		state = 2;
+	};
+	26602DCC0746923D004824FB /* Frequency Generator Controller.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {813, 884}}";
+			sepNavSelRange = "{1428, 14}";
+			sepNavVisRange = "{733, 1576}";
+			sepNavVisRect = "{{0, 20}, {876, 565}}";
+			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
+		};
+	};
+	26602DD407469277004824FB /* Frequency Generator.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {978, 6110}}";
+			sepNavSelRange = "{9356, 0}";
+			sepNavVisRange = "{8818, 1479}";
+			sepNavVisRect = "{{0, 1448}, {876, 565}}";
+			sepNavWindowFrame = "{{391, 53}, {785, 771}}";
+		};
+	};
+	26602DD807469282004824FB /* Frequency Generator.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {908, 949}}";
+			sepNavSelRange = "{1073, 0}";
+			sepNavVisRange = "{768, 1654}";
+			sepNavVisRect = "{{0, 30}, {876, 565}}";
+		};
+	};
+	26602DDE07469296004824FB /* Frequency Generator Controller.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {974, 5577}}";
+			sepNavSelRange = "{9777, 0}";
+			sepNavVisRange = "{8802, 1324}";
+			sepNavVisRect = "{{0, 3625}, {876, 565}}";
+			sepNavWindowFrame = "{{38, 248}, {750, 558}}";
+		};
+	};
+	26602E450746993A004824FB /* Frequency Generator */ = {
+		activeExec = 0;
+		executables = (
+			26602E470746993A004824FB /* Frequency Generator */,
+		);
+	};
+	26602E470746993A004824FB /* Frequency Generator */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = "Frequency Generator";
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+			"inPropertyID-AudioHardwarePropertyID-AHPropertyListenerProc" = 5;
+		};
+	};
+	26602E480746993A004824FB /* Frequency Generator-Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {705, 428}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 428}}";
+			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
+		};
+	};
+	269CB316088A97E40049FFC0 /* Frequency Generator.m:413 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DD407469277004824FB /* Frequency Generator.m */;
+		functionName = "-setPhaseVal:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 413;
+		modificationTime = 329566286.12588;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	26A23D1815BC312700A0B6A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 26A23D1915BC312700A0B6A2 /* AudioHardware.h */;
+		name = "AudioHardware.h: 2";
+		rLen = 25;
+		rLoc = 118;
+		rType = 0;
+		vrLen = 3431;
+		vrLoc = 0;
+	};
+	26A23D1915BC312700A0B6A2 /* AudioHardware.h */ = {
+		isa = PBXFileReference;
+		name = AudioHardware.h;
+		path = /System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers/AudioHardware.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1293, 39871}}";
+			sepNavSelRange = "{118, 25}";
+			sepNavVisRange = "{0, 3431}";
+		};
+	};
+	26AB77010B31308500085AF7 /* Frequency Generator.m:434 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DD407469277004824FB /* Frequency Generator.m */;
+		functionName = "-stopAudio";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 434;
+		location = "Frequency Generator";
+		modificationTime = 329566286.1261989;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	26AB770C0B31416300085AF7 /* Frequency Generator Controller.m:294 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DDE07469296004824FB /* Frequency Generator Controller.m */;
+		functionName = "-setOutputDevice:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 294;
+		location = "Frequency Generator";
+		modificationTime = 329566286.126273;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	26AB77270B31450C00085AF7 /* Frequency Generator.m:421 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DD407469277004824FB /* Frequency Generator.m */;
+		functionName = "-startAudio:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 421;
+		location = "Frequency Generator";
+		modificationTime = 329566286.126386;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	26AB77C50B31638500085AF7 /* FrequencyGenerator_Prefix.pch */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {862, 562}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 169}";
+			sepNavVisRect = "{{145, 0}, {535, 231}}";
+		};
+	};
+	26C052A60B3C056900849DCD /* Frequency Generator Controller.m:46 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DDE07469296004824FB /* Frequency Generator Controller.m */;
+		functionName = "AHPropertyListenerProc()";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 46;
+		location = "Frequency Generator";
+		modificationTime = 329566286.421287;
+		originalNumberOfMultipleMatches = 1;
+		state = 1;
+	};
+	26C89220073777AC0003B26E /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+		scmType = "";
+	};
+	26C89221073777AC0003B26E /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	26E310510B1B71E000FE2FF5 /* Frequency Generator Controller.m:289 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DDE07469296004824FB /* Frequency Generator Controller.m */;
+		functionName = "-setOutputDevice:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 289;
+		location = "Frequency Generator";
+		modificationTime = 329566286.1264631;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	26E310B20B1CC58000FE2FF5 /* Frequency Generator.m:419 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 26602DD407469277004824FB /* Frequency Generator.m */;
+		functionName = "-startAudio:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 419;
+		location = "Frequency Generator";
+		modificationTime = 329566286.1265451;
+		originalNumberOfMultipleMatches = 0;
+		state = 2;
+	};
+	26F4642113A4B6C5000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 089C165DFE840E0CC02AAC07 /* English */;
+		name = "InfoPlist.strings: 6";
+		rLen = 1;
+		rLoc = 290;
+		rType = 0;
+		vrLen = 291;
+		vrLoc = 0;
+	};
+	26F4642213A4B6C5000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2631034E0770CD0300612632 /* ToneToHertzTransformer.m */;
+		name = "ToneToHertzTransformer.m: 47";
+		rLen = 0;
+		rLoc = 1121;
+		rType = 0;
+		vrLen = 1290;
+		vrLoc = 433;
+	};
+	26F4642313A4B6C5000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2631034D0770CD0300612632 /* ToneToHertzTransformer.h */;
+		name = "ToneToHertzTransformer.h: 5";
+		rLen = 0;
+		rLoc = 93;
+		rType = 0;
+		vrLen = 264;
+		vrLoc = 0;
+	};
+	26F4642413A4B6C5000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 26602DD807469282004824FB /* Frequency Generator.h */;
+		name = "Frequency Generator.h: 38";
+		rLen = 0;
+		rLoc = 1073;
+		rType = 0;
+		vrLen = 1654;
+		vrLoc = 768;
+	};
+	26F4642713A4B6C5000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 26AB77C50B31638500085AF7 /* FrequencyGenerator_Prefix.pch */;
+		name = "FrequencyGenerator_Prefix.pch: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 169;
+		vrLoc = 0;
+	};
+	26F4642813A4B6C5000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 14";
+		rLen = 0;
+		rLoc = 225;
+		rType = 0;
+		vrLen = 271;
+		vrLoc = 0;
+	};
+	26F4646313A4C38C000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 26602DD407469277004824FB /* Frequency Generator.m */;
+		name = "Frequency Generator.m: 440";
+		rLen = 23;
+		rLoc = 13464;
+		rType = 0;
+		vrLen = 840;
+		vrLoc = 8405;
+	};
+	26F464A013A60628000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 26602DCC0746923D004824FB /* Frequency Generator Controller.h */;
+		name = "Frequency Generator Controller.h: 39";
+		rLen = 14;
+		rLoc = 1428;
+		rType = 0;
+		vrLen = 1576;
+		vrLoc = 733;
+	};
+	26F464A113A60628000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 26602DDE07469296004824FB /* Frequency Generator Controller.m */;
+		name = "Frequency Generator Controller.m: 336";
+		rLen = 26;
+		rLoc = 9785;
+		rType = 0;
+		vrLen = 2266;
+		vrLoc = 9114;
+	};
+	26F464A313A60628000868A4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 26F464A413A60628000868A4 /* AudioHardware.h */;
+		name = "AudioHardware.h: 1098";
+		rLen = 82;
+		rLoc = 62336;
+		rType = 0;
+		vrLen = 3394;
+		vrLoc = 60530;
+	};
+	26F464A413A60628000868A4 /* AudioHardware.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = AudioHardware.h;
+		path = /System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers/AudioHardware.h;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1293, 39871}}";
+			sepNavSelRange = "{118, 25}";
+			sepNavVisRange = "{0, 3431}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Deployment;
+		activeExecutable = 26602E470746993A004824FB /* Frequency Generator */;
+		activeTarget = 26602E450746993A004824FB /* Frequency Generator */;
+		addToTargets = (
+			26602E450746993A004824FB /* Frequency Generator */,
+		);
+		breakpoints = (
+			269CB316088A97E40049FFC0 /* Frequency Generator.m:413 */,
+			2619C7F90893AE4F00682CF2 /* Frequency Generator.m:218 */,
+			2619C8070893B1BE00682CF2 /* Frequency Generator.m:220 */,
+			26AB77010B31308500085AF7 /* Frequency Generator.m:434 */,
+			26AB770C0B31416300085AF7 /* Frequency Generator Controller.m:294 */,
+			26AB77270B31450C00085AF7 /* Frequency Generator.m:421 */,
+			26E310510B1B71E000FE2FF5 /* Frequency Generator Controller.m:289 */,
+			26E310B20B1CC58000FE2FF5 /* Frequency Generator.m:419 */,
+			264A34820B3A8B180013BDBB /* Frequency Generator.m:256 */,
+			26C052A60B3C056900849DCD /* Frequency Generator Controller.m:46 */,
+		);
+		codeSenseManager = 26C89221073777AC0003B26E /* Code sense */;
+		executables = (
+			26602E470746993A004824FB /* Frequency Generator */,
+		);
+		expressions = (
+			"\t\t\t\tsamplePtr->myChannelBits <<= 3;\t\t\t\t\t\t\t\t\t// advance channel bits\nsourceBits>>18",
+			"sourceBits>>18",
+			index,
+			"devices[0]",
+			"devices[1]",
+			"devices[2]",
+			"devices[3]",
+			"devices[4]",
+			"devices[5]",
+			"[deviceArray objectAtIndex:0]",
+			"[deviceArray objectAtIndex:1]",
+		);
+		perUserDictionary = {
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA1AED706398EBD00589147" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					210,
+					20,
+					110,
+					109,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					569,
+					215,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					783,
+					20,
+					97,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFindDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFindDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					397,
+					411.2085,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFindDataSource_MessageID,
+					PBXFindDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					391,
+					10,
+					20,
+					98,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 364644068;
+			PBXPrepackagedSmartGroups_v2 = (
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					activationKey = OldTargetSmartGroup;
+					clz = PBXTargetSmartGroup;
+					description = "Displays all targets of the project.";
+					globalID = 1C37FABC04509CD000000102;
+					name = Targets;
+					preferences = {
+						image = Targets;
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					clz = PBXTargetSmartGroup2;
+					description = "Displays all targets of the project as well as nested build phases.";
+					globalID = 1C37FBAC04509CD000000102;
+					name = Targets;
+					preferences = {
+						image = Targets;
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					clz = PBXExecutablesSmartGroup;
+					description = "Displays all executables of the project.";
+					globalID = 1C37FAAC04509CD000000102;
+					name = Executables;
+					preferences = {
+						image = Executable;
+					};
+				},
+				{
+					" PBXTransientLocationAtTop " = bottom;
+					absolutePathToBundle = "";
+					clz = PBXErrorsWarningsSmartGroup;
+					description = "Displays files with errors or warnings.";
+					globalID = 1C08E77C0454961000C914BD;
+					name = "Errors and Warnings";
+					preferences = {
+						fnmatch = "";
+						image = WarningsErrors;
+						recursive = 1;
+						regex = "";
+						root = "<PROJECT>";
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					clz = PBXFilenameSmartGroup;
+					description = "Filters items in a given group (potentially recursively) based on matching the name with the regular expression of the filter.";
+					globalID = 1CC0EA4004350EF90044410B;
+					name = "Implementation Files";
+					preferences = {
+						canSave = 1;
+						fnmatch = "";
+						image = SmartFolder;
+						isLeaf = 0;
+						recursive = 1;
+						regex = "?*\\.[mcMC]";
+						root = "<PROJECT>";
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					clz = PBXFilenameSmartGroup;
+					description = "This group displays Interface Builder NIB Files.";
+					globalID = 1CC0EA4004350EF90041110B;
+					name = "NIB Files";
+					preferences = {
+						canSave = 1;
+						fnmatch = "*.nib";
+						image = SmartFolder;
+						isLeaf = 0;
+						recursive = 1;
+						regex = "";
+						root = "<PROJECT>";
+					};
+				},
+				{
+					PBXTransientLocationAtTop = no;
+					absolutePathToBundle = "";
+					clz = PBXFindSmartGroup;
+					description = "Displays Find Results.";
+					globalID = 1C37FABC05509CD000000102;
+					name = "Find Results";
+					preferences = {
+						image = spyglass;
+					};
+				},
+				{
+					PBXTransientLocationAtTop = no;
+					absolutePathToBundle = "";
+					clz = PBXBookmarksSmartGroup;
+					description = "Displays Project Bookmarks.";
+					globalID = 1C37FABC05539CD112110102;
+					name = Bookmarks;
+					preferences = {
+						image = Bookmarks;
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					clz = XCSCMSmartGroup;
+					description = "Displays files with interesting SCM status.";
+					globalID = E2644B35053B69B200211256;
+					name = SCM;
+					preferences = {
+						image = PBXRepository;
+						isLeaf = 0;
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					clz = PBXSymbolsSmartGroup;
+					description = "Displays all symbols for the project.";
+					globalID = 1C37FABC04509CD000100104;
+					name = "Project Symbols";
+					preferences = {
+						image = ProjectSymbols;
+						isLeaf = 1;
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					clz = PBXFilenameSmartGroup;
+					description = "Filters items in a given group (potentially recursively) based on matching the name with the regular expression of the filter.";
+					globalID = PBXTemplateMarker;
+					name = "Simple Filter SmartGroup";
+					preferences = {
+						canSave = 1;
+						fnmatch = "*.nib";
+						image = SmartFolder;
+						isLeaf = 0;
+						recursive = 1;
+						regex = "";
+						root = "<PROJECT>";
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					absolutePathToBundle = "";
+					clz = PBXFilenameSmartGroup;
+					description = "Filters items in a given group (potentially recursively) based on matching the name with the regular expression of the filter.";
+					globalID = PBXTemplateMarker;
+					name = "Simple Regular Expression SmartGroup";
+					preferences = {
+						canSave = 1;
+						fnmatch = "";
+						image = SmartFolder;
+						isLeaf = 0;
+						recursive = 1;
+						regex = "?*\\.[mcMC]";
+						root = "<PROJECT>";
+					};
+				},
+				{
+					PBXTransientLocationAtTop = bottom;
+					clz = XDDesignSmartGroup;
+					description = "Displays Xdesign models";
+					globalID = 2E4A936305E6979E00701470;
+					name = Design;
+					preferences = {
+						image = Design;
+						isLeaf = 0;
+					};
+				},
+			);
+			PBXWorkspaceStateSaveDate = 364644068;
+		};
+		perUserProjectItems = {
+			26A23D1815BC312700A0B6A2 /* PBXTextBookmark */ = 26A23D1815BC312700A0B6A2 /* PBXTextBookmark */;
+			26F4642113A4B6C5000868A4 /* PBXTextBookmark */ = 26F4642113A4B6C5000868A4 /* PBXTextBookmark */;
+			26F4642213A4B6C5000868A4 /* PBXTextBookmark */ = 26F4642213A4B6C5000868A4 /* PBXTextBookmark */;
+			26F4642313A4B6C5000868A4 /* PBXTextBookmark */ = 26F4642313A4B6C5000868A4 /* PBXTextBookmark */;
+			26F4642413A4B6C5000868A4 /* PBXTextBookmark */ = 26F4642413A4B6C5000868A4 /* PBXTextBookmark */;
+			26F4642713A4B6C5000868A4 /* PBXTextBookmark */ = 26F4642713A4B6C5000868A4 /* PBXTextBookmark */;
+			26F4642813A4B6C5000868A4 /* PBXTextBookmark */ = 26F4642813A4B6C5000868A4 /* PBXTextBookmark */;
+			26F4646313A4C38C000868A4 /* PBXTextBookmark */ = 26F4646313A4C38C000868A4 /* PBXTextBookmark */;
+			26F464A013A60628000868A4 /* PBXTextBookmark */ = 26F464A013A60628000868A4 /* PBXTextBookmark */;
+			26F464A113A60628000868A4 /* PBXTextBookmark */ = 26F464A113A60628000868A4 /* PBXTextBookmark */;
+			26F464A313A60628000868A4 /* PBXTextBookmark */ = 26F464A313A60628000868A4 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 26C89220073777AC0003B26E /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	29B97316FDCFA39411CA2CEA /* main.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {862, 562}}";
+			sepNavSelRange = "{225, 0}";
+			sepNavVisRange = "{0, 271}";
+			sepNavVisRect = "{{0, 0}, {535, 231}}";
+		};
+	};
+}

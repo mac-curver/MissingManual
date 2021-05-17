@@ -1,0 +1,1 @@
+//// Prefix header for all source files of the 'Frequency Generator' target in the 'Frequency Generator' project//#ifdef __OBJC__    #import <Cocoa/Cocoa.h>#endif

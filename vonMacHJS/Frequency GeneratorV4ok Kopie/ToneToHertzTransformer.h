@@ -1,0 +1,1 @@
+////  ToneToHertzTransformer.h//  Frequency Generator////  Created by Heinz-Jšrg Schršder on 15.12.04.//  Copyright 2004 Heinz-Jšrg Schršder. All rights reserved.//#import <Cocoa/Cocoa.h>@interface ToneToHertzTransformer : NSValueTransformer {}@end

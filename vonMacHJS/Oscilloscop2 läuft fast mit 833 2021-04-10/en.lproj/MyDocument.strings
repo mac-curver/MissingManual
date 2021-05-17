@@ -1,0 +1,288 @@
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "5"; */
+"5.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "0.05"; ObjectID = "234"; */
+"234.title" = "0.05";
+
+/* Class = "NSMenuItem"; title = "No"; ObjectID = "236"; */
+"236.title" = "No";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "237"; */
+"237.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "0.1"; ObjectID = "238"; */
+"238.title" = "0.1";
+
+/* Class = "NSMenuItem"; title = "0.25"; ObjectID = "239"; */
+"239.title" = "0.25";
+
+/* Class = "NSMenuItem"; title = "0.5"; ObjectID = "240"; */
+"240.title" = "0.5";
+
+/* Class = "NSMenuItem"; title = "1"; ObjectID = "241"; */
+"241.title" = "1";
+
+/* Class = "NSMenuItem"; title = "5"; ObjectID = "242"; */
+"242.title" = "5";
+
+/* Class = "NSMenuItem"; title = "2.5"; ObjectID = "243"; */
+"243.title" = "2.5";
+
+/* Class = "NSMenuItem"; title = "10"; ObjectID = "244"; */
+"244.title" = "10";
+
+/* Class = "NSMenuItem"; title = "25"; ObjectID = "245"; */
+"245.title" = "25";
+
+/* Class = "NSMenuItem"; title = "Inf"; ObjectID = "246"; */
+"246.title" = "Inf";
+
+/* Class = "NSBox"; title = "Trigger"; ObjectID = "262"; */
+"262.title" = "Trigger";
+
+/* Class = "NSMenuItem"; title = "Normal"; ObjectID = "339"; */
+"339.title" = "Normal";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "340"; */
+"340.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Single"; ObjectID = "345"; */
+"345.title" = "Single";
+
+/* Class = "NSMenuItem"; title = "Auto"; ObjectID = "346"; */
+"346.title" = "Auto";
+
+/* Class = "NSMenuItem"; title = "Special"; ObjectID = "349"; */
+"349.title" = "Special";
+
+/* Class = "NSTextFieldCell"; title = "Descriptor"; ObjectID = "542"; */
+"542.title" = "Descriptor";
+
+/* Class = "NSTextFieldCell"; title = "Template"; ObjectID = "543"; */
+"543.title" = "Template";
+
+/* Class = "NSTextFieldCell"; title = "Length"; ObjectID = "544"; */
+"544.title" = "Length";
+
+/* Class = "NSTextFieldCell"; title = "Instrument Name"; ObjectID = "545"; */
+"545.title" = "Instrument Name";
+
+/* Class = "NSTextFieldCell"; title = "vertical Gain"; ObjectID = "546"; */
+"546.title" = "vertical Gain";
+
+/* Class = "NSTextFieldCell"; title = "vertical Offset"; ObjectID = "547"; */
+"547.title" = "vertical Offset";
+
+/* Class = "NSTextFieldCell"; title = "horiz. Interval"; ObjectID = "548"; */
+"548.title" = "horiz. Interval";
+
+/* Class = "NSTextFieldCell"; title = "horiz. Offset"; ObjectID = "549"; */
+"549.title" = "horiz. Offset";
+
+/* Class = "NSTextFieldCell"; title = "Trigger Date/Time"; ObjectID = "550"; */
+"550.title" = "Trigger Date/Time";
+
+/* Class = "NSTextFieldCell"; title = "Timebase"; ObjectID = "551"; */
+"551.title" = "Timebase";
+
+/* Class = "NSTextFieldCell"; title = "Coupling"; ObjectID = "552"; */
+"552.title" = "Coupling";
+
+/* Class = "NSTextFieldCell"; title = "vertical Gain (incl.Att.)"; ObjectID = "553"; */
+"553.title" = "vertical Gain (incl.Att.)";
+
+/* Class = "NSTextFieldCell"; title = "Bandwidth Limit"; ObjectID = "554"; */
+"554.title" = "Bandwidth Limit";
+
+/* Class = "NSTabViewItem"; label = "Ch3/4"; ObjectID = "568"; */
+"568.label" = "Ch3/4";
+
+/* Class = "NSTabViewItem"; label = "Ch1/2"; ObjectID = "570"; */
+"570.label" = "Ch1/2";
+
+/* Class = "NSBox"; title = "Offset"; ObjectID = "782"; */
+"782.title" = "Offset";
+
+/* Class = "NSBox"; title = "Scale"; ObjectID = "784"; */
+"784.title" = "Scale";
+
+/* Class = "NSButtonCell"; title = "Ch 1"; ObjectID = "789"; */
+"789.title" = "Ch 1";
+
+/* Class = "NSButtonCell"; title = "Ch 2"; ObjectID = "791"; */
+"791.title" = "Ch 2";
+
+/* Class = "NSButtonCell"; title = "Ch 3"; ObjectID = "792"; */
+"792.title" = "Ch 3";
+
+/* Class = "NSButtonCell"; title = "Ch 4"; ObjectID = "793"; */
+"793.title" = "Ch 4";
+
+/* Class = "NSButtonCell"; title = "M1"; ObjectID = "907"; */
+"907.title" = "M1";
+
+/* Class = "NSButtonCell"; title = "M2"; ObjectID = "910"; */
+"910.title" = "M2";
+
+/* Class = "NSButtonCell"; title = "M3"; ObjectID = "911"; */
+"911.title" = "M3";
+
+/* Class = "NSButtonCell"; title = "M4"; ObjectID = "912"; */
+"912.title" = "M4";
+
+/* Class = "NSTabViewItem"; label = "Desc. Matrix"; ObjectID = "973"; */
+"973.label" = "Desc. Matrix";
+
+/* Class = "NSTabViewItem"; label = "Desc. Table"; ObjectID = "974"; */
+"974.label" = "Desc. Table";
+
+/* Class = "NSTableColumn"; headerCell.title = "Value"; ObjectID = "977"; */
+"977.headerCell.title" = "Value";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "980"; */
+"980.headerCell.title" = "Name";
+
+/* Class = "NSTableColumn"; headerCell.title = "Type"; ObjectID = "981"; */
+"981.headerCell.title" = "Type";
+
+/* Class = "NSButtonCell"; title = "Ch 1"; ObjectID = "1047"; */
+"1047.title" = "Ch 1";
+
+/* Class = "NSButtonCell"; title = "Ch 2"; ObjectID = "1048"; */
+"1048.title" = "Ch 2";
+
+/* Class = "NSButtonCell"; title = "Ch 3"; ObjectID = "1049"; */
+"1049.title" = "Ch 3";
+
+/* Class = "NSButtonCell"; title = "Ch 4"; ObjectID = "1050"; */
+"1050.title" = "Ch 4";
+
+/* Class = "NSButtonCell"; title = "M1"; ObjectID = "1051"; */
+"1051.title" = "M1";
+
+/* Class = "NSButtonCell"; title = "M2"; ObjectID = "1052"; */
+"1052.title" = "M2";
+
+/* Class = "NSButtonCell"; title = "M3"; ObjectID = "1053"; */
+"1053.title" = "M3";
+
+/* Class = "NSButtonCell"; title = "M4"; ObjectID = "1054"; */
+"1054.title" = "M4";
+
+/* Class = "NSTabViewItem"; label = "Channel"; ObjectID = "1104"; */
+"1104.label" = "Channel";
+
+/* Class = "NSTabViewItem"; label = "Math"; ObjectID = "1105"; */
+"1105.label" = "Math";
+
+/* Class = "NSBox"; title = "Offset"; ObjectID = "1108"; */
+"1108.title" = "Offset";
+
+/* Class = "NSBox"; title = "Scale"; ObjectID = "1118"; */
+"1118.title" = "Scale";
+
+/* Class = "NSTabViewItem"; label = "Parameters"; ObjectID = "1270"; */
+"1270.label" = "Parameters";
+
+/* Class = "NSTextFieldCell"; title = "Remanenz [s]"; ObjectID = "1361"; */
+"1361.title" = "Remanenz [s]";
+
+/* Class = "NSButtonCell"; alternateTitle = "wait for Trig."; ObjectID = "1364"; */
+"1364.alternateTitle" = "wait for Trig.";
+
+/* Class = "NSButtonCell"; title = "Retrigger"; ObjectID = "1364"; */
+"1364.title" = "Retrigger";
+
+/* Class = "NSTextFieldCell"; title = "Level"; ObjectID = "1365"; */
+"1365.title" = "Level";
+
+/* Class = "NSTextFieldCell"; title = "0.000"; ObjectID = "1367"; */
+"1367.title" = "0.000";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "1368"; */
+"1368.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "Position"; ObjectID = "1370"; */
+"1370.title" = "Position";
+
+/* Class = "NSButtonCell"; alternateTitle = "+"; ObjectID = "1372"; */
+"1372.alternateTitle" = "+";
+
+/* Class = "NSButtonCell"; title = "-"; ObjectID = "1372"; */
+"1372.title" = "-";
+
+/* Class = "NSTextFieldCell"; title = "0 ms"; ObjectID = "1373"; */
+"1373.title" = "0 ms";
+
+/* Class = "NSTextFieldCell"; title = "Hold"; ObjectID = "1375"; */
+"1375.title" = "Hold";
+
+/* Class = "NSTextFieldCell"; title = "Time Scale"; ObjectID = "1378"; */
+"1378.title" = "Time Scale";
+
+/* Class = "NSButtonCell"; title = "Parameters"; ObjectID = "1380"; */
+"1380.title" = "Parameters";
+
+/* Class = "NSTextFieldCell"; title = "11"; ObjectID = "1382"; */
+"1382.title" = "11";
+
+/* Class = "NSTextFieldCell"; title = "CompositeMode"; ObjectID = "1383"; */
+"1383.title" = "CompositeMode";
+
+/* Class = "NSTextFieldCell"; title = "0,1"; ObjectID = "1384"; */
+"1384.title" = "0,1";
+
+/* Class = "NSButtonCell"; title = "Show Gnd Marker"; ObjectID = "1385"; */
+"1385.title" = "Show Gnd Marker";
+
+/* Class = "NSButtonCell"; title = "White on Black"; ObjectID = "1386"; */
+"1386.title" = "White on Black";
+
+/* Class = "NSButtonCell"; title = "Ch 1"; ObjectID = "1387"; */
+"1387.title" = "Ch 1";
+
+/* Class = "NSButtonCell"; title = "Ch 1"; ObjectID = "1388"; */
+"1388.title" = "Ch 1";
+
+/* Class = "NSButtonCell"; title = "Sum"; ObjectID = "1389"; */
+"1389.title" = "Sum";
+
+/* Class = "NSTextFieldCell"; title = "Mini System Font Text"; ObjectID = "1398"; */
+"1398.title" = "Mini System Font Text";
+
+/* Class = "NSTextFieldCell"; title = "C1"; ObjectID = "1422"; */
+"1422.title" = "C1";
+
+/* Class = "NSTextFieldCell"; title = "C2"; ObjectID = "1424"; */
+"1424.title" = "C2";
+
+/* Class = "NSTextFieldCell"; title = "C3"; ObjectID = "1426"; */
+"1426.title" = "C3";
+
+/* Class = "NSTextFieldCell"; title = "C4"; ObjectID = "1428"; */
+"1428.title" = "C4";
+
+/* Class = "NSTextFieldCell"; title = "M4"; ObjectID = "1433"; */
+"1433.title" = "M4";
+
+/* Class = "NSTextFieldCell"; title = "M3"; ObjectID = "1434"; */
+"1434.title" = "M3";
+
+/* Class = "NSTextFieldCell"; title = "M2"; ObjectID = "1435"; */
+"1435.title" = "M2";
+
+/* Class = "NSTextFieldCell"; title = "M1"; ObjectID = "1436"; */
+"1436.title" = "M1";
+
+/* Class = "NSTextFieldCell"; title = "S"; ObjectID = "1441"; */
+"1441.title" = "S";
+
+/* Class = "NSTextFieldCell"; title = "Cur"; ObjectID = "1442"; */
+"1442.title" = "Cur";
+
+/* Class = "NSTextFieldCell"; title = "Bkg"; ObjectID = "1443"; */
+"1443.title" = "Bkg";
+
+/* Class = "NSTextFieldCell"; title = "Grd"; ObjectID = "1444"; */
+"1444.title" = "Grd";

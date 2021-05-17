@@ -1,0 +1,6 @@
+﻿/* Localized versions of Info.plist keys */
+
+CFBundleName = "Oscilloscop2";
+CFBundleShortVersionString = "0.1";
+CFBundleGetInfoString = "Oscilloscop2 version 0.1, Copyright 2004 Heinz-Jörg SCHRÖDER.";
+NSHumanReadableCopyright = "Copyright 2004 Heinz-Jörg SCHRÖDER.";
