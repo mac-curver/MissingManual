@@ -1,1 +1,0 @@
-unsigned long	msClock(void);void	msClockReset(void);

@@ -1,1 +1,0 @@
-/* OffsetPositionView */#import <Cocoa/Cocoa.h>@interface OffsetPositionView : NSView{    IBOutlet NSSlider	*OffsetPositionSlider;		double				startOffset;	double				stopOffset;}- (IBAction)setOffsetPosition:(id)sender;@end
