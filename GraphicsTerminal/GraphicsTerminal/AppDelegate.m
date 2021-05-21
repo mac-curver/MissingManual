@@ -74,7 +74,7 @@ const int MinHeightToUpdate = 20;
     [_triggerPolarity setSelectedSegment:0];//[defaults integerForKey:@"triggerPolarity"]];
     [self changeTriggerPolarity:_triggerPolarity];
 
-    _scientificView.triggerChannel = 0;
+    [_graphicsTerminalView setTriggerChannel:0];
     /*
     if ([defaults objectForKey:@"SettingsLeft"]) {
         NSPoint topLeft = NSMakePoint([defaults doubleForKey:@"SettingsLeft"], [defaults doubleForKey:@"SettingsTop"]);
@@ -203,30 +203,26 @@ const int MinHeightToUpdate = 20;
         [_scrollTextView appendToEnd:attrText];
     }
 
-    if (_scientificView.frame.size.height > MinHeightToUpdate) {
-        [_scientificView readText:availableText];
+    if (_graphicsTerminalView.frame.size.height > MinHeightToUpdate) {
+        [_graphicsTerminalView readText:availableText];
     }
     
 }
 
 
 - (IBAction)changeTriggerChannel:(NSPopUpButton *)sender {
+    [_graphicsTerminalView setTriggerChannel:sender.indexOfSelectedItem];
+
 }
 
 - (IBAction)changeTriggerMode:(NSSegmentedControl *)sender {
-    [_scientificView changeTriggerMode:(int)sender.selectedSegment];    
+    [_graphicsTerminalView changeTriggerMode:sender.selectedSegment];
 }
 
 - (IBAction)changeTriggerPolarity:(NSSegmentedControl *)sender {
-    switch (sender.selectedSegment) {
-        case 0:
-            _scientificView.triggerPolarity = -1;
-            break;
-        default:
-            _scientificView.triggerPolarity = +1;
-            break;
-    }
+    [_graphicsTerminalView changeTriggerPolarity:sender.selectedSegment];
 }
+
 
 - (void)  clearSingleShot {
     NSLog(@"Clear Single shot");

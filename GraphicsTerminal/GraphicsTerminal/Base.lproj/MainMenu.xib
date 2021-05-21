@@ -17,8 +17,8 @@
             <connections>
                 <outlet property="baudRate" destination="yhB-88-GCe" id="KtG-4I-uPU"/>
                 <outlet property="connectButton" destination="vwz-8Y-Lfo" id="Zvg-tb-VfE"/>
+                <outlet property="graphicsTerminalView" destination="D96-a8-qk3" id="Zxr-Kh-oQ3"/>
                 <outlet property="preferencesTextView" destination="8Ij-ZV-Cx3" id="CW9-fR-H32"/>
-                <outlet property="scientificView" destination="D96-a8-qk3" id="Zxr-Kh-oQ3"/>
                 <outlet property="scrollTextView" destination="AJa-bN-4rA" id="2JL-ff-DiQ"/>
                 <outlet property="serialPortPopup" destination="72X-dm-yOT" id="Y2c-cy-8Nh"/>
                 <outlet property="settings" destination="yuK-1y-Ned" id="cbv-uQ-TaW"/>
@@ -718,7 +718,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="675" height="478"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView fixedFrame="YES" id="D96-a8-qk3" customClass="ScientificView">
+                            <customView fixedFrame="YES" id="D96-a8-qk3" customClass="GraphicsTerminalView">
                                 <rect key="frame" x="0.0" y="0.0" width="675" height="363"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -762,14 +762,14 @@
                                 <rect key="frame" x="0.0" y="373" width="675" height="105"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="DLV-AQ-pqa">
-                                    <rect key="frame" x="0.0" y="0.0" width="675" height="105"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="660" height="105"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="AJa-bN-4rA">
-                                            <rect key="frame" x="0.0" y="0.0" width="675" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="660" height="105"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <size key="minSize" width="675" height="105"/>
+                                            <size key="minSize" width="660" height="105"/>
                                             <size key="maxSize" width="675" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -806,21 +806,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="406" height="110"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="QT3-gO-OZv">
-                            <rect key="frame" x="0.0" y="0.0" width="406" height="110"/>
+                            <rect key="frame" x="0.0" y="0.0" width="391" height="110"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="8Ij-ZV-Cx3">
-                                    <rect key="frame" x="0.0" y="0.0" width="511" height="110"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="496" height="110"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <size key="minSize" width="406" height="110"/>
+                                    <size key="minSize" width="391" height="110"/>
                                     <size key="maxSize" width="727" height="10000000"/>
                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 </textView>
                             </subviews>
                         </clipView>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="1cX-7W-ytF">
-                            <rect key="frame" x="390" y="0.0" width="16" height="110"/>
+                            <rect key="frame" x="391" y="0.0" width="15" height="110"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -910,7 +910,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <stepperCell key="cell" continuous="YES" alignment="left" minValue="-10000" maxValue="10000" doubleValue="499" id="r5I-ig-mx6"/>
                                     <connections>
-                                        <binding destination="a2U-Vd-4ht" name="value" keyPath="values.maxX" id="Nag-YI-Z0w"/>
+                                        <binding destination="a2U-Vd-4ht" name="value" keyPath="values.maxX" id="rgp-tZ-f9j"/>
                                     </connections>
                                 </stepper>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cdo-Bf-uEn" userLabel="xMax">
@@ -923,7 +923,7 @@
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                     <connections>
-                                        <binding destination="a2U-Vd-4ht" name="value" keyPath="values.maxX" id="u4a-i8-FSE"/>
+                                        <binding destination="a2U-Vd-4ht" name="value" keyPath="values.maxX" id="jnQ-1r-Top"/>
                                     </connections>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hQb-53-Cwr" userLabel="xLabel">

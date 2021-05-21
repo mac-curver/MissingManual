@@ -15,6 +15,7 @@
 #endif
 
 
+// #import "MyLog.h" must be last -otherwise you get Unknown type name 'NSString' !!!
 void MyLog(const char *file, int lineNumber, const char *functionName, NSString *format, ...);
 
 

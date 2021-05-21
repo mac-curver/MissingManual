@@ -29,6 +29,8 @@
 		26161A5A2603D8BE00A43EF0 /* myGraphics.h in Sources */ = {isa = PBXBuildFile; fileRef = 26161A322603D84600A43EF0 /* myGraphics.h */; };
 		26196139261B6ACA0024B198 /* NSTextViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 26196138261B6ACA0024B198 /* NSTextViewExtension.m */; };
 		261CDBC2260927E10059F8CF /* ZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 261CDBC1260927E10059F8CF /* ZoomAnimation.m */; };
+		2620B32F2656285A00890C6F /* TriggerClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2620B32E2656285A00890C6F /* TriggerClass.m */; };
+		2620B3322658102B00890C6F /* GraphicsTerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2620B3312658102B00890C6F /* GraphicsTerminalView.m */; };
 		262C585B261759CC0061E8F7 /* magnify.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 262C585A261759CC0061E8F7 /* magnify.tiff */; };
 		262C5863261B01F00061E8F7 /* selectionCursor.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 262C5862261B01F00061E8F7 /* selectionCursor.tiff */; };
 		262C5866261B037C0061E8F7 /* PBXClosedGrabHandCursor.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 262C5864261B037C0061E8F7 /* PBXClosedGrabHandCursor.tiff */; };
@@ -107,6 +109,10 @@
 		26196138261B6ACA0024B198 /* NSTextViewExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTextViewExtension.m; sourceTree = "<group>"; };
 		261CDBC0260927E10059F8CF /* ZoomAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZoomAnimation.h; sourceTree = "<group>"; };
 		261CDBC1260927E10059F8CF /* ZoomAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZoomAnimation.m; sourceTree = "<group>"; };
+		2620B32D2656285A00890C6F /* TriggerClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TriggerClass.h; sourceTree = "<group>"; };
+		2620B32E2656285A00890C6F /* TriggerClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TriggerClass.m; sourceTree = "<group>"; };
+		2620B3302658102B00890C6F /* GraphicsTerminalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphicsTerminalView.h; sourceTree = "<group>"; };
+		2620B3312658102B00890C6F /* GraphicsTerminalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphicsTerminalView.m; sourceTree = "<group>"; };
 		262C585A261759CC0061E8F7 /* magnify.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = magnify.tiff; sourceTree = "<group>"; };
 		262C5862261B01F00061E8F7 /* selectionCursor.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = selectionCursor.tiff; sourceTree = "<group>"; };
 		262C5864261B037C0061E8F7 /* PBXClosedGrabHandCursor.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PBXClosedGrabHandCursor.tiff; sourceTree = "<group>"; };
@@ -160,10 +166,14 @@
 				26161A312603D84600A43EF0 /* VerticalGraphAxis.m */,
 				26161A322603D84600A43EF0 /* myGraphics.h */,
 				26161A282603D84600A43EF0 /* myGraphics.m */,
+				2620B32D2656285A00890C6F /* TriggerClass.h */,
+				2620B32E2656285A00890C6F /* TriggerClass.m */,
 				26161A272603D84600A43EF0 /* ScientificView.h */,
 				26161A2F2603D84600A43EF0 /* ScientificView.m */,
 				260DCC6A260DAE4000BBA454 /* Random.h */,
 				260DCC6B260DAE4000BBA454 /* Random.m */,
+				2620B3302658102B00890C6F /* GraphicsTerminalView.h */,
+				2620B3312658102B00890C6F /* GraphicsTerminalView.m */,
 			);
 			path = CommonGraphics;
 			sourceTree = "<group>";
@@ -361,12 +371,14 @@
 				26161A512603D8BE00A43EF0 /* VerticalGraphAxis.h in Sources */,
 				26196139261B6ACA0024B198 /* NSTextViewExtension.m in Sources */,
 				26161A522603D8BE00A43EF0 /* GraphAxis.m in Sources */,
+				2620B32F2656285A00890C6F /* TriggerClass.m in Sources */,
 				26161A532603D8BE00A43EF0 /* myMath.h in Sources */,
 				261CDBC2260927E10059F8CF /* ZoomAnimation.m in Sources */,
 				265AB4222612615800C9EF04 /* Serialport.m in Sources */,
 				26161A542603D8BE00A43EF0 /* HorizontalGraphAxis.m in Sources */,
 				26161A552603D8BE00A43EF0 /* NSViewExtensions.m in Sources */,
 				26161A562603D8BE00A43EF0 /* MyCursor.h in Sources */,
+				2620B3322658102B00890C6F /* GraphicsTerminalView.m in Sources */,
 				26161A572603D8BE00A43EF0 /* ScientificView.m in Sources */,
 				260CFADE262AEF8300484789 /* MyLog.m in Sources */,
 				26161A582603D8BE00A43EF0 /* GraphAxis.h in Sources */,

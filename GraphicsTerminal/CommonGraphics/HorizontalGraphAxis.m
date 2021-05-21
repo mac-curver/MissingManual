@@ -12,7 +12,6 @@
 
 @implementation HorizontalGraphAxis
 
-static const int MaxNumAnnotations =  5;                                        // max division for horiz. annotation
 
 
 - (void)	lineAt:(double)position {

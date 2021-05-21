@@ -114,7 +114,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/GraphAxis.m"
-            timestampString = "642615763.130357"
+            timestampString = "643311905.240487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
@@ -131,11 +131,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "642921970.651701"
+            timestampString = "643311905.240581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1654"
-            endingLineNumber = "1654"
+            startingLineNumber = "1561"
+            endingLineNumber = "1561"
             landmarkName = "ScientificView"
             landmarkType = "3">
          </BreakpointContent>
@@ -147,11 +147,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "642921970.652343"
+            timestampString = "643311905.240669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
             landmarkName = "-moveCursor:"
             landmarkType = "7">
          </BreakpointContent>
@@ -163,27 +163,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "642921970.65276"
+            timestampString = "643311905.2407579"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "576"
-            endingLineNumber = "576"
-            landmarkName = "ScientificView"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "642921970.653175"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1543"
-            endingLineNumber = "1543"
+            startingLineNumber = "1450"
+            endingLineNumber = "1450"
             landmarkName = "ScientificView"
             landmarkType = "3">
          </BreakpointContent>
@@ -291,11 +275,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "642921970.6536959"
+            timestampString = "643311905.2409641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1297"
-            endingLineNumber = "1297"
+            startingLineNumber = "1204"
+            endingLineNumber = "1204"
             landmarkName = "ScientificView"
             landmarkType = "3">
          </BreakpointContent>
@@ -307,7 +291,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GraphicsTerminal/AppDelegate.m"
-            timestampString = "642921970.65411"
+            timestampString = "643311905.241055"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -323,11 +307,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "642921970.654186"
+            timestampString = "643311905.241128"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1223"
-            endingLineNumber = "1223"
+            startingLineNumber = "1132"
+            endingLineNumber = "1132"
             landmarkName = "-awakeFromNib"
             landmarkType = "7">
          </BreakpointContent>
@@ -339,13 +323,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GraphicsTerminal/AppDelegate.m"
-            timestampString = "642921970.654588"
+            timestampString = "643311905.241215"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
             endingLineNumber = "74"
             landmarkName = "-initializePreferences"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CommonGraphics/ScientificView.m"
+            timestampString = "643311905.241286"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "ScientificView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
