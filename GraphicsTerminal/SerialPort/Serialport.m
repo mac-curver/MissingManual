@@ -34,10 +34,11 @@
 //#include <IOKit/IOBSD.h>
 
 
-
+/*
 /// Replace non-printable characters in str with '\'-escaped equivalents.
 /// This function is used for convenient logging of data traffic.
 /// \ATTENTION Not thread save
+/// \ATTENTION Output string might be longer than original due to inserted chars
 static char *logString(char *str) {
     static char     buf[MaxLineLength+1];
     char            *ptr = buf;
@@ -91,6 +92,7 @@ static char *logString(char *str) {
     
     return buf;
 }
+*/
 
 
 // Returns an iterator across all known modems. Caller is responsible for
@@ -110,20 +112,15 @@ kern_return_t findModems(io_iterator_t *matchingServices)
         // Look for devices that claim to be modems.
         CFDictionarySetValue(classesToMatch,
                              CFSTR(kIOSerialBSDTypeKey),
-//                             CFSTR(kIOSerialBSDModemType)
                              CFSTR(kIOSerialBSDAllTypes)
-//                             CFSTR(kIOSerialBSDRS232Type)
         );
         
         // Each serial device object has a property with key
         // kIOSerialBSDTypeKey and a value that is one of kIOSerialBSDAllTypes,
-        // kIOSerialBSDModemType, or kIOSerialBSDRS232Type. You can experiment with the
-        // matching by changing the last parameter in the above call to CFDictionarySetValue.
+        // kIOSerialBSDModemType, or kIOSerialBSDRS232Type. You can
+        // experiment with the matching by changing the last parameter in
+        // the above call to CFDictionarySetValue.
         
-        // As shipped, this sample is only interested in modems,
-        // so add this property to the CFDictionary we're matching on.
-        // This will find devices that advertise themselves as modems,
-        // such as built-in and USB modems. However, this match won't find serial modems.
     }
     
     // Get an iterator across all matching devices.
@@ -137,8 +134,8 @@ exit:
     return kernResult;
 }
 
-// Given an iterator across a set of modems, return the BSD path to the first one with the callout device
-// path matching MATCH_PATH if defined.
+// Given an iterator across a set of modems, return the BSD path to the first
+// one with the callout device path matching MATCH_PATH if defined.
 // If MATCH_PATH is not defined, return the first device found.
 // If no modems are found the path name is set to an empty string.
 kern_return_t getModemPath(
@@ -153,13 +150,15 @@ kern_return_t getModemPath(
     // Initialize the returned path
     *bsdPath = '\0';
     
-    // Iterate across all modems found. In this example, we bail after finding the first modem.
+    // Iterate across all modems found. In this example, we bail after
+    // finding the first modem.
     
     while ((modemService = IOIteratorNext(serialPortIterator)) && !modemFound) {
         CFTypeRef    bsdPathAsCFString;
         
-        // Get the callout device's path (/dev/cu.xxxxx). The callout device should almost always be
-        // used: the dialin device (/dev/tty.xxxxx) would be used when monitoring a serial port for
+        // Get the callout device's path (/dev/cu.xxxxx). The callout
+        // device should almost always be used: the dialin device
+        // (/dev/tty.xxxxx) would be used when monitoring a serial port for
         // incoming calls, e.g. a fax listener.
         
         bsdPathAsCFString = IORegistryEntryCreateCFProperty(
@@ -171,8 +170,8 @@ kern_return_t getModemPath(
         if (bsdPathAsCFString) {
             Boolean result;
             
-            // Convert the path from a CFString to a C (NUL-terminated) string for use
-            // with the POSIX open() call.
+            // Convert the path from a CFString to a C (NUL-terminated)
+            // string for use with the POSIX open() call.
             
             result = CFStringGetCString(
                          bsdPathAsCFString,
@@ -190,14 +189,19 @@ kern_return_t getModemPath(
 
 
             if (result) {
+             
                 char blueToothDevice[] = "/dev/cu.Bluetooth-Incoming-Port";
                 if (0 == strncmp(bsdPath, blueToothDevice, strlen(blueToothDevice))) {
-                    // skip bluetooth device
+                    // skip bluetooth device as we can connect but not disconnect
+                    // application is hanging
                 } else {
+                
                     NSLog(@"Modem found with BSD path: %s", bsdPath);
                     modemFound = true;
                     kernResult = KERN_SUCCESS;
+            
                 }
+                
             }
         }
         
@@ -216,8 +220,9 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
     int               handshake;
     struct termios    options;
     
-    // Open the serial port read/write, with no controlling terminal, and don't wait for a connection.
-    // The O_NONBLOCK flag also causes subsequent I/O on the device to be non-blocking.
+    // Open the serial port read/write, with no controlling terminal,
+    // and don't wait for a connection. The O_NONBLOCK flag also causes
+    // subsequent I/O on the device to be non-blocking.
     // See open(2) <x-man-page://2/open> for details.
     
     fileDescriptor = open(bsdPath, O_RDWR | O_NOCTTY | O_NONBLOCK);
@@ -227,10 +232,11 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
         goto error;
     }
     
-    // Note that open() follows POSIX semantics: multiple open() calls to the same file will succeed
-    // unless the TIOCEXCL ioctl is issued. This will prevent additional opens except by root-owned
-    // processes.
-    // See tty(4) <x-man-page//4/tty> and ioctl(2) <x-man-page//2/ioctl> for details.
+    // Note that open() follows POSIX semantics: multiple open() calls
+    // to the same file will succeed unless the TIOCEXCL ioctl is issued.
+    // This will prevent additional opens except by root-owned processes.
+    // See tty(4) <x-man-page//4/tty> and ioctl(2) <x-man-page//2/ioctl>
+    // for details.
     
     if (ioctl(fileDescriptor, TIOCEXCL) == -1) {
         NSLog(@"Error setting TIOCEXCL on %s - %s(%d).",
@@ -238,7 +244,8 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
         goto error;
     }
     
-    // Now that the device is open, clear the O_NONBLOCK flag so subsequent I/O will block.
+    // Now that the device is open, clear the O_NONBLOCK flag so
+    // subsequent I/O will block.
     // See fcntl(2) <x-man-page//2/fcntl> for details.
     
     if (fcntl(fileDescriptor, F_SETFL, 0) == -1) {
@@ -247,15 +254,17 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
         goto error;
     }
     
-    // Get the current options and save them so we can restore the default settings later.
+    // Get the current options and save them so we can restore the
+    // default settings later.
     if (tcgetattr(fileDescriptor, &gOriginalTTYAttrs) == -1) {
         NSLog(@"Error getting tty attributes %s - %s(%d).",
                bsdPath, strerror(errno), errno);
         goto error;
     }
     
-    // The serial port attributes such as timeouts and baud rate are set by modifying the termios
-    // structure and then calling tcsetattr() to cause the changes to take effect. Note that the
+    // The serial port attributes such as timeouts and baud rate are
+    // set by modifying the termios structure and then calling
+    // tcsetattr() to cause the changes to take effect. Note that the
     // changes will not become effective without the tcsetattr() call.
     // See tcsetattr(4) <x-man-page://4/tcsetattr> for details.
     
@@ -264,12 +273,13 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
     // Print the current input and output baud rates.
     // See tcsetattr(4) <x-man-page://4/tcsetattr> for details.
     
-    NSLog(@"Current input baud rate is %d", (int) cfgetispeed(&options));
-    NSLog(@"Current output baud rate is %d", (int) cfgetospeed(&options));
+    int oldInputRate  = (int) cfgetispeed(&options);
+    int oldOutputRate = (int) cfgetospeed(&options);
     
-    // Set raw input (non-canonical) mode, with reads blocking until either a single character
-    // has been received or a one second timeout expires.
-    // See tcsetattr(4) <x-man-page://4/tcsetattr> and termios(4) <x-man-page://4/termios> for details.
+    // Set raw input (non-canonical) mode, with reads blocking until either a
+    // single character has been received or a one second timeout expires.
+    // See tcsetattr(4) <x-man-page://4/tcsetattr> and termios(4)
+    // <x-man-page://4/termios> for details.
     
     cfmakeraw(&options);
     options.c_cc[VMIN] = 0;
@@ -277,31 +287,34 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
     
     // The baud rate, word length, and handshake options can be set as follows:
     
-    cfsetspeed(&options, baudRate);//B115200);        // Set x baud
-    options.c_cflag |= (CS8             // Use 8 bit words
-//                        | PARENB           // Parity enable (even parity if PARODD not also set)
-//                        | CCTS_OFLOW      // CTS flow control of output
-//                        | CRTS_IFLOW    // RTS flow control of input
+    cfsetspeed(&options, baudRate);                                             // Set x baud
+    options.c_cflag |= (CS8                                                     // Use 8 bit words
+//                        | PARENB                                              // Parity enable (even parity if PARODD not also set)
+//                        | PARODD                                              // Odd parity
+//                        | CCTS_OFLOW                                          // CTS flow control of output
+//                        | CRTS_IFLOW                                          // RTS flow control of input
                     );
     
     // The IOSSIOSPEED ioctl can be used to set arbitrary baud rates
-    // other than those specified by POSIX. The driver for the underlying serial hardware
-    // ultimately determines which baud rates can be used. This ioctl sets both the input
-    // and output speed.
+    // other than those specified by POSIX. The driver for the underlying
+    // serial hardware ultimately determines which baud rates can be used.
+    // This ioctl sets both the input and output speed.
     
-    speed_t speed = baudRate; // Set 14400 baud as default return value
+    speed_t speed = baudRate;
     if (ioctl(fileDescriptor, IOSSIOSPEED, &speed) == -1) {
         NSLog(@"Error calling ioctl(..., IOSSIOSPEED, ...) %s - %s(%d).",
                bsdPath, strerror(errno), errno);
     }
     
-    // Print the new input and output baud rates. Note that the IOSSIOSPEED ioctl interacts with the serial driver
-    // directly bypassing the termios struct. This means that the following two calls will not be able to read
-    // the current baud rate if the IOSSIOSPEED ioctl was used but will instead return the speed set by the last call
+    // Print the new input and output baud rates. Note that the IOSSIOSPEED
+    // ioctl interacts with the serial driver directly bypassing the
+    // termios struct. This means that the following two calls will not be
+    // able to read the current baud rate if the IOSSIOSPEED ioctl was
+    // used but will instead return the speed set by the last call
     // to cfsetspeed.
     
-    NSLog(@"Input baud rate changed to %d",  (int) cfgetispeed(&options));
-    NSLog(@"Output baud rate changed to %d", (int) cfgetospeed(&options));
+    NSLog(@"Input baud rate changed from  %d --> %d", oldInputRate,  (int) cfgetispeed(&options));
+    NSLog(@"Output baud rate changed from %d --> %d", oldOutputRate, (int) cfgetospeed(&options));
     
     // Cause the new options to take effect immediately.
     if (tcsetattr(fileDescriptor, TCSANOW, &options) == -1) {
@@ -311,7 +324,8 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
     }
     
     // To set the modem handshake lines, use the following ioctls.
-    // See tty(4) <x-man-page//4/tty> and ioctl(2) <x-man-page//2/ioctl> for details.
+    // See tty(4) <x-man-page//4/tty> and ioctl(2)
+    // <x-man-page//2/ioctl> for details.
     
     // Assert Data Terminal Ready (DTR)
     if (ioctl(fileDescriptor, TIOCSDTR) == -1) {
@@ -418,10 +432,7 @@ Boolean readSerialPort(int fileDescriptor, int numLines) {
     return result;
 }
 
-// Given the file descriptor for a modem device, attempt to initialize the
-// modem by sending it a standard AT command and reading the response.
-// If successful, the modem's response will be "OK".
-// Return true if successful, otherwise false.
+
 NSString *readLineFromSerialPort(int fileDescriptor) {
     char            buffer[256];        // Input buffer
     char           *bufPtr;             // Current char in buffer
@@ -480,7 +491,7 @@ void closeSerialPort(int fileDescriptor) {
     close(fileDescriptor);
 }
 
-
+/*
 char readFromConsoleToStop() {
     char c = 0;
     read (0, &c, 1);
@@ -494,7 +505,6 @@ int startSerialPort() {
     kern_return_t       kernResult;
     io_iterator_t       serialPortIterator;
     char                bsdPath[MAXPATHLEN];
-    //char            esp32Path[] = "cu.SLAB_USBtoUART";
     
     kernResult = findModems(&serialPortIterator);
     if (KERN_SUCCESS != kernResult) {
@@ -513,7 +523,6 @@ int startSerialPort() {
         NSLog(@"No modem port found.");
         return EX_UNAVAILABLE;
     }
-    //strcpy(bsdPath, "/dev/cu.usbserial-A50501O4");
     
     fileDescriptor = openSerialPort(bsdPath, 115200UL);
     if (-1 == fileDescriptor) {
@@ -544,6 +553,7 @@ int startSerialPort() {
     
     return EX_OK;
 }
+ */
 
 @implementation SerialportInterface
 
@@ -609,7 +619,7 @@ int startSerialPort() {
 }
 
 - (instancetype) init {
-    logString("");                                                              // used to suppress unused message
+//    logString("");                                                              // used to suppress unused message
     if (self = [super init]) {
         serialPortFileDescriptor = -1;
         _run = false;

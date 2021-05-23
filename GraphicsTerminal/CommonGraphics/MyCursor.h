@@ -9,7 +9,7 @@
 #import 	<Cocoa/Cocoa.h>
 
 // mouse cursor states
-typedef enum CursorState {
+typedef enum : NSInteger {
     PlusState,
     HandState,
     ZoomState,

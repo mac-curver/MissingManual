@@ -17,11 +17,17 @@ const int MinHeightToUpdate = 20;
 
 - (IBAction)menuPreferences:(NSMenuItem *)sender {
     [_settings setIsVisible:YES];
+    [_settings makeKeyAndOrderFront:self];
+    //[NSApp activateIgnoringOtherApps:YES];
+
     //[_settings setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
 }
 
 - (IBAction)menuShowTerminal:(NSMenuItem *)sender {
     [_window setIsVisible:YES];
+    [_window makeKeyAndOrderFront:self];
+    //[NSApp activateIgnoringOtherApps:YES];
+
     //[_window setCollectionBehavior: NSWindowCollectionBehaviorCanJoinAllSpaces];
 }
 
@@ -68,10 +74,10 @@ const int MinHeightToUpdate = 20;
     
     [_baudRate setStringValue:[defaults stringForKey:@"baudRate"]];             // Must use string to avoid group separator
     
-    [_triggerModeControl     setSelectedSegment:0];//[defaults integerForKey:@"triggerMode"]];
+    [_triggerModeControl setSelectedSegment:[defaults integerForKey:@"triggerMode"]];
     [self changeTriggerMode:_triggerModeControl];
 
-    [_triggerPolarity setSelectedSegment:0];//[defaults integerForKey:@"triggerPolarity"]];
+    [_triggerPolarity setSelectedSegment:[defaults integerForKey:@"triggerPolarity"]];
     [self changeTriggerPolarity:_triggerPolarity];
 
     [_graphicsTerminalView setTriggerChannel:0];
@@ -143,6 +149,9 @@ const int MinHeightToUpdate = 20;
     return true;
 }
 
+
+
+
 - (IBAction)changeSerialPort:(NSPopUpButton *)sender {
     NSLog(@"Serial port should change to %@", sender.objectValue);
 }
@@ -212,15 +221,22 @@ const int MinHeightToUpdate = 20;
 
 - (IBAction)changeTriggerChannel:(NSPopUpButton *)sender {
     [_graphicsTerminalView setTriggerChannel:sender.indexOfSelectedItem];
-
 }
 
 - (IBAction)changeTriggerMode:(NSSegmentedControl *)sender {
     [_graphicsTerminalView changeTriggerMode:sender.selectedSegment];
+    NSLog(@"%d", _graphicsTerminalView.overType);
 }
 
 - (IBAction)changeTriggerPolarity:(NSSegmentedControl *)sender {
     [_graphicsTerminalView changeTriggerPolarity:sender.selectedSegment];
+    NSLog(@"%d", _graphicsTerminalView.overType);
+}
+
+
+- (IBAction)changeOver:(NSSegmentedControl *)sender {
+    _graphicsTerminalView.overType = (int)sender.selectedSegment;
+    NSLog(@"%d", _graphicsTerminalView.overType);
 }
 
 

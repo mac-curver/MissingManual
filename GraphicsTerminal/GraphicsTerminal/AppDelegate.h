@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Serialport.h"
+#import "LedView.h"
 #import "GraphicsTerminalView.h"
 
 
@@ -33,8 +34,11 @@
 @property (weak) IBOutlet NSSegmentedControl *triggerPolarity;
 @property (weak) IBOutlet NSSegmentedControl *triggerModeControl;
 
+@property (weak) IBOutlet NSLevelIndicator *triggerLevelState;
+@property (weak) IBOutlet LedView *led;
 
 @property (unsafe_unretained) IBOutlet NSTextView *scrollTextView;
+- (IBAction)changeOver:(NSSegmentedControl *)sender;
 
 
 

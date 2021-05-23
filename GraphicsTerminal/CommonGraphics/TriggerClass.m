@@ -8,22 +8,28 @@
 
 
 #import "AppDelegate.h"
-
 #import "TriggerClass.h"
+#import "LedView.h"
+
+#import "MyLog.h"
 
 @implementation TriggerClass
 
 const  int                              AutoTriggerFactor = 5;                  // number of cycles to wait before forcing trigger
-const  int                              AutoTimeStampFactor =  500*0.001;       // width corresponds to ms ?
+const  double                           AutoTimeStampFactor =   30*0.001;       // width corresponds to ms ?
 
 
 
 - (instancetype) initWithChannel:(int)channel {
     if (self = [super init]) {
         _state = WaitForLow;
+
         _channel = channel;
         autoTriggerCount = 0;
-        autoTriggerTimeStamp = 0.0; 
+        autoTriggerTimeStamp = 0.0;
+        appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
+        appDelegate.triggerLevelState.intValue = _state;
+
     }
     return self;
 }
@@ -44,10 +50,14 @@ const  int                              AutoTimeStampFactor =  500*0.001;       
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     switch (_mode) {
         case AutoTrigger:
+            NSLog(@"%f %f", CFAbsoluteTimeGetCurrent()- autoTriggerTimeStamp, AutoTimeStampFactor*[defaults doubleForKey:@"maxX"]);
             if ((CFAbsoluteTimeGetCurrent() - autoTriggerTimeStamp) > AutoTimeStampFactor*[defaults doubleForKey:@"maxX"]) {
                 _state = Triggered;
+                appDelegate.triggerLevelState.intValue = _state;
+                [appDelegate.led setColor:NSColor.redColor];
+                autoTriggerTimeStamp = CFAbsoluteTimeGetCurrent();
+                
             }
-            NSLog(@"%f %f", AutoTimeStampFactor*[defaults doubleForKey:@"maxX"], CFAbsoluteTimeGetCurrent()- autoTriggerTimeStamp);
 
             break;
         default:
@@ -56,7 +66,7 @@ const  int                              AutoTimeStampFactor =  500*0.001;       
 }
 
 - (void) clearSingleShot {
-    AppDelegate *appDelegate = (AppDelegate *)[[NSApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
     [appDelegate clearSingleShot];
 }
 
@@ -66,10 +76,13 @@ const  int                              AutoTimeStampFactor =  500*0.001;       
         case SingleTrigger:
             [self clearSingleShot];
             _state = NoTrigger;
+            appDelegate.triggerLevelState.intValue = _state;
             break;
         default:
             _state = WaitForLow;
-            autoTriggerTimeStamp = CFAbsoluteTimeGetCurrent();
+            appDelegate.triggerLevelState.intValue = _state;
+
+ //           autoTriggerTimeStamp = CFAbsoluteTimeGetCurrent();
             break;
     }
     
@@ -101,6 +114,8 @@ const  int                              AutoTimeStampFactor =  500*0.001;       
                 break;
             }
             _state = WaitForHigh;
+            appDelegate.triggerLevelState.intValue = _state;
+
             // fall through
         case WaitForHigh:
             if ([self compareWith:value higherThan:-_polarity]) {
@@ -109,7 +124,9 @@ const  int                              AutoTimeStampFactor =  500*0.001;       
                 break;
             }
             _state = Triggered;
-            
+            appDelegate.triggerLevelState.intValue = _state;
+
+            autoTriggerTimeStamp = CFAbsoluteTimeGetCurrent();
             // fall through
         default:
             
@@ -117,6 +134,10 @@ const  int                              AutoTimeStampFactor =  500*0.001;       
             
     }
     return _state;
+}
+
+- (double)secondsElapsed { 
+    return  CFAbsoluteTimeGetCurrent() - autoTriggerTimeStamp;
 }
 
 @end

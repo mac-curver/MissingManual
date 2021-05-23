@@ -12,11 +12,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSInteger {
+      Samples
+    , YOverX
+    , OverTime
+    , N_OverTypes
+} OverType;
+
 @interface GraphicsTerminalView: ScientificView {
-    
 }
 
 @property(nonatomic, readwrite) TriggerClass   *trigger;
+@property(assign)               OverType        overType;
+
+
 
 - (void)                changeTriggerMode:(NSInteger) newTriggerMode;
 - (void)                changeTriggerPolarity:(NSInteger) selectedSegment;

@@ -31,11 +31,13 @@
 		261CDBC2260927E10059F8CF /* ZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 261CDBC1260927E10059F8CF /* ZoomAnimation.m */; };
 		2620B32F2656285A00890C6F /* TriggerClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2620B32E2656285A00890C6F /* TriggerClass.m */; };
 		2620B3322658102B00890C6F /* GraphicsTerminalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2620B3312658102B00890C6F /* GraphicsTerminalView.m */; };
+		2620B3352658EC6100890C6F /* NSStringExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2620B3342658EC6100890C6F /* NSStringExtension.m */; };
 		262C585B261759CC0061E8F7 /* magnify.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 262C585A261759CC0061E8F7 /* magnify.tiff */; };
 		262C5863261B01F00061E8F7 /* selectionCursor.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 262C5862261B01F00061E8F7 /* selectionCursor.tiff */; };
 		262C5866261B037C0061E8F7 /* PBXClosedGrabHandCursor.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 262C5864261B037C0061E8F7 /* PBXClosedGrabHandCursor.tiff */; };
 		262C5867261B037C0061E8F7 /* PBXOpenGrabHandCursor.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 262C5865261B037C0061E8F7 /* PBXOpenGrabHandCursor.tiff */; };
 		265AB4222612615800C9EF04 /* Serialport.m in Sources */ = {isa = PBXBuildFile; fileRef = 265AB4212612615800C9EF04 /* Serialport.m */; };
+		2686F35526591736002111FE /* LedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2686F35426591736002111FE /* LedView.m */; };
 		268CBD72264ECDB0008F4C0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 268CBD71264ECDB0008F4C0C /* main.m */; };
 		268CBD74264ECE42008F4C0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 268CBD73264ECE41008F4C0C /* Assets.xcassets */; };
 		268CBD78264ECE51008F4C0C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 268CBD76264ECE50008F4C0C /* MainMenu.xib */; };
@@ -113,6 +115,8 @@
 		2620B32E2656285A00890C6F /* TriggerClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TriggerClass.m; sourceTree = "<group>"; };
 		2620B3302658102B00890C6F /* GraphicsTerminalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphicsTerminalView.h; sourceTree = "<group>"; };
 		2620B3312658102B00890C6F /* GraphicsTerminalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphicsTerminalView.m; sourceTree = "<group>"; };
+		2620B3332658EC6100890C6F /* NSStringExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSStringExtension.h; sourceTree = "<group>"; };
+		2620B3342658EC6100890C6F /* NSStringExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSStringExtension.m; sourceTree = "<group>"; };
 		262C585A261759CC0061E8F7 /* magnify.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = magnify.tiff; sourceTree = "<group>"; };
 		262C5862261B01F00061E8F7 /* selectionCursor.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = selectionCursor.tiff; sourceTree = "<group>"; };
 		262C5864261B037C0061E8F7 /* PBXClosedGrabHandCursor.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PBXClosedGrabHandCursor.tiff; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 		2640F6A8264ED4A7003371C6 /* GraphicsTerminal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphicsTerminal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		265AB4202612615800C9EF04 /* Serialport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Serialport.h; sourceTree = "<group>"; };
 		265AB4212612615800C9EF04 /* Serialport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Serialport.m; sourceTree = "<group>"; };
+		2686F35326591736002111FE /* LedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LedView.h; sourceTree = "<group>"; };
+		2686F35426591736002111FE /* LedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LedView.m; sourceTree = "<group>"; };
 		268CBD65264ECA8F008F4C0C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		268CBD6A264ECA8F008F4C0C /* GraphicsTerminal.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GraphicsTerminal.entitlements; sourceTree = "<group>"; };
 		268CBD6E264ECA8F008F4C0C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -174,6 +180,8 @@
 				260DCC6B260DAE4000BBA454 /* Random.m */,
 				2620B3302658102B00890C6F /* GraphicsTerminalView.h */,
 				2620B3312658102B00890C6F /* GraphicsTerminalView.m */,
+				2686F35326591736002111FE /* LedView.h */,
+				2686F35426591736002111FE /* LedView.m */,
 			);
 			path = CommonGraphics;
 			sourceTree = "<group>";
@@ -215,6 +223,8 @@
 			children = (
 				265AB4202612615800C9EF04 /* Serialport.h */,
 				265AB4212612615800C9EF04 /* Serialport.m */,
+				2620B3332658EC6100890C6F /* NSStringExtension.h */,
+				2620B3342658EC6100890C6F /* NSStringExtension.m */,
 			);
 			path = SerialPort;
 			sourceTree = "<group>";
@@ -373,6 +383,7 @@
 				26161A522603D8BE00A43EF0 /* GraphAxis.m in Sources */,
 				2620B32F2656285A00890C6F /* TriggerClass.m in Sources */,
 				26161A532603D8BE00A43EF0 /* myMath.h in Sources */,
+				2686F35526591736002111FE /* LedView.m in Sources */,
 				261CDBC2260927E10059F8CF /* ZoomAnimation.m in Sources */,
 				265AB4222612615800C9EF04 /* Serialport.m in Sources */,
 				26161A542603D8BE00A43EF0 /* HorizontalGraphAxis.m in Sources */,
@@ -384,6 +395,7 @@
 				26161A582603D8BE00A43EF0 /* GraphAxis.h in Sources */,
 				26E85E04264FB2F400DC3E82 /* NSSliderExtension.m in Sources */,
 				26161A592603D8BE00A43EF0 /* VerticalGraphAxis.m in Sources */,
+				2620B3352658EC6100890C6F /* NSStringExtension.m in Sources */,
 				268CBD72264ECDB0008F4C0C /* main.m in Sources */,
 				26161A5A2603D8BE00A43EF0 /* myGraphics.h in Sources */,
 				268CBDAC264ED409008F4C0C /* AppDelegate.m in Sources */,

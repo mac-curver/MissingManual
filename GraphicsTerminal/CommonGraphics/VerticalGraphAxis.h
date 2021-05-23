@@ -7,7 +7,6 @@
 
 #import		<Cocoa/Cocoa.h>
 #import 	"GraphAxis.h"
-@class		GraphAxis;
 
 @interface VerticalGraphAxis: GraphAxis {
 //    IBOutlet id verticalAxis;

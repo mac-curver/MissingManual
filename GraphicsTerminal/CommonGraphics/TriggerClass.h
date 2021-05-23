@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum TriggerState {
+typedef enum : NSInteger {
     NoTrigger
     , WaitForLow
     , WaitForHigh
@@ -18,30 +18,36 @@ typedef enum TriggerState {
     , N_TriggerStates
 } TriggerState;
 
-typedef enum TriggerMode {
+typedef enum : NSInteger {
     AutoTrigger
     , NormalTrigger
     , SingleTrigger
     , N_TriggerModes
 } TriggerMode;
 
+@class AppDelegate;
+
 @interface TriggerClass : NSObject {
 
     int                             autoTriggerCount;
     CFAbsoluteTime                  autoTriggerTimeStamp;
     
+    AppDelegate                    *appDelegate;
+
+    
 }
 
 
-- (instancetype) initWithChannel:(int)channel;
+- (instancetype)    initWithChannel:(int)channel;
 
-- (void) checkAutoTrigger:(int *)autoTriggerCount;
+- (void)            checkAutoTrigger:(int *)autoTriggerCount;
 
-- (void) checkAutoTriggerTimeStamp:(double)autoTriggerTimeStamp;
+- (void)            checkAutoTriggerTimeStamp:(double)autoTriggerTimeStamp;
 
-- (void) triggerModeReset;
+- (void)            triggerModeReset;
 
-- (TriggerState) calculateTriggerState:(double) value;
+- (TriggerState)    calculateTriggerState:(double) value;
+- (double)          secondsElapsed;
 
 
 @property(assign)               TriggerState    state;
