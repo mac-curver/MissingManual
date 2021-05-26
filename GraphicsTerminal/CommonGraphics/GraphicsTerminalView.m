@@ -110,10 +110,10 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
-    NSArray *colors = @[ [NSColor redColor]
+    NSArray *colors = @[   [NSColor redColor]
                          , [NSColor greenColor]
                          , [NSColor blueColor]
-                         ];
+                        ];
     
     NSEraseRect(self.bounds);
     

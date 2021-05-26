@@ -27,70 +27,27 @@
 
 - (void) drawRect:(NSRect) dirtyRect {
     [super drawRect:dirtyRect];
-    
-    NSPoint myStartPoint = NSMakePoint(0.10, 0.90),
-            myEndPoint   = NSMakePoint(0.90, 0.10);
-    //double myStartRadius = 0.05, myEndRadius = 0.25;
-    
-    double locations[] = {0.0, 0.1, 1.0};
+    //CGContextSetShouldAntialias(NSGraphicsContext.currentContext.graphicsPort, YES);
+    CGFloat components[8];//[2*_ledColor.numberOfComponents];
+    [_ledColor getComponents:&components[4]];
+    for (int i = 0; i < 3; i++) {
+        components[i] = components[4+i]/0.3;                                    // brighter
+    }
+    components[7] = 1.0;
 
-    
-    CGFloat components[12] = { 0.0, 1.0, 1.0, 1.0 // Start color
-                             , 0.0, 1.0, 0.0, 1.0
-                             , 1.0, 0.0, 0.0, 1.0 // End color
-    };
-    
-    /*
-     kCGColorSpaceGenericGray
-     kCGColorSpaceGenericRGB
-     kCGColorSpaceGenericCMYK
-     kCGColorSpaceDisplayP3
-     kCGColorSpaceGenericRGBLinear
-     kCGColorSpaceAdobeRGB1998
-     kCGColorSpaceSRGB
-     kCGColorSpaceGenericGrayGamma2_2
-     kCGColorSpaceGenericXYZ
-     kCGColorSpaceGenericLab
-     kCGColorSpaceACESCGLinear
-     kCGColorSpaceITUR_709
-     kCGColorSpaceITUR_2020
-     kCGColorSpaceROMMRGB
-     kCGColorSpaceDCIP3
-     kCGColorSpaceExtendedSRGB
-     kCGColorSpaceLinearSRGB
-     kCGColorSpaceExtendedLinearSRGB
-     kCGColorSpaceExtendedGray
-     kCGColorSpaceLinearGray
-     kCGColorSpaceExtendedLinearGray
-
-    */
-    
-    CGColorSpaceRef myColorspace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGBLinear);
-
-    CGGradientRef myGradient = CGGradientCreateWithColorComponents(
-                            myColorspace, components
-                          , locations, 3
-                 );
-    
-    //NSBezierPath *oval = [NSBezierPath bezierPathWithOvalInRect:self.bounds];
-    //[oval addClip];
-
-
-    //CGContextDrawRadialGradient(
-    //      [[NSGraphicsContext currentContext] graphicsPort]
-    //    , myGradient
-    //    , myStartPoint, myStartRadius
-    //    , myEndPoint,   myEndRadius
-    //    , kCGGradientDrawsAfterEndLocation
-    //);
-    
-    CGContextDrawLinearGradient(
+    CGGradientRef gradient = CGGradientCreateWithColorComponents(
+                                   CGColorSpaceCreateWithName(kCGColorSpaceGenericRGBLinear)
+                                 , components
+                                 , (const CGFloat[]){0.0, 1.000000}, 2
+                             );
+    CGContextDrawRadialGradient(
           NSGraphicsContext.currentContext.graphicsPort
-        , myGradient, myStartPoint, myEndPoint
-        , 3
+        , gradient
+        , NSMakePoint(5*self.bounds.size.width/8, 6*self.bounds.size.height/8), 0.000000
+        , NSMakePoint(self.bounds.size.width/2, self.bounds.size.height/2), self.bounds.size.height/2
+        , 0
     );
-
-
+    // add clip here
 }
 
 @end

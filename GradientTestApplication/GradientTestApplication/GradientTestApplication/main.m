@@ -2,8 +2,8 @@
 //  main.m
 //  GradientTestApplication
 //
-//  Created by Heinz-Jörg on 23.05.21.
-//  Copyright © 2021 Heinz-Jörg. All rights reserved.
+//  Created by LegoEsprit on 23.05.21.
+//  Copyright © 2021 LegoEsprit. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

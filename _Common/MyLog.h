@@ -2,7 +2,7 @@
 //  MyLog.h
 //  TestMacGraphics
 //
-//  Created by Heinz-Jörg on 28.03.21.
+//  Created by LegoEsprit on 28.03.21.
 //  Copyright © 2021 LegoEsprit. All rights reserved.
 //
 #ifndef MyLog_h

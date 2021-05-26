@@ -1306,10 +1306,6 @@
                             </subviews>
                         </view>
                     </box>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hK6-q9-OJ8" customClass="LedView">
-                        <rect key="frame" x="20" y="20" width="79" height="80"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
                 </subviews>
             </view>
             <point key="canvasLocation" x="-740" y="659"/>

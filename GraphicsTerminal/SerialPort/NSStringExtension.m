@@ -21,7 +21,7 @@
             switch (myChar) {
                 case ' ':
                     break;
-                case 27:
+                case 27: // <esc>
                     [stringBuffer replaceCharactersInRange:NSMakeRange(index, 1)
                                                 withString:@"\\^"];
                     break;

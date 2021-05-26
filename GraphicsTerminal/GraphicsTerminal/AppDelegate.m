@@ -58,8 +58,6 @@ const int MinHeightToUpdate = 20;
                        , @"triggerPolarity": @1
                        , @"triggerMode":     @1
                        , @"baudRate": @115200
-                
-                       
     };
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];

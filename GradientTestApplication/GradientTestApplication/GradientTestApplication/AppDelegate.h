@@ -2,11 +2,12 @@
 //  AppDelegate.h
 //  GradientTestApplication
 //
-//  Created by Heinz-Jörg on 23.05.21.
-//  Copyright © 2021 Heinz-Jörg. All rights reserved.
+//  Created by LegoEsprit on 23.05.21.
+//  Copyright © 2021 LegoEsprit. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
+@class TestGradient;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     @public
@@ -19,8 +20,14 @@
     
     __weak IBOutlet NSTextField *startRadius;
     __weak IBOutlet NSTextField *endRadius;
+    
+    __weak IBOutlet NSPopUpButton *colorSpaceMenu;
+    
+    __weak IBOutlet TestGradient *testGradientView;
+    
 }
 
+- (IBAction)copyGradientCodeToClipboard:(NSMenuItem *)sender;
 
 @end
 

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSInteger {
-    NoTrigger
+      NoTrigger
     , WaitForLow
     , WaitForHigh
     , Triggered
@@ -19,7 +19,7 @@ typedef enum : NSInteger {
 } TriggerState;
 
 typedef enum : NSInteger {
-    AutoTrigger
+      AutoTrigger
     , NormalTrigger
     , SingleTrigger
     , N_TriggerModes
@@ -50,10 +50,10 @@ typedef enum : NSInteger {
 - (double)          secondsElapsed;
 
 
-@property(assign)               TriggerState    state;
-@property(assign)               TriggerMode     mode;
-@property(assign)               int             polarity;
-@property(assign)               int             channel;
+@property(assign)                  TriggerState state;
+@property(assign)                  TriggerMode  mode;
+@property(assign)                  int          polarity;
+@property(assign)                  int          channel;
 
 
 @end

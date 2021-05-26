@@ -22,16 +22,35 @@ const  double                           AutoTimeStampFactor =   30*0.001;       
 
 - (instancetype) initWithChannel:(int)channel {
     if (self = [super init]) {
-        _state = WaitForLow;
+        [self setTrigger:WaitForLow];
 
         _channel = channel;
         autoTriggerCount = 0;
         autoTriggerTimeStamp = 0.0;
         appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
-        appDelegate.triggerLevelState.intValue = _state;
 
     }
     return self;
+}
+
+- (void)setTrigger:(TriggerState)newState {
+    _state = newState;
+    switch (_state) {
+        case NoTrigger:
+            [appDelegate.led setColor:NSColor.lightGrayColor];
+            break;
+        case WaitForLow:
+            [appDelegate.led setColor:NSColor.greenColor];
+            break;
+        case WaitForHigh:
+            [appDelegate.led setColor:NSColor.orangeColor];
+            break;
+        case Triggered:
+        default:
+            [appDelegate.led setColor:NSColor.redColor];
+            break;
+    }
+    appDelegate.triggerLevelState.intValue = _state;
 }
 
 - (void)checkAutoTrigger:(nonnull int *)autoTriggerCount {
@@ -39,7 +58,9 @@ const  double                           AutoTimeStampFactor =   30*0.001;       
     switch (_mode) {
         case AutoTrigger:
             *autoTriggerCount = *autoTriggerCount + 1;
-            if (*autoTriggerCount > AutoTriggerFactor*[defaults doubleForKey:@"maxX"]) _state = Triggered;
+            if (*autoTriggerCount > AutoTriggerFactor*[defaults doubleForKey:@"maxX"]) {
+                [self setTrigger:Triggered];
+            }
             break;
         default:
             break;
@@ -52,9 +73,7 @@ const  double                           AutoTimeStampFactor =   30*0.001;       
         case AutoTrigger:
             NSLog(@"%f %f", CFAbsoluteTimeGetCurrent()- autoTriggerTimeStamp, AutoTimeStampFactor*[defaults doubleForKey:@"maxX"]);
             if ((CFAbsoluteTimeGetCurrent() - autoTriggerTimeStamp) > AutoTimeStampFactor*[defaults doubleForKey:@"maxX"]) {
-                _state = Triggered;
-                appDelegate.triggerLevelState.intValue = _state;
-                [appDelegate.led setColor:NSColor.redColor];
+                [self setTrigger:Triggered];
                 autoTriggerTimeStamp = CFAbsoluteTimeGetCurrent();
                 
             }
@@ -75,13 +94,10 @@ const  double                           AutoTimeStampFactor =   30*0.001;       
     switch (_mode) {
         case SingleTrigger:
             [self clearSingleShot];
-            _state = NoTrigger;
-            appDelegate.triggerLevelState.intValue = _state;
+            [self setTrigger:NoTrigger];
             break;
         default:
-            _state = WaitForLow;
-            appDelegate.triggerLevelState.intValue = _state;
-
+            [self setTrigger:WaitForLow];
  //           autoTriggerTimeStamp = CFAbsoluteTimeGetCurrent();
             break;
     }
@@ -113,9 +129,7 @@ const  double                           AutoTimeStampFactor =   30*0.001;       
                 [self checkAutoTriggerTimeStamp:autoTriggerTimeStamp];
                 break;
             }
-            _state = WaitForHigh;
-            appDelegate.triggerLevelState.intValue = _state;
-
+            [self setTrigger:WaitForHigh];
             // fall through
         case WaitForHigh:
             if ([self compareWith:value higherThan:-_polarity]) {
@@ -123,9 +137,7 @@ const  double                           AutoTimeStampFactor =   30*0.001;       
                 [self checkAutoTriggerTimeStamp:autoTriggerTimeStamp];
                 break;
             }
-            _state = Triggered;
-            appDelegate.triggerLevelState.intValue = _state;
-
+            [self setTrigger:Triggered];
             autoTriggerTimeStamp = CFAbsoluteTimeGetCurrent();
             // fall through
         default:
