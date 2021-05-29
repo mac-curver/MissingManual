@@ -64,7 +64,7 @@ const int MinHeightToUpdate = 20;
 
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     
-    NSLog(@"%d", [defaults integerForKey:@"triggerPolarity"]);
+    //NSLog(@"%d", [defaults integerForKey:@"triggerPolarity"]);
     
     [_slider0 setDoubleValue:[defaults doubleForKey:@"slider0"]];
     [_slider1 setDoubleValue:[defaults doubleForKey:@"slider1"]];
@@ -107,10 +107,10 @@ const int MinHeightToUpdate = 20;
     serialPort.delegate = self;//_scientificView;
     
     
-    gesture = [[NSClickGestureRecognizer alloc] initWithTarget:_slider0 action:@selector(sliderGesture:)];
-    if (gesture) {
-        NSLog(@"Works");
-    }
+    gesture = [[NSClickGestureRecognizer alloc]
+                    initWithTarget:_slider0
+                            action:@selector(sliderGesture:)
+               ];
     
     
     // Accessing from terminal: defaults read 'de.legoesprit.testmacgraphics'
@@ -223,18 +223,18 @@ const int MinHeightToUpdate = 20;
 
 - (IBAction)changeTriggerMode:(NSSegmentedControl *)sender {
     [_graphicsTerminalView changeTriggerMode:sender.selectedSegment];
-    NSLog(@"%d", _graphicsTerminalView.overType);
+    //NSLog(@"%d", _graphicsTerminalView.overType);
 }
 
 - (IBAction)changeTriggerPolarity:(NSSegmentedControl *)sender {
     [_graphicsTerminalView changeTriggerPolarity:sender.selectedSegment];
-    NSLog(@"%d", _graphicsTerminalView.overType);
+    //NSLog(@"%d", _graphicsTerminalView.overType);
 }
 
 
 - (IBAction)changeOver:(NSSegmentedControl *)sender {
     _graphicsTerminalView.overType = (int)sender.selectedSegment;
-    NSLog(@"%d", _graphicsTerminalView.overType);
+    //NSLog(@"%d", _graphicsTerminalView.overType);
 }
 
 

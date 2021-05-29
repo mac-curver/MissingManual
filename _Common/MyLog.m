@@ -35,7 +35,7 @@ void MyLog(const char *file, int lineNumber, const char *functionName, NSString 
     functionString = [functionString componentsSeparatedByCharactersInSet:dividers].firstObject;
     switch (0) {
         case 0:
-            fprintf(stderr, "(%s) %s",
+            fprintf(stderr, "%s- %s",
                     [functionString UTF8String], [body UTF8String]);
             break;
         case 1:

@@ -65,6 +65,18 @@
 		26F4D6C52605E9BC00CAA022 /* sprayCursor.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 26161A252603D84600A43EF0 /* sprayCursor.tiff */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		261BF2132662A25B00F99C72 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = text.plist;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyPlist\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		260CFADC262AEF8300484789 /* MyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLog.m; path = ../_Common/MyLog.m; sourceTree = "<group>"; };
 		260CFADD262AEF8300484789 /* MyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLog.h; path = ../_Common/MyLog.h; sourceTree = "<group>"; };
@@ -288,6 +300,7 @@
 				267B39632506C4650061FD45 /* Resources */,
 			);
 			buildRules = (
+				261BF2132662A25B00F99C72 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);

@@ -131,7 +131,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "643566414.354414"
+            timestampString = "643998734.198441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1457"
@@ -147,7 +147,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "643566414.3552099"
+            timestampString = "643998734.198581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "330"
@@ -163,7 +163,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "643566414.3556401"
+            timestampString = "643998734.1986769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1346"
@@ -275,7 +275,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "643566414.356281"
+            timestampString = "643998734.1989551"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1196"
@@ -291,7 +291,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/ScientificView.m"
-            timestampString = "643566414.3567441"
+            timestampString = "643998734.199051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1124"
@@ -383,22 +383,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.236761"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "509"
-            endingLineNumber = "509"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -419,7 +403,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/LedView.m"
-            timestampString = "643572313.837146"
+            timestampString = "643998734.1993639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"

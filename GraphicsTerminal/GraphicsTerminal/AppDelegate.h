@@ -34,7 +34,6 @@
 @property (weak) IBOutlet NSSegmentedControl *triggerPolarity;
 @property (weak) IBOutlet NSSegmentedControl *triggerModeControl;
 
-@property (weak) IBOutlet NSLevelIndicator *triggerLevelState;
 @property (weak) IBOutlet LedView *led;
 
 @property (unsafe_unretained) IBOutlet NSTextView *scrollTextView;
@@ -52,7 +51,7 @@
 - (IBAction)changeTriggerMode:(NSSegmentedControl *)sender;
 - (IBAction)changeTriggerPolarity:(NSSegmentedControl *)sender;
 
-- (void)  clearSingleShot;
+- (void)clearSingleShot;
 
 
 

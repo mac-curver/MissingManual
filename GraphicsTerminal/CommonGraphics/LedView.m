@@ -31,7 +31,7 @@
     CGFloat components[8];//[2*_ledColor.numberOfComponents];
     [_ledColor getComponents:&components[4]];
     for (int i = 0; i < 3; i++) {
-        components[i] = components[4+i]/0.3;                                    // brighter
+        components[i] = fmin(1.0, components[4+i]/0.5);                         // brighter
     }
     components[7] = 1.0;
 
@@ -47,6 +47,11 @@
         , NSMakePoint(self.bounds.size.width/2, self.bounds.size.height/2), self.bounds.size.height/2
         , 0
     );
+    NSBezierPath *path = [NSBezierPath bezierPath];
+    [path appendBezierPathWithOvalInRect: self.bounds];
+    [path stroke];
+
+    
     // add clip here
 }
 

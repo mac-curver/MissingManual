@@ -27,7 +27,6 @@
                 <outlet property="slider1" destination="pWt-je-wd9" id="6Nx-C6-qwS"/>
                 <outlet property="slider2" destination="P5Q-Sr-4kY" id="y5n-rs-AlR"/>
                 <outlet property="triggerChannel" destination="c54-ur-H6H" id="DGh-NG-Vqr"/>
-                <outlet property="triggerLevelState" destination="4mL-gi-FEQ" id="GIL-LW-Vba"/>
                 <outlet property="triggerModeControl" destination="tFL-a6-qXV" id="AIY-mK-gmx"/>
                 <outlet property="triggerPolarity" destination="zsW-N9-51y" id="unz-ng-nYs"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="zmd-HO-9Y0"/>
@@ -1116,14 +1115,6 @@
                                         <binding destination="a2U-Vd-4ht" name="selectedIndex" keyPath="values.triggerPolarity" id="Yl2-OL-nX4"/>
                                     </connections>
                                 </segmentedControl>
-                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4mL-gi-FEQ">
-                                    <rect key="frame" x="257" y="16" width="96" height="16"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" maxValue="3" warningValue="2" criticalValue="3" id="Wta-KF-eqo"/>
-                                    <color key="fillColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="warningFillColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="criticalFillColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
-                                </levelIndicator>
                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OuK-a2-1ei" customClass="LedView">
                                     <rect key="frame" x="222" y="14" width="20" height="20"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

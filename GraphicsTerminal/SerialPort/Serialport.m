@@ -313,8 +313,7 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
     // used but will instead return the speed set by the last call
     // to cfsetspeed.
     
-    NSLog(@"Input baud rate changed from  %d --> %d", oldInputRate,  (int) cfgetispeed(&options));
-    NSLog(@"Output baud rate changed from %d --> %d", oldOutputRate, (int) cfgetospeed(&options));
+    NSLog(@"Baud rate changed from %d --> %d", oldInputRate, (int) cfgetispeed(&options));
     
     // Cause the new options to take effect immediately.
     if (tcsetattr(fileDescriptor, TCSANOW, &options) == -1) {
@@ -356,7 +355,7 @@ int openSerialPort(const char *bsdPath, speed_t baudRate) {
                bsdPath, strerror(errno), errno);
     }
     
-    NSLog(@"Handshake lines currently set to %d", handshake);
+    //NSLog(@"Handshake lines currently set to %d", handshake);
     
     unsigned long mics = 1UL;
     
@@ -491,69 +490,6 @@ void closeSerialPort(int fileDescriptor) {
     close(fileDescriptor);
 }
 
-/*
-char readFromConsoleToStop() {
-    char c = 0;
-    read (0, &c, 1);
-    return c;
-}
-
-
-
-int startSerialPort() {
-    int                 fileDescriptor;
-    kern_return_t       kernResult;
-    io_iterator_t       serialPortIterator;
-    char                bsdPath[MAXPATHLEN];
-    
-    kernResult = findModems(&serialPortIterator);
-    if (KERN_SUCCESS != kernResult) {
-        NSLog(@"No modems were found.");
-    }
-    
-    kernResult = getModemPath(serialPortIterator, bsdPath, sizeof(bsdPath));
-    if (KERN_SUCCESS != kernResult) {
-        NSLog(@"Could not get path for modem.");
-    }
-    
-    IOObjectRelease(serialPortIterator);    // Release the iterator.
-    
-    // Now open the modem port we found, initialize the modem, then close it
-    if (!bsdPath[0]) {
-        NSLog(@"No modem port found.");
-        return EX_UNAVAILABLE;
-    }
-    
-    fileDescriptor = openSerialPort(bsdPath, 115200UL);
-    if (-1 == fileDescriptor) {
-        return EX_IOERR;
-    }
-
-    struct termios t;
-    tcgetattr(0, &t);
-    t.c_lflag &= ~ICANON;
-    tcsetattr(0, TCSANOW, &t);
-    
-    fcntl(0, F_SETFL, fcntl(0, F_GETFL) | O_NONBLOCK);
-    
-    NSLog(@"Starting loop (press q(uit) to stop).");
-    
-    
-    for (char mode = 0; mode != 'q'; mode = readFromConsoleToStop()) {
-        if (readSerialPort(fileDescriptor, 1)) {
-        }
-        else {
-            NSLog(@"\nCould not initialize modem.");
-        }
-    }
-    
-    
-    closeSerialPort(fileDescriptor);
-    NSLog(@"Modem port closed.");
-    
-    return EX_OK;
-}
- */
 
 @implementation SerialportInterface
 
