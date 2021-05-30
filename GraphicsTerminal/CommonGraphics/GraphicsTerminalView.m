@@ -2,7 +2,7 @@
 //  GraphicsTerminalView.m
 //  GraphicsTerminal
 //
-//  Created by Heinz-Jörg on 21.05.21.
+//  Created by LegoEsprit on 21.05.21.
 //  Copyright © 2021 LegoEsprit. All rights reserved.
 //
 

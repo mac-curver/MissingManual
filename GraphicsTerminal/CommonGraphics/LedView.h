@@ -2,7 +2,7 @@
 //  LedView.h
 //  GraphicsTerminal
 //
-//  Created by Heinz-Jörg on 22.05.21.
+//  Created by LegoEsprit on 22.05.21.
 //  Copyright © 2021 LegoEsprit. All rights reserved.
 //
 

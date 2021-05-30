@@ -2,7 +2,7 @@
 //  TriggerClass.m
 //  GraphicsTerminal
 //
-//  Created by Heinz-Jörg on 20.05.21.
+//  Created by LegoEsprit on 20.05.21.
 //  Copyright © 2021 LegoEsprit. All rights reserved.
 //
 
@@ -40,17 +40,30 @@ const  double                           AutoTimeStampFactor =   30*0.001;       
             [appDelegate.led setColor:NSColor.lightGrayColor];
             break;
         case WaitForLow:
-            [appDelegate.led setColor:NSColor.greenColor];
+            switch (_polarity) {
+                case 1:
+                    [appDelegate.led setColor:NSColor.greenColor];
+                    break;
+                default:
+                    [appDelegate.led setColor:NSColor.orangeColor];
+                    break;
+            }
             break;
         case WaitForHigh:
-            [appDelegate.led setColor:NSColor.orangeColor];
+            switch (_polarity) {
+                case 1:
+                    [appDelegate.led setColor:NSColor.orangeColor];
+                    break;
+                default:
+                    [appDelegate.led setColor:NSColor.greenColor];
+                    break;
+            }
             break;
         case Triggered:
         default:
             [appDelegate.led setColor:NSColor.redColor];
             break;
     }
-    appDelegate.triggerLevelState.intValue = _state;
 }
 
 - (void)checkAutoTrigger:(nonnull int *)autoTriggerCount {
@@ -71,13 +84,18 @@ const  double                           AutoTimeStampFactor =   30*0.001;       
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     switch (_mode) {
         case AutoTrigger:
-            NSLog(@"%f %f", CFAbsoluteTimeGetCurrent()- autoTriggerTimeStamp, AutoTimeStampFactor*[defaults doubleForKey:@"maxX"]);
-            if ((CFAbsoluteTimeGetCurrent() - autoTriggerTimeStamp) > AutoTimeStampFactor*[defaults doubleForKey:@"maxX"]) {
+            
+            NSLog(@"%f %f", CFAbsoluteTimeGetCurrent()- autoTriggerTimeStamp
+                  , AutoTimeStampFactor*[defaults doubleForKey:@"maxX"]
+            );
+            
+            if ((CFAbsoluteTimeGetCurrent() - autoTriggerTimeStamp)
+                > AutoTimeStampFactor*[defaults doubleForKey:@"maxX"])
+            {
                 [self setTrigger:Triggered];
                 autoTriggerTimeStamp = CFAbsoluteTimeGetCurrent();
                 
             }
-
             break;
         default:
             break;
