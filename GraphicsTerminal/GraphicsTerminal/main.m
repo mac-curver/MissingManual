@@ -2,7 +2,7 @@
 //  main.m
 //  TestMacGraphics
 //
-//  Created by Heinz-Jörg on 07.09.20.
+//  Created by LegoEsprit on 07.09.20.
 //  Copyright © 2020 LegoEsprit. All rights reserved.
 //
 

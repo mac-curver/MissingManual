@@ -2,8 +2,8 @@
 //  VerticalGraphAxis.h
 //  BodeDiagram
 //
-//  Created by Heinz-Jšrg on Sat Apr 19 2003.
-//  Copyright (c) 2003 Heinz-Jšrg SCHR…DER. All rights reserved.
+//  Created by LegoEsprit on Sat Apr 19 2003.
+//  Copyright (c) 2003 LegoEsprit. All rights reserved.
 
 #import		<Cocoa/Cocoa.h>
 #import 	"GraphAxis.h"

@@ -179,11 +179,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.235852"
+            timestampString = "643999957.222964"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "609"
-            endingLineNumber = "609"
+            startingLineNumber = "545"
+            endingLineNumber = "545"
             landmarkName = "+defaultBaudrate"
             landmarkType = "7">
          </BreakpointContent>
@@ -195,11 +195,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.235925"
+            timestampString = "643999957.223051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "openSerialPort"
             landmarkType = "9">
          </BreakpointContent>
@@ -211,11 +211,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.23599"
+            timestampString = "643999957.223115"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "646"
-            endingLineNumber = "646"
+            startingLineNumber = "582"
+            endingLineNumber = "582"
             landmarkName = "-open:with:"
             landmarkType = "7">
          </BreakpointContent>
@@ -227,7 +227,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.236056"
+            timestampString = "643999957.223178"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
+            landmarkName = "readLineFromSerialPort"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SerialPort/Serialport.m"
+            timestampString = "643999957.22324"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "452"
@@ -243,27 +259,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.236133"
+            timestampString = "643999957.223303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "453"
-            endingLineNumber = "453"
-            landmarkName = "readLineFromSerialPort"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.2362"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "708"
-            endingLineNumber = "708"
+            startingLineNumber = "644"
+            endingLineNumber = "644"
             landmarkName = "-intervalReading"
             landmarkType = "7">
          </BreakpointContent>
@@ -307,7 +307,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GraphicsTerminal/AppDelegate.m"
-            timestampString = "643566414.357383"
+            timestampString = "643999957.2234271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -339,7 +339,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.2365561"
+            timestampString = "643999957.223556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
@@ -355,7 +355,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.236626"
+            timestampString = "643999957.223644"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
@@ -371,11 +371,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SerialPort/Serialport.m"
-            timestampString = "643399247.236694"
+            timestampString = "643999957.223729"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "475"
-            endingLineNumber = "475"
+            startingLineNumber = "474"
+            endingLineNumber = "474"
             landmarkName = "closeSerialPort"
             landmarkType = "9">
          </BreakpointContent>
@@ -387,11 +387,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/TriggerClass.m"
-            timestampString = "643572313.836406"
+            timestampString = "643999957.223819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-checkAutoTriggerTimeStamp:"
             landmarkType = "7">
          </BreakpointContent>
@@ -403,7 +403,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CommonGraphics/LedView.m"
-            timestampString = "643998734.1993639"
+            timestampString = "643999957.2246211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"

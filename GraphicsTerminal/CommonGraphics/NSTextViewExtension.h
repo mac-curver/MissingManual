@@ -2,7 +2,7 @@
 //  NSTextViewExtension.h
 //  TestMacGraphics
 //
-//  Created by Heinz-Jörg on 05.04.21.
+//  Created by LegoEsprit on 05.04.21.
 //  Copyright © 2021 LegoEsprit. All rights reserved.
 //
 
