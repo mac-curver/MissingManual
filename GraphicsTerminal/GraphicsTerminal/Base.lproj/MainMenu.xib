@@ -714,17 +714,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="675" height="478"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <splitView fixedFrame="YES" arrangesAllSubviews="NO" dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="t8R-Th-zdW">
+                    <splitView arrangesAllSubviews="NO" dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="t8R-Th-zdW">
                         <rect key="frame" x="0.0" y="0.0" width="675" height="478"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <customView fixedFrame="YES" id="D96-a8-qk3" customClass="GraphicsTerminalView">
+                            <customView id="D96-a8-qk3" customClass="GraphicsTerminalView">
                                 <rect key="frame" x="0.0" y="0.0" width="675" height="376"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xY3-0c-fJS">
+                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xY3-0c-fJS">
                                         <rect key="frame" x="72" y="18" width="103" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fill" style="rounded" trackingMode="selectOne" id="eDn-Nk-Ra0">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -738,6 +736,10 @@
                                         </connections>
                                     </segmentedControl>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="xY3-0c-fJS" firstAttribute="leading" secondItem="D96-a8-qk3" secondAttribute="leading" constant="74" id="VBL-sv-rFy"/>
+                                    <constraint firstAttribute="bottom" secondItem="xY3-0c-fJS" secondAttribute="bottom" constant="20" symbolic="YES" id="W3C-bb-zlu"/>
+                                </constraints>
                                 <gestureRecognizers>
                                     <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="2" id="nCG-2e-BUN" userLabel="twoClickGesture">
                                         <connections>
@@ -759,11 +761,11 @@
                             <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" id="QyR-wr-JMH">
                                 <rect key="frame" x="0.0" y="386" width="675" height="92"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="DLV-AQ-pqa">
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="DLV-AQ-pqa">
                                     <rect key="frame" x="0.0" y="0.0" width="660" height="92"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="AJa-bN-4rA">
+                                        <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" findStyle="bar" spellingCorrection="YES" smartInsertDelete="YES" id="AJa-bN-4rA">
                                             <rect key="frame" x="0.0" y="0.0" width="660" height="92"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -785,6 +787,12 @@
                         </holdingPriorities>
                     </splitView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="t8R-Th-zdW" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="0pH-sl-XbY"/>
+                    <constraint firstAttribute="bottom" secondItem="t8R-Th-zdW" secondAttribute="bottom" id="SIn-pa-A4R"/>
+                    <constraint firstAttribute="trailing" secondItem="t8R-Th-zdW" secondAttribute="trailing" id="ujj-2r-rhU"/>
+                    <constraint firstItem="t8R-Th-zdW" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="zMK-dB-sQW"/>
+                </constraints>
             </view>
             <point key="canvasLocation" x="31.5" y="-191"/>
         </window>
@@ -1102,7 +1110,7 @@
                                 </segmentedControl>
                                 <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zsW-N9-51y">
                                     <rect key="frame" x="137" y="12" width="70" height="24"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Kla-ls-lXb">
                                         <font key="font" metaFont="system"/>
                                         <segments>
@@ -1117,7 +1125,7 @@
                                 </segmentedControl>
                                 <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OuK-a2-1ei" customClass="LedView">
                                     <rect key="frame" x="222" y="14" width="20" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 </customView>
                             </subviews>
                         </view>
