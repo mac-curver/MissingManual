@@ -1,1 +1,0 @@
-/* AudioApplication */#import <Cocoa/Cocoa.h>@interface AudioApplication : NSApplication {    }+ (NSWindow *)	getLastFrontWindow;@end

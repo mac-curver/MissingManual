@@ -1,1 +1,0 @@
-////  TriggerTransformer.h//  Oscilloscop2////  Created by Heinz-Jšrg on 31.01.05.//  Copyright 2005 __MyCompanyName__. All rights reserved.//#import <Cocoa/Cocoa.h>@interface TriggerTransformer : NSValueTransformer {}@end
