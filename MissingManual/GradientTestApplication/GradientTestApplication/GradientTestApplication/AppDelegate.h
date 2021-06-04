@@ -26,6 +26,7 @@
 }
 
 - (IBAction)copyGradientCodeToClipboard:(NSMenuItem *)sender;
+- (IBAction)changeDrawingContext:(NSPopUpButton *)sender;
 
 @end
 

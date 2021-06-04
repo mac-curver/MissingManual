@@ -28,11 +28,20 @@ NS_ASSUME_NONNULL_END
 @implementation NSColor (NSColorExtension)
 
 - (NSColor *) inverted {
-        return [NSColor colorWithCalibratedRed:(1.0 - self.redComponent)
-                                         green:(1.0 - self.greenComponent)
-                                          blue:(1.0 - self.blueComponent)
-                                         alpha:self.alphaComponent
-                ];
+    NSColorSpaceName colorSpaceName = self.colorSpaceName;
+    if (colorSpaceName == NSCalibratedRGBColorSpace
+     || colorSpaceName == NSDeviceRGBColorSpace
+    ) {
+              return [NSColor colorWithCalibratedRed:(1.0 - self.redComponent)
+                                           green:(1.0 - self.greenComponent)
+                                            blue:(1.0 - self.blueComponent)
+                                           alpha:self.alphaComponent
+                  ];
+    }
+    else {
+        return [NSColor blackColor];
+    }
+    
 }
 
 @end

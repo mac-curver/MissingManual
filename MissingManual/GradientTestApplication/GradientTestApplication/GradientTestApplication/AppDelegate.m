@@ -25,8 +25,6 @@
     [colorSpaceMenu addItemsWithTitles:TestGradient.allColorSpaces];
     [colorSpaceMenu selectItemWithTitle:TestGradient.defaultColorSpace];
     
-    [kindOfGradient setSegmentCount:testGradientView.numberOfKinds];
-
 }
 
 
@@ -44,6 +42,12 @@
     [pasteboard clearContents];
     NSData *data = [[testGradientView code] dataUsingEncoding:NSUTF8StringEncoding];
     [pasteboard setData:data forType:NSPasteboardTypeString];
+}
+
+- (IBAction)changeDrawingContext:(NSPopUpButton *)sender {
+    [testGradientView updateContext:sender];
+    BOOL conicIsEnabled = 2<testGradientView.numberOfKinds;
+    [kindOfGradient setEnabled:conicIsEnabled forSegment:2];
 }
 
 @end
