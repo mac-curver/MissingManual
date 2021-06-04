@@ -15,8 +15,6 @@
     __weak IBOutlet NSSegmentedControl *kindOfGradient;
     __weak IBOutlet NSColorWell *color0;
     __weak IBOutlet NSColorWell *color1;
-    __weak IBOutlet NSTextField *location0;
-    __weak IBOutlet NSTextField *location1;
     
     __weak IBOutlet NSTextField *startRadius;
     __weak IBOutlet NSTextField *endRadius;

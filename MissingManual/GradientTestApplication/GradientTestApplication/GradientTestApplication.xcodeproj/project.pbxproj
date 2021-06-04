@@ -294,7 +294,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.LegoEsprit.GradientTestApplication;
+				PRODUCT_BUNDLE_IDENTIFIER = de.LegoEsprit.GradientTestApplication2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -312,7 +312,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.LegoEsprit.GradientTestApplication;
+				PRODUCT_BUNDLE_IDENTIFIER = de.LegoEsprit.GradientTestApplication2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

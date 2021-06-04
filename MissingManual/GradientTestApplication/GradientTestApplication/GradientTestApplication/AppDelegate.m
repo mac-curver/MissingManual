@@ -24,6 +24,8 @@
     [colorSpaceMenu removeAllItems];
     [colorSpaceMenu addItemsWithTitles:TestGradient.allColorSpaces];
     [colorSpaceMenu selectItemWithTitle:TestGradient.defaultColorSpace];
+    
+    [kindOfGradient setSegmentCount:testGradientView.numberOfKinds];
 
 }
 

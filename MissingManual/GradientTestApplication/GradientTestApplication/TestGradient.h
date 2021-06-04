@@ -5,12 +5,13 @@
 //  Created by LegoEsprit on 23.05.21.
 //  Copyright © 2021 LegoEsprit. All rights reserved.
 //
-//  This SW displays a 2 point linear or radial gradient that can be manipulted
+//  This SW displays a 2 point linear or radial gradient that can be manipulated
 //  by the mouse and entry of some parameters.
 //  The final code can be retrieved by the edit menu item: CopyGradientCode
 //
 
 #import <Cocoa/Cocoa.h>
+#import <QuartzCore/QuartzCore.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,13 +19,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TestGradient: NSView {
     
-    //CFStringRef const defaultColorSpaceRef;
     
     enum GradientKind: NSInteger {
           Linear
         , Radial
         , Conic
+        , N_GradientKinds
     } GradientKind;
+    
+    enum DrawingContext: NSInteger {
+          Quartz
+        , CoreAnimation
+        , N_DrawingContexts
+    } DrawingContext;
     
     NSAffineTransform      *centerTransform;
     NSPoint                 centerMove;
@@ -43,7 +50,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property(assign) CFStringRef              currentColorSpace;
 @property(assign) double                   alpha;
 
+@property(assign) enum DrawingContext      drawingContext;
+
+@property(nonatomic, getter=numberOfKinds)
+                       NSInteger           numbberOfKinds;
 @property(assign) enum GradientKind        kind;
+
 @property(weak, nonatomic) NSTimer        *fadeOutTimer;
 
 
@@ -53,10 +65,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-//@property(assign) CAGradientLayer       *gradient;
+//@property(assign) CAGradientLayer *gradientLayer;
+//@property(assign) CAShapeLayer *shape1Layer;
+//@property(assign) CAShapeLayer *shape2Layer;
 
 
-
+- (IBAction)updateContext:(NSPopUpButton *)sender;
 - (IBAction)updateKind:(NSSegmentedControl *)sender;
 - (IBAction)updateStartColor:(NSColorWell *)sender;
 - (IBAction)updateEndColor:(NSColorWell *)sender;
@@ -75,7 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)myPanGesture:(NSPanGestureRecognizer *)sender;
 
-
+- (NSInteger)numberOfKinds;
 - (NSString *)code;
 
 
