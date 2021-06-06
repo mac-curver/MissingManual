@@ -13,6 +13,7 @@
 		26209BD5265A3B0D00388677 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26209BD4265A3B0D00388677 /* main.m */; };
 		26209BDE265A3CCC00388677 /* TestGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 26209BDD265A3CCC00388677 /* TestGradient.m */; };
 		26209BE1265A94DE00388677 /* MyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 26209BE0265A94DE00388677 /* MyLog.m */; };
+		266DB5AD266CC8BF00A61414 /* UserDefaultExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 266DB5AC266CC8BF00A61414 /* UserDefaultExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		26209BDD265A3CCC00388677 /* TestGradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestGradient.m; sourceTree = "<group>"; };
 		26209BDF265A94DE00388677 /* MyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLog.h; path = ../../_Common/MyLog.h; sourceTree = "<group>"; };
 		26209BE0265A94DE00388677 /* MyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLog.m; path = ../../_Common/MyLog.m; sourceTree = "<group>"; };
+		266DB5AB266CC8BF00A61414 /* UserDefaultExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultExtension.h; sourceTree = "<group>"; };
+		266DB5AC266CC8BF00A61414 /* UserDefaultExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultExtension.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +47,8 @@
 		26209BBF265A3B0A00388677 = {
 			isa = PBXGroup;
 			children = (
+				266DB5AB266CC8BF00A61414 /* UserDefaultExtension.h */,
+				266DB5AC266CC8BF00A61414 /* UserDefaultExtension.m */,
 				26209BDF265A94DE00388677 /* MyLog.h */,
 				26209BE0265A94DE00388677 /* MyLog.m */,
 				26209BDC265A3CCC00388677 /* TestGradient.h */,
@@ -150,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26209BD5265A3B0D00388677 /* main.m in Sources */,
+				266DB5AD266CC8BF00A61414 /* UserDefaultExtension.m in Sources */,
 				26209BCD265A3B0A00388677 /* AppDelegate.m in Sources */,
 				26209BE1265A94DE00388677 /* MyLog.m in Sources */,
 				26209BDE265A3CCC00388677 /* TestGradient.m in Sources */,
@@ -294,7 +300,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.LegoEsprit.GradientTestApplication2;
+				PRODUCT_BUNDLE_IDENTIFIER = de.LegoEsprit.GradientTestApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -312,7 +318,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.LegoEsprit.GradientTestApplication2;
+				PRODUCT_BUNDLE_IDENTIFIER = de.LegoEsprit.GradientTestApplication;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

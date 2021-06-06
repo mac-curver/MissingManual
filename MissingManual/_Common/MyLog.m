@@ -28,7 +28,7 @@ void MyLog(const char *file, int lineNumber, const char *functionName, NSString 
     // End using variable argument list.
     va_end (ap);
     
-    NSString *fileName = [[NSString stringWithUTF8String:file] lastPathComponent];
+    NSString *fileName = [NSString stringWithUTF8String:file].lastPathComponent;
     
     NSCharacterSet *dividers = [NSCharacterSet characterSetWithCharactersInString:@"()"];
     NSString *functionString = [NSString stringWithCString:functionName encoding:NSISOLatin1StringEncoding];
@@ -36,12 +36,12 @@ void MyLog(const char *file, int lineNumber, const char *functionName, NSString 
     switch (0) {
         case 0:
             fprintf(stderr, "(%s) %s",
-                    [functionString UTF8String], [body UTF8String]);
+                    functionString.UTF8String, body.UTF8String);
             break;
         case 1:
             fprintf(stderr, "(%s) (%s:%d) %s",
-                    functionName, [fileName UTF8String],
-                    lineNumber, [body UTF8String]);
+                    functionName, fileName.UTF8String,
+                    lineNumber, body.UTF8String);
             break;
     }
 }

@@ -19,49 +19,45 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TestGradient: NSView {
     
-    
     enum GradientKind: NSInteger {
           Linear
         , Radial
         , Conic
         , N_GradientKinds
-    } GradientKind;
+    };
     
     enum DrawingContext: NSInteger {
           Quartz
         , CoreAnimation
         , N_DrawingContexts
-    } DrawingContext;
+    };
     
-    NSAffineTransform      *centerTransform;
-    NSPoint                 centerMove;
-    CGSize                  initialSize;
-
 }
 
 
-@property(assign) NSColor                 *startColor;                          // Gradient start color
-@property(assign) NSColor                 *endColor;                            // Gradient end color
-@property(assign) double                   startLocation;
-@property(assign) double                   endLocation;
-@property(assign) NSPoint                  startPoint;
-@property(assign) NSPoint                  endPoint;
-@property(assign) CGGradientDrawingOptions options;
-@property(assign) CFStringRef              currentColorSpace;
-@property(assign) double                   alpha;
+@property(strong, atomic) NSColor         *startColor;                          ///< Gradient start color
+@property(strong, atomic) NSColor         *endColor;                            ///< Gradient end color
+@property(assign) double                   startLocation;                       ///< start location value 0...1
+@property(assign) double                   endLocation;                         ///< end location value 0...1
+@property(assign) NSPoint                  startPoint;                          ///< start point for the gradient
+@property(assign) NSPoint                  endPoint;                            ///< end point for the gradient
+@property(assign) double                   alpha;                               ///< used to fade out the circles
 
-@property(assign) enum DrawingContext      drawingContext;
+@property(assign) CGGradientDrawingOptions options;                             ///< options for quartz gradient
+@property(assign) CFStringRef              currentColorSpace;                   ///< quartz color space
+
+@property(assign) enum DrawingContext      drawingContext;                      ///< Quartz <-> CoreAnimation
 
 @property(nonatomic, getter=numberOfKinds)
-                       NSInteger           numbberOfKinds;
-@property(assign) enum GradientKind        kind;
+                       NSInteger           numbberOfKinds;                      ///< to check whether Conic is available
+@property(assign) enum GradientKind        kind;                                ///< Linear, radial, conic?
 
-@property(weak, nonatomic) NSTimer        *fadeOutTimer;
+@property(weak, nonatomic) NSTimer        *fadeOutTimer;                        ///< timer to fade out the circles
 
 
-@property(class, readonly, strong)          NSString *defaultColorSpace;
-@property(class, readonly, weak, nonatomic) NSArray *allColorSpaces;
-@property(class, readonly, weak, nonatomic) NSDictionary *gradientDefaults;
+@property(class, readonly, strong)          NSString *defaultColorSpaceName;    ///< color space NSString enum
+@property(class, readonly, weak, nonatomic) NSArray *allColorSpaceNames;        ///< all NSString enums from documentation
+@property(class, readonly, weak, nonatomic) NSDictionary *gradientDefaults;     ///< all user defaults
 
 
 
@@ -70,30 +66,29 @@ NS_ASSUME_NONNULL_BEGIN
 //@property(assign) CAShapeLayer *shape2Layer;
 
 
-- (IBAction)updateContext:(NSPopUpButton *)sender;
-- (IBAction)updateKind:(NSSegmentedControl *)sender;
-- (IBAction)updateStartColor:(NSColorWell *)sender;
-- (IBAction)updateEndColor:(NSColorWell *)sender;
-- (IBAction)sliderStartLocation:(NSSlider *)sender;
-- (IBAction)sliderEndLocation:(NSSlider *)sender;
+- (IBAction)updateKind:(NSSegmentedControl *)sender;                            ///< linear, radial,... segmented control was changed
+- (IBAction)updateStartColor:(NSColorWell *)sender;                             ///< color well action for the 1st color
+- (IBAction)updateEndColor:(NSColorWell *)sender;                               ///< color well action for the 2nd color
+- (IBAction)sliderStartLocation:(NSSlider *)sender;                             ///< start location 0...1 of the gradient was changed
+- (IBAction)sliderEndLocation:(NSSlider *)sender;                               ///< end location 0...1 of the gradient was changed
 
-- (IBAction)updateStartRadius:(NSTextField *)sender;
-- (IBAction)updateEndRadius:(NSTextField *)sender;
-- (IBAction)stepperStartRadius:(NSStepper *)sender;
-- (IBAction)stepperEndRadius:(NSStepper *)sender;
+- (IBAction)updateStartRadius:(NSTextField *)sender;                            ///< change of start radius
+- (IBAction)updateEndRadius:(NSTextField *)sender;                              ///< change of end radius
+- (IBAction)stepperStartRadius:(NSStepper *)sender;                             ///< connected via binding
+- (IBAction)stepperEndRadius:(NSStepper *)sender;                               ///< connected via binding
 
-- (IBAction)setStartOver:(NSButton *)sender;
-- (IBAction)setEndOver:(NSButton *)sender;
+- (IBAction)setStartOver:(NSButton *)sender;                                    ///< checkbox for Quartz changes options property
+- (IBAction)setEndOver:(NSButton *)sender;                                      ///< checkbox for Quartz changes options property
 
-- (IBAction)selectColorSpace:(NSPopUpButton *)sender;
+- (IBAction)selectColorSpace:(NSPopUpButton *)sender;                           ///< reponds to color space popup menu change
 
-- (IBAction)myPanGesture:(NSPanGestureRecognizer *)sender;
+- (IBAction)myPanGesture:(NSPanGestureRecognizer *)sender;                      ///< moves start and end point
+- (IBAction)myClickGesture:(NSClickGestureRecognizer *)sender;                  ///< resets alpha to 1
 
-- (NSInteger)numberOfKinds;
-- (NSString *)code;
-
-
-//[[NSUserDefaults standardUserDefaults] registerDefaults:appDefaults];
+- (void)updateContext:(NSPopUpButton *)sender;                                  ///< called from delegate
+- (NSInteger)numberOfKinds;                                                     ///< 2 or 3 if Conic is supported
+- (NSString *)code;                                                             ///< objective C-code for the clip board
+- (void)storeDefaults;                                                          ///< store other values into shared user defaults
 
 
 @end

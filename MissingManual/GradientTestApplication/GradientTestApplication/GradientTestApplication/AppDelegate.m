@@ -11,25 +11,31 @@
 
 @interface AppDelegate ()
 
-@property (weak) IBOutlet NSWindow *window;
 
 @end
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    /// Register the defaults from the TestGradient view
     [[NSUserDefaults standardUserDefaults] registerDefaults:TestGradient.gradientDefaults];
 
+    /// Fill the menu with the colorspaces from the TestGradient view
     [colorSpaceMenu removeAllItems];
-    [colorSpaceMenu addItemsWithTitles:TestGradient.allColorSpaces];
-    [colorSpaceMenu selectItemWithTitle:TestGradient.defaultColorSpace];
+    [colorSpaceMenu addItemsWithTitles:TestGradient.allColorSpaceNames];
+    [colorSpaceMenu selectItemWithTitle:TestGradient.defaultColorSpaceName];
     
+    /// Disable the Conic button if not available
+    [self changeDrawingContext:drawingContext];
+    
+    color0.color = testGradientView.startColor;
+    color1.color = testGradientView.endColor;
 }
 
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+    /// Store defaults into the shared defaults
+    [testGradientView storeDefaults];
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
@@ -45,7 +51,10 @@
 }
 
 - (IBAction)changeDrawingContext:(NSPopUpButton *)sender {
+    /// propagate the drawing context to the TestGradient view
     [testGradientView updateContext:sender];
+    
+    /// Enable/disable the Conic item of the segmented control
     BOOL conicIsEnabled = 2<testGradientView.numberOfKinds;
     [kindOfGradient setEnabled:conicIsEnabled forSegment:2];
 }

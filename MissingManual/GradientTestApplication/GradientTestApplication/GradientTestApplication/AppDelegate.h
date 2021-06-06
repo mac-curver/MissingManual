@@ -13,6 +13,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     @public
     
+    __weak IBOutlet NSPopUpButton *drawingContext;
     __weak IBOutlet NSSegmentedControl *kindOfGradient;
     __weak IBOutlet NSColorWell *color0;
     __weak IBOutlet NSColorWell *color1;
