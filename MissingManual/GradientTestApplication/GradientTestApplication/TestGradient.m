@@ -36,12 +36,12 @@ NS_ASSUME_NONNULL_END
 }
 
 - (NSColor *)opposite:(double) alpha {
-    if ([self isLight]) {
-        return NSColor.blackColor;
-    }
-    else {
-        return NSColor.whiteColor;
-    }
+    double ignored;
+    return [NSColor colorWithCalibratedRed:(CGFloat)modf(0.5 + self.redComponent   , &ignored)
+                                     green:(CGFloat)modf(0.5 + self.greenComponent , &ignored)
+                                      blue:(CGFloat)modf(0.5 + self.blueComponent  , &ignored)
+                                     alpha:alpha
+            ];
 }
 
 
@@ -68,6 +68,8 @@ NS_ASSUME_NONNULL_END
 
 
 @implementation TestGradient
+
+
 
 //CFStringRef const defaultColorSpaceRef = CFSTR("kCGColorSpaceGenericRGBLinear");
 
@@ -147,13 +149,9 @@ NS_ASSUME_NONNULL_END
 
 
 
-- (void)addSubLayers {
-    [self.layer addSublayer:CAGradientLayer.layer];
-    [self.layer addSublayer:CAShapeLayer.layer];
-    [self.layer addSublayer:CAShapeLayer.layer];
-}
 
-- (instancetype) initWithCoder:(NSCoder *)decoder {
+ 
+- (instancetype)initWithCoder:(NSCoder *)decoder {
     if (self = [super initWithCoder:decoder]) {
         NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
         //AppDelegate *appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
@@ -185,22 +183,91 @@ NS_ASSUME_NONNULL_END
          @property (class, strong, readonly) NSColorSpace *adobeRGB1998ColorSpace NS_AVAILABLE_MAC(10_5);
          
          @property (class, strong, readonly) NSColorSpace *genericRGBColorSpace;        // NSColorSpace corresponding to Cocoa color space name NSCalibratedRGBColorSpace
-         @property (class, strong, readonly) NSColorSpace *genericGrayColorSpace;    // NSColorSpace corresponding to Cocoa color space name NSCalibratedWhiteColorSpace
+         @property (class, strong, readonly) NSColorSpace *genericGrayColorSpace;       // NSColorSpace corresponding to Cocoa color space name NSCalibratedWhiteColorSpace
          @property (class, strong, readonly) NSColorSpace *genericCMYKColorSpace;
-         @property (class, strong, readonly) NSColorSpace *deviceRGBColorSpace;        // NSColorSpace corresponding to Cocoa color space name NSDeviceRGBColorSpace
+         @property (class, strong, readonly) NSColorSpace *deviceRGBColorSpace;         // NSColorSpace corresponding to Cocoa color space name NSDeviceRGBColorSpace
          @property (class, strong, readonly) NSColorSpace *deviceGrayColorSpace;        // NSColorSpace corresponding to Cocoa color space name NSDeviceWhiteColorSpace
          @property (class, strong, readonly) NSColorSpace *deviceCMYKColorSpace;        // NSColorSpace corresponding to Cocoa color space name NSDeviceCMYKColorSpace
 
          */
 
-    
+        _gradientLayer = CAGradientLayer.layer;
+        _gradientLayer.name = @"Gradient";
 
-        [self addSubLayers];
+        _shape1Layer   = CAShapeLayer.layer;
+        _shape1Layer.name = @"Shape 1";
+        _shape2Layer   = CAShapeLayer.layer;
+        _shape2Layer.name = @"Shape 2";
         
+        _myGravity = kCAGravityTopRight;
+        
+        NSTrackingArea *area = [[NSTrackingArea alloc]
+                                initWithRect:self.bounds
+                                     options:
+                                          NSTrackingMouseMoved                  // within view
+                                        | NSTrackingActiveInKeyWindow           // only if responder
+                                        | NSTrackingInVisibleRect               // automatic size update
+                                       owner:self
+                                    userInfo:nil
+                                ];
+        [self addTrackingArea:area];
+
     }
     return self;
 }
 
+- (void)addSubLayers {
+    
+    [self.layer addSublayer:_gradientLayer];
+    /*
+     kCAGravityCenter
+     kCAGravityTop
+     kCAGravityBottom
+     kCAGravityLeft
+     kCAGravityRight
+     kCAGravityTopLeft
+     kCAGravityTopRight
+     kCAGravityBottomLeft
+     kCAGravityBottomRight
+     kCAGravityResize
+     kCAGravityResizeAspect
+     kCAGravityResizeAspectFill
+     */
+    self.layer.contentsGravity = kCAGravityTopRight;
+    
+    CALayer *blueLayer = CALayer.layer;
+    blueLayer.contentsGravity = kCAGravityTopRight;
+    blueLayer.frame = CGRectMake(100, 100, 100, 100);
+    blueLayer.backgroundColor = NSColor.blueColor.CGColor;
+    blueLayer.name = @"Blue";
+    [self.layer addSublayer:blueLayer];
+    
+    CALayer *redLayer = CALayer.layer;
+    redLayer.contentsGravity = _myGravity;
+    redLayer.frame = CGRectMake(200, 200, 100, 100);
+    redLayer.backgroundColor = NSColor.redColor.CGColor;
+    redLayer.name = @"Red";
+    [self.layer addSublayer:redLayer];
+    
+    CALayer *yellowLayer = CALayer.layer;
+    yellowLayer.contentsGravity = _myGravity;
+    yellowLayer.frame = CGRectMake(300, 300, 100, 100);
+    yellowLayer.backgroundColor = NSColor.yellowColor.CGColor;
+    yellowLayer.name = @"Yellow";
+    [self.layer addSublayer:yellowLayer];
+    
+    CALayer *greenLayer = CALayer.layer;
+    greenLayer.contentsGravity = _myGravity;
+    greenLayer.frame = CGRectMake(400, 400, 100, 100);
+    greenLayer.backgroundColor = NSColor.greenColor.CGColor;
+    greenLayer.name = @"Green";
+    [self.layer addSublayer:greenLayer];
+    
+    [self.layer addSublayer:_shape1Layer];
+    [self.layer addSublayer:_shape2Layer];
+
+
+}
 
 - (instancetype) initWithFrame:(NSRect)frameRect {
     // Not called anymore
@@ -225,10 +292,24 @@ NS_ASSUME_NONNULL_END
     CGFloat dx = self.frame.size.width;
     CGFloat dy = self.frame.size.height;
     [super setFrame:newFrame];
+    //NSLog(@"%f", self.window.backingScaleFactor);
     
-    dx = (newFrame.size.width  - dx)/2;
-    dy = (newFrame.size.height - dy)/2;
-    [self moveContentsTowardsCenter:dx dy:dy];
+    //self.trackingAreas[0] = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingMouseMoved | NSTrackingActiveInKeyWindow owner:self userInfo:nil];
+
+    
+    switch (_drawingContext) {
+        case Quartz:
+            dx = (newFrame.size.width  - dx)/2;
+            dy = (newFrame.size.height - dy)/2;
+            [self moveContentsTowardsCenter:dx dy:dy];
+            //[centerTransform translateXBy:dx * self.window.backingScaleFactor
+            //                          yBy:dy * self.window.backingScaleFactor];
+            break;
+        default:
+            break;
+    }
+
+    
 }
 
 - (NSNumber*)convertValue:(double)value {
@@ -347,36 +428,32 @@ NS_ASSUME_NONNULL_END
 }
 
 
-- (void)addCircle:(NSPoint)point color:(NSColor*)color atSubLayer:(CAShapeLayer *)subLayer {
+- (CAShapeLayer *)addCircle:(NSPoint)point color:(NSColor*)color
+                 atSubLayer:(CAShapeLayer *)subLayer {
     const double Radius = 25;
-    static int phase = 0;
     
     CAShapeLayer *shapeLayer = CAShapeLayer.layer;
     if (shapeLayer) {
-        if (subLayer) {
-            [self.layer replaceSublayer:subLayer with:shapeLayer];
-        }
-        else {
-            [self.layer addSublayer:shapeLayer];
-        }
+        /*
+        */
+
         
-        CGPathRef cgPath = CGPathCreateWithEllipseInRect(
-                                 CGRectMake(  point.x-Radius/2
-                                            , point.y-Radius/2
-                                            , Radius, Radius)
-                               , NULL
-                           );
-        phase ++;
-        
+        shapeLayer.bounds   = CGRectMake(0, 0, Radius, Radius);
+        //shapeLayer.position = CGPointMake(point.x-Radius/2, point.y-Radius/2);
+        shapeLayer.position = CGPointMake(point.x, point.y);
+
+        CGPathRef cgPath = CGPathCreateWithEllipseInRect(shapeLayer.bounds, NULL);
         shapeLayer.path = cgPath;
-        shapeLayer.strokeColor = color.CGColor;
-        shapeLayer.fillColor = NULL;
+        shapeLayer.strokeColor = [color colorWithAlphaComponent:_alpha].CGColor;
+        shapeLayer.fillColor = nil;//color.CGColor;
         shapeLayer.lineWidth = 1;
         shapeLayer.lineDashPattern = @[@5, @5];
-        shapeLayer.lineDashPhase = phase/5;
+        shapeLayer.lineDashPhase = _alpha*100;
+        shapeLayer.name = subLayer.name;
         
-
+        [self.layer replaceSublayer:subLayer with:shapeLayer];
     }
+    return shapeLayer;
 }
 
 
@@ -399,8 +476,10 @@ NS_ASSUME_NONNULL_END
 }
 
 - (void)drawCoreAnimation {
-    // Works, but crashes from time to time; CA not ARC compliant?
-
+    if (!self.layer.sublayers.count) {
+        [self addSubLayers];
+    }
+    
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     CAGradientLayer *gradientLayer = CAGradientLayer.layer;
     
@@ -437,17 +516,17 @@ NS_ASSUME_NONNULL_END
     }
     
     gradientLayer.colors = @[(id)_startColor.CGColor, (id)_endColor.CGColor];
+    [self.layer replaceSublayer:_gradientLayer with:gradientLayer];
+    _gradientLayer = gradientLayer;
     
-    if (self.layer.sublayers[0]) {
-        [self.layer replaceSublayer:self.layer.sublayers[0] with:gradientLayer];
-    }
-    else {
-        [self.layer insertSublayer:gradientLayer atIndex:0];
-    }
-    
-    [self addCircle:_startPoint color:[_startColor complement:_alpha] atSubLayer:self.layer.sublayers[1]];
-    [self addCircle:_endPoint   color:[_endColor   complement:_alpha] atSubLayer:self.layer.sublayers[2]];
+    //_shape1Layer = [self addCircle:_startPoint color:[_startColor opposite:_alpha] atSubLayer:_shape1Layer];
+    //_shape2Layer = [self addCircle:_endPoint   color:[_endColor   opposite:_alpha] atSubLayer:_shape2Layer];
+    _shape1Layer = [self addCircle:_startPoint color:NSColor.redColor   atSubLayer:_shape1Layer];
+    _shape2Layer = [self addCircle:_endPoint   color:NSColor.greenColor atSubLayer:_shape2Layer];
 }
+
+
+
 
 - (void)drawRect:(NSRect)dirtyRect {
 
@@ -466,14 +545,18 @@ NS_ASSUME_NONNULL_END
     //[centerTransform concat];
 }
 
+
+
 - (void)updateContext:(NSPopUpButton *)sender {
     _drawingContext = sender.indexOfSelectedItem;
     switch (_drawingContext) {
         case CoreAnimation:
-            [self addSubLayers];
+            self.wantsLayer = TRUE;
+            //[self addSubLayers];
             break;
         case Quartz:
         default:
+            self.wantsLayer = FALSE;
             self.layer.sublayers = nil;
             break;
     }
@@ -591,10 +674,37 @@ NS_ASSUME_NONNULL_END
                             ];
 }
 
+//pointInWindow = [self convertPoint:[sender locationInView:self] toView:nil];
+- (void) checkHitLayer:(NSPoint)pointInWindow {
+    static int count = 0;
+    CALayer *hitLayer = [self.layer hitTest:pointInWindow];
+    if (hitLayer) {
+        NSLog(@"%@ %d", hitLayer.name, count);
+    }
+    else {
+        NSLog(@"No Layer %d", count);
+    }
+    count++;
+}
+
+- (void)mouseMoved:(NSEvent *)event {
+    static int count = 0;
+    NSPoint pv = event.locationInWindow;
+    CALayer *hitLayer = [self.layer hitTest:pv];
+    if (hitLayer) {
+        NSLog(@"%@ %d", hitLayer.name, count);
+    }
+    else {
+        NSLog(@"No Layer %d", count);
+    }
+    count++;
+}
+
 - (IBAction)myPanGesture:(NSPanGestureRecognizer *)sender {
     static NSPoint *pointPtr;
 
     NSPoint mouseLoc = [self inverseTransformPoint:[sender locationInView:self]];
+
 
     switch (sender.state) {
         case NSGestureRecognizerStateBegan:
@@ -618,9 +728,18 @@ NS_ASSUME_NONNULL_END
     }
 }
 
+
+
 - (IBAction)myClickGesture:(NSClickGestureRecognizer *)sender {
+    //[self checkHitLayer:sender];
+
     _alpha = 1.0;
     [self fadeCirclesOut];
+}
+
+
+- (IBAction)myPressAndHoldGesture:(NSPressGestureRecognizer *)sender {
+    //[self checkHitLayer:sender];
 }
 
 

@@ -708,12 +708,17 @@
                         <rect key="frame" x="0.0" y="58" width="690" height="334"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <gestureRecognizers>
+                            <pressGestureRecognizer delaysPrimaryMouseButtonEvents="YES" id="5Hm-ge-9df">
+                                <connections>
+                                    <action selector="myPressAndHoldGesture:" target="abY-OY-Syh" id="Gmk-8c-oHD"/>
+                                </connections>
+                            </pressGestureRecognizer>
                             <panGestureRecognizer delaysPrimaryMouseButtonEvents="YES" id="Ya6-1u-OiL">
                                 <connections>
                                     <action selector="myPanGesture:" target="abY-OY-Syh" id="jHY-sl-2ns"/>
                                 </connections>
                             </panGestureRecognizer>
-                            <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="O6A-Hp-TRc">
+                            <clickGestureRecognizer numberOfClicksRequired="1" id="O6A-Hp-TRc">
                                 <connections>
                                     <action selector="myClickGesture:" target="abY-OY-Syh" id="Pg9-Jp-bLn"/>
                                 </connections>
@@ -927,5 +932,6 @@
             <point key="canvasLocation" x="48" y="13"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="8EE-fc-SWS"/>
+        <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Xgv-5l-l7q"/>
     </objects>
 </document>

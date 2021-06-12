@@ -16,7 +16,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-
 @interface TestGradient: NSView {
     
     enum GradientKind: NSInteger {
@@ -32,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
         , N_DrawingContexts
     };
     
+    
 }
 
 
@@ -42,6 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(assign) NSPoint                  startPoint;                          ///< start point for the gradient
 @property(assign) NSPoint                  endPoint;                            ///< end point for the gradient
 @property(assign) double                   alpha;                               ///< used to fade out the circles
+
+@property(strong, atomic) CALayerContentsGravity myGravity;
+
 
 @property(assign) CGGradientDrawingOptions options;                             ///< options for quartz gradient
 @property(assign) CFStringRef              currentColorSpace;                   ///< quartz color space
@@ -61,9 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-//@property(assign) CAGradientLayer *gradientLayer;
-//@property(assign) CAShapeLayer *shape1Layer;
-//@property(assign) CAShapeLayer *shape2Layer;
+@property(strong, atomic) CAGradientLayer *gradientLayer;
+
+@property(strong, atomic) CAShapeLayer    *shape1Layer;
+@property(strong, atomic) CAShapeLayer    *shape2Layer;
+
 
 
 - (IBAction)updateKind:(NSSegmentedControl *)sender;                            ///< linear, radial,... segmented control was changed
@@ -84,6 +89,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (IBAction)myPanGesture:(NSPanGestureRecognizer *)sender;                      ///< moves start and end point
 - (IBAction)myClickGesture:(NSClickGestureRecognizer *)sender;                  ///< resets alpha to 1
+- (IBAction)myPressAndHoldGesture:(NSPressGestureRecognizer *)sender;
 
 - (void)updateContext:(NSPopUpButton *)sender;                                  ///< called from delegate
 - (NSInteger)numberOfKinds;                                                     ///< 2 or 3 if Conic is supported
