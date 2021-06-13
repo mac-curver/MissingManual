@@ -35,13 +35,16 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
-@property(strong, atomic) NSColor         *startColor;                          ///< Gradient start color
-@property(strong, atomic) NSColor         *endColor;                            ///< Gradient end color
-@property(assign) double                   startLocation;                       ///< start location value 0...1
-@property(assign) double                   endLocation;                         ///< end location value 0...1
-@property(assign) NSPoint                  startPoint;                          ///< start point for the gradient
-@property(assign) NSPoint                  endPoint;                            ///< end point for the gradient
-@property(assign) double                   alpha;                               ///< used to fade out the circles
+//@property(strong, atomic) NSColor                  *startColor;                 ///< Gradient start color
+//@property(strong, atomic) NSColor                  *endColor;                   ///< Gradient end color
+@property(assign) double                            startLocation;              ///< start location value 0...1
+@property(assign) double                            endLocation;                ///< end location value 0...1
+//@property(assign) NSPoint                           startPoint;                 ///< start point for the gradient
+//@property(assign) NSPoint                           endPoint;                   ///< end point for the gradient
+@property(assign) double                            alpha;                      ///< used to fade out the circles
+@property(strong, atomic) NSMutableArray           *colors;                     ///< all colors used
+@property(strong, atomic) NSMutableArray           *points;                     ///< all points
+@property(strong, atomic) NSMutableArray           *shapeLayers;                ///< all circle sublayers
 
 @property(strong, atomic) CALayerContentsGravity myGravity;
 
@@ -66,8 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong, atomic) CAGradientLayer *gradientLayer;
 
-@property(strong, atomic) CAShapeLayer    *shape1Layer;
-@property(strong, atomic) CAShapeLayer    *shape2Layer;
+
 
 
 

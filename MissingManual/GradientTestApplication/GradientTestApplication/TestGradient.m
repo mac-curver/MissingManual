@@ -156,8 +156,10 @@ NS_ASSUME_NONNULL_END
         NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
         //AppDelegate *appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
 
-        _startPoint         = [defaults pointForKey:@"StartPoint" default:NSMakePoint(10.0, 10.0)];
-        _endPoint           = [defaults pointForKey:@"EndPoint" default:NSMakePoint(500.0, 400.0)];
+        NSPoint startPoint  = [defaults pointForKey:@"StartPoint" default:NSMakePoint(10.0, 10.0)];
+        NSPoint endPoint    = [defaults pointForKey:@"EndPoint" default:NSMakePoint(500.0, 400.0)];
+        //_startPoint  = [defaults pointForKey:@"StartPoint" default:NSMakePoint(10.0, 10.0)];
+        //_endPoint    = [defaults pointForKey:@"EndPoint" default:NSMakePoint(500.0, 400.0)];
         _drawingContext     = [defaults integerForKey:@"isNotQuartz"];
         _kind               = [defaults integerForKey:@"kind"];
         _options            = 0;
@@ -166,8 +168,6 @@ NS_ASSUME_NONNULL_END
         //centerTransform     = [NSAffineTransform transform];                  // I had issues with Retina display
         _alpha              = 1.0;
         
-        _startColor         = [defaults colorForKey:@"StartColor" default:NSColor.redColor];
-        _endColor           = [defaults colorForKey:@"EndColor" default:NSColor.greenColor];
 
         
         /*
@@ -194,12 +194,34 @@ NS_ASSUME_NONNULL_END
         _gradientLayer = CAGradientLayer.layer;
         _gradientLayer.name = @"Gradient";
 
-        _shape1Layer   = CAShapeLayer.layer;
-        _shape1Layer.name = @"Shape 1";
-        _shape2Layer   = CAShapeLayer.layer;
-        _shape2Layer.name = @"Shape 2";
         
         _myGravity = kCAGravityTopRight;
+        
+        
+        NSColor *startColor  = [defaults colorForKey:@"StartColor" default:NSColor.redColor];
+        NSColor *endColor    = [defaults colorForKey:@"EndColor" default:NSColor.greenColor];
+
+        //_startColor  = [defaults colorForKey:@"StartColor" default:NSColor.redColor];
+        //_endColor    = [defaults colorForKey:@"EndColor" default:NSColor.greenColor];
+
+        
+        NSArray *colors = @[startColor, endColor];
+        _colors = [[NSMutableArray alloc] initWithArray:colors];
+
+        
+        NSArray *points = @[[NSValue valueWithPoint:startPoint], [NSValue valueWithPoint:endPoint]];
+        _points = [[NSMutableArray alloc] initWithArray:points];
+
+        CAShapeLayer *shape1Layer   = CAShapeLayer.layer;
+        shape1Layer.name = @"Shape 1";
+        CAShapeLayer *shape2Layer  = CAShapeLayer.layer;
+        shape2Layer.name = @"Shape 2";
+
+        _shapeLayers = [[NSMutableArray alloc]init];
+        [_shapeLayers addObject:shape1Layer];
+        [_shapeLayers addObject:shape2Layer];
+
+
         
         NSTrackingArea *area = [[NSTrackingArea alloc]
                                 initWithRect:self.bounds
@@ -219,6 +241,7 @@ NS_ASSUME_NONNULL_END
 - (void)addSubLayers {
     
     [self.layer addSublayer:_gradientLayer];
+    //self.layer.contentsGravity = kCAGravityTopRight;
     /*
      kCAGravityCenter
      kCAGravityTop
@@ -233,38 +256,19 @@ NS_ASSUME_NONNULL_END
      kCAGravityResizeAspect
      kCAGravityResizeAspectFill
      */
-    self.layer.contentsGravity = kCAGravityTopRight;
     
+ 
     CALayer *blueLayer = CALayer.layer;
-    blueLayer.contentsGravity = kCAGravityTopRight;
-    blueLayer.frame = CGRectMake(100, 100, 100, 100);
+    //blueLayer.contentsGravity = kCAGravityTopRight;
+    blueLayer.bounds = CGRectMake(0, 0, 100, 100);
+    blueLayer.position = CGPointMake(100, 100);
     blueLayer.backgroundColor = NSColor.blueColor.CGColor;
     blueLayer.name = @"Blue";
     [self.layer addSublayer:blueLayer];
+      
     
-    CALayer *redLayer = CALayer.layer;
-    redLayer.contentsGravity = _myGravity;
-    redLayer.frame = CGRectMake(200, 200, 100, 100);
-    redLayer.backgroundColor = NSColor.redColor.CGColor;
-    redLayer.name = @"Red";
-    [self.layer addSublayer:redLayer];
-    
-    CALayer *yellowLayer = CALayer.layer;
-    yellowLayer.contentsGravity = _myGravity;
-    yellowLayer.frame = CGRectMake(300, 300, 100, 100);
-    yellowLayer.backgroundColor = NSColor.yellowColor.CGColor;
-    yellowLayer.name = @"Yellow";
-    [self.layer addSublayer:yellowLayer];
-    
-    CALayer *greenLayer = CALayer.layer;
-    greenLayer.contentsGravity = _myGravity;
-    greenLayer.frame = CGRectMake(400, 400, 100, 100);
-    greenLayer.backgroundColor = NSColor.greenColor.CGColor;
-    greenLayer.name = @"Green";
-    [self.layer addSublayer:greenLayer];
-    
-    [self.layer addSublayer:_shape1Layer];
-    [self.layer addSublayer:_shape2Layer];
+    [self.layer addSublayer:_shapeLayers[0]];
+    [self.layer addSublayer:_shapeLayers[1]];
 
 
 }
@@ -283,9 +287,11 @@ NS_ASSUME_NONNULL_END
     // then I would need an inverted NSAffineTransform for the
     // MouseCoordinate and that one did not work on Retina display)
     // how to improve this?
+    NSPoint startPoint = ((NSValue *)_points[0]).pointValue;
+    NSPoint endPoint   = ((NSValue *)_points[1]).pointValue;
 
-    _startPoint = NSMakePoint(_startPoint.x+dx, _startPoint.y+dy);
-    _endPoint   = NSMakePoint(_endPoint.x  +dx, _endPoint.y  +dy);
+    _points[0] = [NSValue valueWithPoint:NSMakePoint(startPoint.x+dx, startPoint.y+dy)];
+    _points[1] = [NSValue valueWithPoint:NSMakePoint(endPoint.x  +dx, endPoint.y  +dy)];
 }
 
 - (void)setFrame:(CGRect)newFrame {
@@ -294,8 +300,6 @@ NS_ASSUME_NONNULL_END
     [super setFrame:newFrame];
     //NSLog(@"%f", self.window.backingScaleFactor);
     
-    //self.trackingAreas[0] = [[NSTrackingArea alloc] initWithRect:self.bounds options:NSTrackingMouseMoved | NSTrackingActiveInKeyWindow owner:self userInfo:nil];
-
     
     switch (_drawingContext) {
         case Quartz:
@@ -358,10 +362,10 @@ NS_ASSUME_NONNULL_END
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(_currentColorSpace);
 
-    NSInteger numberOfComponents = _startColor.numberOfComponents;
+    NSInteger numberOfComponents = ((NSColor*)_colors[0]).numberOfComponents;
     CGFloat *components = malloc(sizeof(CGFloat)*2*numberOfComponents);
-    [_startColor getComponents:&components[0]];
-    [_endColor   getComponents:&components[numberOfComponents]];
+    [_colors[0] getComponents:&components[0]];
+    [_colors[1] getComponents:&components[numberOfComponents]];
 
     double locations[] = {[defaults doubleForKey:@"startLocation"]
                         , [defaults doubleForKey:@"endLocation"]
@@ -372,13 +376,14 @@ NS_ASSUME_NONNULL_END
                                    , locations, 2
                              );
     
-    
     switch (_kind) {
         case Radial:
             CGContextDrawRadialGradient(
                   context, gradient
-                , _startPoint, [defaults doubleForKey:@"startRadius"]
-                , _endPoint,   [defaults doubleForKey:@"endRadius"]
+                , ((NSValue *)_points[0]).pointValue
+                , [defaults doubleForKey:@"startRadius"]
+                , ((NSValue *)_points[1]).pointValue
+                , [defaults doubleForKey:@"endRadius"]
                 , _options
             );
 
@@ -386,16 +391,15 @@ NS_ASSUME_NONNULL_END
         case Linear:
             CGContextDrawLinearGradient(
                   context, gradient
-                , _startPoint, _endPoint, _options
+                , ((NSValue *)_points[0]).pointValue
+                , ((NSValue *)_points[0]).pointValue, _options
             );
             break;
         case Conic:                                                             // not supported in quartz
         default:
             break;
     }
-    
     [NSGraphicsContext restoreGraphicsState];
-
 }
 
 
@@ -428,32 +432,50 @@ NS_ASSUME_NONNULL_END
 }
 
 
-- (CAShapeLayer *)addCircle:(NSPoint)point color:(NSColor*)color
-                 atSubLayer:(CAShapeLayer *)subLayer {
-    const double Radius = 25;
-    
+- (CAShapeLayer *)createCircleShape:(NSPoint) point
+                              color:(NSColor *)color
+                               name:(NSString *)name
+{
     CAShapeLayer *shapeLayer = CAShapeLayer.layer;
     if (shapeLayer) {
-        /*
-        */
-
-        
+        const double Radius = 25;
+        // It seams to be faster to create a new sublayer and then to exchange it
         shapeLayer.bounds   = CGRectMake(0, 0, Radius, Radius);
-        //shapeLayer.position = CGPointMake(point.x-Radius/2, point.y-Radius/2);
-        shapeLayer.position = CGPointMake(point.x, point.y);
-
+        shapeLayer.position = point;
+        
         CGPathRef cgPath = CGPathCreateWithEllipseInRect(shapeLayer.bounds, NULL);
         shapeLayer.path = cgPath;
-        shapeLayer.strokeColor = [color colorWithAlphaComponent:_alpha].CGColor;
-        shapeLayer.fillColor = nil;//color.CGColor;
+        shapeLayer.strokeColor = [color opposite:_alpha].CGColor;
+        shapeLayer.fillColor = nil;
         shapeLayer.lineWidth = 1;
         shapeLayer.lineDashPattern = @[@5, @5];
         shapeLayer.lineDashPhase = _alpha*100;
-        shapeLayer.name = subLayer.name;
-        
-        [self.layer replaceSublayer:subLayer with:shapeLayer];
+        shapeLayer.name = name;
     }
     return shapeLayer;
+}
+
+- (void)createCircle:(int)index {
+    CAShapeLayer *shapeLayer = [self createCircleShape:((NSValue *)_points[index]).pointValue
+                                                 color:_colors[index]
+                                                  name:((CALayer*)_shapeLayers[index]).name
+                                ];
+    if (shapeLayer) {
+        [self.layer replaceSublayer:_shapeLayers[index] with:shapeLayer];
+        _shapeLayers[index] = shapeLayer;
+    }
+}
+
+
+- (void)createCircle2 {
+    CAShapeLayer *shapeLayer = [self createCircleShape:((NSValue *)_points[1]).pointValue
+                                                 color:_colors[1]
+                                                  name:((CALayer*)_shapeLayers[1]).name
+                                ];
+    if (shapeLayer) {
+        [self.layer replaceSublayer:_shapeLayers[1] with:shapeLayer];
+        _shapeLayers[1] = shapeLayer;
+    }
 }
 
 
@@ -465,15 +487,17 @@ NS_ASSUME_NONNULL_END
     
     switch (_kind) {
         case Radial:
-            [self circleArround:_startPoint radius:[defaults doubleForKey:@"startRadius"]];
-            [self circleArround:_endPoint   radius:[defaults doubleForKey:@"endRadius"]];
+            [self circleArround:((NSValue *)_points[0]).pointValue radius:[defaults doubleForKey:@"startRadius"]];
+            [self circleArround:((NSValue *)_points[1]).pointValue radius:[defaults doubleForKey:@"endRadius"]];
             break;
         default:
-            [self circleArround:_startPoint radius:10.0];
-            [self circleArround:_endPoint   radius:10.0];
+            [self circleArround:((NSValue *)_points[0]).pointValue radius:10.0];
+            [self circleArround:((NSValue *)_points[1]).pointValue radius:10.0];
             break;
     }
 }
+
+
 
 - (void)drawCoreAnimation {
     if (!self.layer.sublayers.count) {
@@ -490,12 +514,12 @@ NS_ASSUME_NONNULL_END
         ];
     
     gradientLayer.startPoint = NSMakePoint(
-                                    _startPoint.x/self.bounds.size.width
-                                  , _startPoint.y/self.bounds.size.height
+                                    ((NSValue *)_points[0]).pointValue.x/self.bounds.size.width
+                                  , ((NSValue *)_points[0]).pointValue.y/self.bounds.size.height
                                );
     gradientLayer.endPoint   = NSMakePoint(
-                                    _endPoint.x/self.bounds.size.width
-                                  , _endPoint.y/self.bounds.size.height
+                                    ((NSValue *)_points[1]).pointValue.x/self.bounds.size.width
+                                  , ((NSValue *)_points[1]).pointValue.y/self.bounds.size.height
                                );
     
     switch (_kind) {
@@ -515,14 +539,15 @@ NS_ASSUME_NONNULL_END
             break;
     }
     
-    gradientLayer.colors = @[(id)_startColor.CGColor, (id)_endColor.CGColor];
+    // Must be NSArray of CGColorRef!
+    gradientLayer.colors = @[  (id)((NSColor*)_colors[0]).CGColor
+                             , (id)((NSColor*)_colors[1]).CGColor
+                            ];
     [self.layer replaceSublayer:_gradientLayer with:gradientLayer];
     _gradientLayer = gradientLayer;
     
-    //_shape1Layer = [self addCircle:_startPoint color:[_startColor opposite:_alpha] atSubLayer:_shape1Layer];
-    //_shape2Layer = [self addCircle:_endPoint   color:[_endColor   opposite:_alpha] atSubLayer:_shape2Layer];
-    _shape1Layer = [self addCircle:_startPoint color:NSColor.redColor   atSubLayer:_shape1Layer];
-    _shape2Layer = [self addCircle:_endPoint   color:NSColor.greenColor atSubLayer:_shape2Layer];
+    [self createCircle:0];
+    [self createCircle2];
 }
 
 
@@ -569,12 +594,12 @@ NS_ASSUME_NONNULL_END
 }
 
 - (IBAction)updateStartColor:(NSColorWell *)sender {
-    _startColor = sender.color;
+    _colors[0] = sender.color;
     [self setNeedsDisplay:true];
 }
 
 - (IBAction)updateEndColor:(NSColorWell *)sender {
-    _endColor = sender.color;
+    _colors[1] = sender.color;
     [self setNeedsDisplay:YES];
 }
 
@@ -638,14 +663,14 @@ NS_ASSUME_NONNULL_END
     return (fabs(from.x - to.x) + fabs(from.y - to.y));
 }
 
-- (NSPoint *)findElement:(NSPoint)targetPoint {
+- (int)findElement:(NSPoint)targetPoint {
     if (
-        [self manhattanDistanceFrom:targetPoint to:_startPoint]
-      < [self manhattanDistanceFrom:targetPoint to:_endPoint]
+        [self manhattanDistanceFrom:targetPoint to:((NSValue *)_points[0]).pointValue]
+      < [self manhattanDistanceFrom:targetPoint to:((NSValue *)_points[1]).pointValue]
     )
-        return &_startPoint;
+        return 0;
     else
-        return &_endPoint;
+        return 1;
 }
 
 - (NSPoint)inverseTransformPoint:(NSPoint)point {
@@ -701,7 +726,8 @@ NS_ASSUME_NONNULL_END
 }
 
 - (IBAction)myPanGesture:(NSPanGestureRecognizer *)sender {
-    static NSPoint *pointPtr;
+    //static NSPoint *pointPtr;
+    static int index = 0;
 
     NSPoint mouseLoc = [self inverseTransformPoint:[sender locationInView:self]];
 
@@ -709,11 +735,11 @@ NS_ASSUME_NONNULL_END
     switch (sender.state) {
         case NSGestureRecognizerStateBegan:
             // Identify the point to be dragged
-            pointPtr = [self findElement:mouseLoc];
+            index = [self findElement:mouseLoc];
             _alpha = 1.0;
             // fallthrough
         case NSGestureRecognizerStateChanged:
-            *pointPtr = mouseLoc;
+            _points[index] = [NSValue valueWithPoint:mouseLoc];
             [self setNeedsDisplay:YES];
             if (self.fadeOutTimer.isValid) {
                 [self.fadeOutTimer invalidate];
@@ -749,8 +775,8 @@ NS_ASSUME_NONNULL_END
     NSMutableString *text;
 
     CGFloat components[8];
-    [_startColor getComponents:&components[0]];
-    [_endColor   getComponents:&components[4]];
+    [_colors[0] getComponents:&components[0]];
+    [_colors[1] getComponents:&components[4]];
     
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     
@@ -780,8 +806,8 @@ NS_ASSUME_NONNULL_END
                      , components[0], components[1], components[2], components[3]
                      , components[4], components[5], components[6], components[7]
                      , locations[0], locations[1]
-                     , _startPoint.x, _startPoint.y
-                     , _endPoint.x, _endPoint.y
+                     , ((NSValue *)_points[0]).pointValue.x, ((NSValue *)_points[0]).pointValue.y
+                     , ((NSValue *)_points[1]).pointValue.x, ((NSValue *)_points[1]).pointValue.y
                      , _options
                      ];
             break;
@@ -805,8 +831,8 @@ NS_ASSUME_NONNULL_END
                      , components[0], components[1], components[2], components[3]
                      , components[4], components[5], components[6], components[7]
                      , locations[0], locations[1]
-                     , _startPoint.x, _startPoint.y, startRadius
-                     , _endPoint.x, _endPoint.y, endRadius
+                     , ((NSValue *)_points[0]).pointValue.x, ((NSValue *)_points[0]).pointValue.y, startRadius
+                     , ((NSValue *)_points[1]).pointValue.x, ((NSValue *)_points[1]).pointValue.y, endRadius
                      , _options
                      ];
             break;
@@ -918,11 +944,11 @@ NS_ASSUME_NONNULL_END
     
     //PrintComponents(_startColor)
 
-    [defaults setColor:_startColor forKey:@"StartColor"];
-    [defaults setColor:_endColor   forKey:@"EndColor"];
+    [defaults setColor:_colors[0]  forKey:@"StartColor"];
+    [defaults setColor:_colors[1]  forKey:@"EndColor"];
     
-    [defaults setPoint:_startPoint forKey:@"StartPoint"];
-    [defaults setPoint:_endPoint   forKey:@"EndPoint"];
+    [defaults setPoint:((NSValue *)_points[0]).pointValue forKey:@"StartPoint"];
+    [defaults setPoint:((NSValue *)_points[1]).pointValue forKey:@"EndPoint"];
 
 }
 

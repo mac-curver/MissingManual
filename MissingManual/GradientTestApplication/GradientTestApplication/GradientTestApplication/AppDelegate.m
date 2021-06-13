@@ -28,8 +28,8 @@
     /// Disable the Conic button if not available
     [self changeDrawingContext:drawingContext];
     
-    color0.color = testGradientView.startColor;
-    color1.color = testGradientView.endColor;
+    color0.color = testGradientView.colors[0];
+    color1.color = testGradientView.colors[1];
 }
 
 
