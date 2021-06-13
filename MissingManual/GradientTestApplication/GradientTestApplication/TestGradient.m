@@ -14,17 +14,7 @@
 #import "MyLog.h"
 
 
-NS_ASSUME_NONNULL_BEGIN
 
-@interface NSColor (NSColorExtension)
-
-- (NSColor *)complement:(double) alpha;
-- (NSColor *)opposite:(double) alpha;
-- (BOOL)isLight;
-
-@end
-
-NS_ASSUME_NONNULL_END
 
 @implementation NSColor (NSColorExtension)
 
@@ -37,9 +27,9 @@ NS_ASSUME_NONNULL_END
 
 - (NSColor *)opposite:(double) alpha {
     double ignored;
-    return [NSColor colorWithCalibratedRed:(CGFloat)modf(0.5 + self.redComponent   , &ignored)
-                                     green:(CGFloat)modf(0.5 + self.greenComponent , &ignored)
-                                      blue:(CGFloat)modf(0.5 + self.blueComponent  , &ignored)
+    return [NSColor colorWithCalibratedRed:(CGFloat)modf(0.5 + self.redComponent,   &ignored)
+                                     green:(CGFloat)modf(0.5 + self.greenComponent, &ignored)
+                                      blue:(CGFloat)modf(0.5 + self.blueComponent,  &ignored)
                                      alpha:alpha
             ];
 }
@@ -51,15 +41,54 @@ NS_ASSUME_NONNULL_END
      || colorSpaceName == NSDeviceRGBColorSpace
     ) {
          return [NSColor colorWithCalibratedRed:(1.0 - self.redComponent)
-                                      green:(1.0 - self.greenComponent)
-                                       blue:(1.0 - self.blueComponent)
-                                      alpha:alpha
+                                          green:(1.0 - self.greenComponent)
+                                           blue:(1.0 - self.blueComponent)
+                                          alpha:alpha
                  ];
     }
     else {
         // Avoid crash, when not in RGB-Color space
         // May be we should use a different algo here
         return [NSColor.blackColor colorWithAlphaComponent:alpha];
+    }
+    
+}
+
+@end
+
+@interface NSArray (PointsCategory)
+
+@property(readonly) NSArray *cgColorRefArray;
+
+@end
+
+
+@implementation NSArray (PointsCategory)
+
+- (NSPoint)pointAtIndex:(NSUInteger)index {
+    //return ((NSValue *)[self objectAtIndex:index]).pointValue;
+    return ((NSValue *)self[index]).pointValue;
+}
+
+- (NSArray *) cgColorRefArray {
+    NSMutableArray *outputArray = [[NSMutableArray alloc] init];
+    for (id object in self) {
+        [outputArray addObject:(id)((NSColor*)object).CGColor];
+    }
+    return outputArray;
+}
+
+@end
+
+@implementation NSMutableArray (MutablePointsCategory)
+
+- (void) moveAllPointsByX:(CGFloat)dx andY:(CGFloat)dy {
+    
+    for (int index = 0; index < self.count; index++) {
+        NSPoint point = NSMakePoint(  [self pointAtIndex:index].x+dx
+                                    , [self pointAtIndex:index].y+dy
+                                    );
+        self[index] = [NSValue valueWithPoint:point];
     }
     
 }
@@ -156,16 +185,13 @@ NS_ASSUME_NONNULL_END
         NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
         //AppDelegate *appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
 
-        NSPoint startPoint  = [defaults pointForKey:@"StartPoint" default:NSMakePoint(10.0, 10.0)];
-        NSPoint endPoint    = [defaults pointForKey:@"EndPoint" default:NSMakePoint(500.0, 400.0)];
-        //_startPoint  = [defaults pointForKey:@"StartPoint" default:NSMakePoint(10.0, 10.0)];
-        //_endPoint    = [defaults pointForKey:@"EndPoint" default:NSMakePoint(500.0, 400.0)];
+
         _drawingContext     = [defaults integerForKey:@"isNotQuartz"];
         _kind               = [defaults integerForKey:@"kind"];
         _options            = 0;
         _currentColorSpace  = (__bridge CFStringRef _Nonnull)(TestGradient.defaultColorSpaceName);
         
-        //centerTransform     = [NSAffineTransform transform];                  // I had issues with Retina display
+        _centerTransform     = [NSAffineTransform transform];
         _alpha              = 1.0;
         
 
@@ -200,15 +226,11 @@ NS_ASSUME_NONNULL_END
         
         NSColor *startColor  = [defaults colorForKey:@"StartColor" default:NSColor.redColor];
         NSColor *endColor    = [defaults colorForKey:@"EndColor" default:NSColor.greenColor];
-
-        //_startColor  = [defaults colorForKey:@"StartColor" default:NSColor.redColor];
-        //_endColor    = [defaults colorForKey:@"EndColor" default:NSColor.greenColor];
-
-        
         NSArray *colors = @[startColor, endColor];
         _colors = [[NSMutableArray alloc] initWithArray:colors];
 
-        
+        NSPoint startPoint  = [defaults pointForKey:@"StartPoint" default:NSMakePoint(10.0, 10.0)];
+        NSPoint endPoint    = [defaults pointForKey:@"EndPoint" default:NSMakePoint(500.0, 400.0)];
         NSArray *points = @[[NSValue valueWithPoint:startPoint], [NSValue valueWithPoint:endPoint]];
         _points = [[NSMutableArray alloc] initWithArray:points];
 
@@ -234,6 +256,15 @@ NS_ASSUME_NONNULL_END
                                 ];
         [self addTrackingArea:area];
 
+    }
+    return self;
+}
+
+- (instancetype) initWithFrame:(NSRect)frameRect {
+    // Not called anymore
+    NSAssert(0, @"Strange but not called anymore - use initWithCoder instead");
+    if (self = [super initWithFrame:frameRect]) {
+        // Initialize self
     }
     return self;
 }
@@ -273,50 +304,34 @@ NS_ASSUME_NONNULL_END
 
 }
 
-- (instancetype) initWithFrame:(NSRect)frameRect {
-    // Not called anymore
-    NSAssert(0, @"Strange but not called anymore - use initWithCoder instead");
-    if (self = [super initWithFrame:frameRect]) {
-        // Initialize self
-    }
-    return self;
-}
 
-- (void)moveContentsTowardsCenter:(CGFloat)dx dy:(CGFloat)dy {
-    // Move the points towards center (can get it done inside drawRect as
-    // then I would need an inverted NSAffineTransform for the
-    // MouseCoordinate and that one did not work on Retina display)
-    // how to improve this?
-    NSPoint startPoint = ((NSValue *)_points[0]).pointValue;
-    NSPoint endPoint   = ((NSValue *)_points[1]).pointValue;
 
-    _points[0] = [NSValue valueWithPoint:NSMakePoint(startPoint.x+dx, startPoint.y+dy)];
-    _points[1] = [NSValue valueWithPoint:NSMakePoint(endPoint.x  +dx, endPoint.y  +dy)];
-}
+
 
 - (void)setFrame:(CGRect)newFrame {
     CGFloat dx = self.frame.size.width;
     CGFloat dy = self.frame.size.height;
+
     [super setFrame:newFrame];
+    dx = (newFrame.size.width  - dx)/2;
+    dy = (newFrame.size.height - dy)/2;
     //NSLog(@"%f", self.window.backingScaleFactor);
-    
     
     switch (_drawingContext) {
         case Quartz:
-            dx = (newFrame.size.width  - dx)/2;
-            dy = (newFrame.size.height - dy)/2;
-            [self moveContentsTowardsCenter:dx dy:dy];
-            //[centerTransform translateXBy:dx * self.window.backingScaleFactor
-            //                          yBy:dy * self.window.backingScaleFactor];
+            //[_points moveAllPointsByX:dx andY:dy];
             break;
         default:
             break;
     }
+    [_centerTransform translateXBy:dx * self.window.backingScaleFactor
+                               yBy:dy * self.window.backingScaleFactor
+     ];
 
     
 }
 
-- (NSNumber*)convertValue:(double)value {
+- (NSNumber*)NumberFrom:(double)value {
     if (value < 0) {
         return [NSNumber numberWithDouble:0];
     }
@@ -392,7 +407,8 @@ NS_ASSUME_NONNULL_END
             CGContextDrawLinearGradient(
                   context, gradient
                 , ((NSValue *)_points[0]).pointValue
-                , ((NSValue *)_points[0]).pointValue, _options
+                , ((NSValue *)_points[1]).pointValue
+                , _options
             );
             break;
         case Conic:                                                             // not supported in quartz
@@ -540,9 +556,8 @@ NS_ASSUME_NONNULL_END
     }
     
     // Must be NSArray of CGColorRef!
-    gradientLayer.colors = @[  (id)((NSColor*)_colors[0]).CGColor
-                             , (id)((NSColor*)_colors[1]).CGColor
-                            ];
+    gradientLayer.colors = _colors.cgColorRefArray;
+
     [self.layer replaceSublayer:_gradientLayer with:gradientLayer];
     _gradientLayer = gradientLayer;
     
@@ -555,7 +570,8 @@ NS_ASSUME_NONNULL_END
 
 - (void)drawRect:(NSRect)dirtyRect {
 
-    //[centerTransform set];                                                    // not working with Retina ?!
+    [_centerTransform set];
+
     switch (_drawingContext) {
         case CoreAnimation:
             [self drawCoreAnimation];
@@ -565,9 +581,9 @@ NS_ASSUME_NONNULL_END
             [self drawQuartzContext];
             break;
     }
-    
-    //[centerTransform invert];
-    //[centerTransform concat];
+    //[_centerTransform invert];
+    //[_centerTransform concat];
+    //[[NSAffineTransform transform] set];
 }
 
 
@@ -674,12 +690,10 @@ NS_ASSUME_NONNULL_END
 }
 
 - (NSPoint)inverseTransformPoint:(NSPoint)point {
-    //NSAffineTransform *xForm = [NSAffineTransform transform];
-    //[xForm appendTransform:centerTransform];
-    //[xForm invert];
-    //NSPoint mouseLoc = [xForm transformPoint:point];
-    //return mouseLoc;
-    return point;
+    NSAffineTransform *xForm = [_centerTransform copy];
+    [xForm invert];
+    NSPoint mouseLoc = [xForm transformPoint:point];
+    return mouseLoc;
 }
 
 - (NSTimer * _Nonnull)fadeCirclesOut {
@@ -714,14 +728,18 @@ NS_ASSUME_NONNULL_END
 
 - (void)mouseMoved:(NSEvent *)event {
     static int count = 0;
+    /*
     NSPoint pv = event.locationInWindow;
+
     CALayer *hitLayer = [self.layer hitTest:pv];
+
     if (hitLayer) {
         NSLog(@"%@ %d", hitLayer.name, count);
     }
     else {
         NSLog(@"No Layer %d", count);
     }
+     */
     count++;
 }
 
@@ -947,8 +965,8 @@ NS_ASSUME_NONNULL_END
     [defaults setColor:_colors[0]  forKey:@"StartColor"];
     [defaults setColor:_colors[1]  forKey:@"EndColor"];
     
-    [defaults setPoint:((NSValue *)_points[0]).pointValue forKey:@"StartPoint"];
-    [defaults setPoint:((NSValue *)_points[1]).pointValue forKey:@"EndPoint"];
+    [defaults setPoint:[_points pointAtIndex:0] forKey:@"StartPoint"];
+    [defaults setPoint:[_points pointAtIndex:1] forKey:@"EndPoint"];
 
 }
 

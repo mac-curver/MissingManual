@@ -35,39 +35,34 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 
-//@property(strong, atomic) NSColor                  *startColor;                 ///< Gradient start color
-//@property(strong, atomic) NSColor                  *endColor;                   ///< Gradient end color
-@property(assign) double                            startLocation;              ///< start location value 0...1
-@property(assign) double                            endLocation;                ///< end location value 0...1
-//@property(assign) NSPoint                           startPoint;                 ///< start point for the gradient
-//@property(assign) NSPoint                           endPoint;                   ///< end point for the gradient
 @property(assign) double                            alpha;                      ///< used to fade out the circles
 @property(strong, atomic) NSMutableArray           *colors;                     ///< all colors used
 @property(strong, atomic) NSMutableArray           *points;                     ///< all points
 @property(strong, atomic) NSMutableArray           *shapeLayers;                ///< all circle sublayers
+@property(strong, atomic) NSMutableArray           *locations;                  ///< gradient locations 0...1
 
-@property(strong, atomic) CALayerContentsGravity myGravity;
+@property(strong, atomic) CALayerContentsGravity    myGravity;                  ///< use same value for all layers, but no impact?
 
-
-@property(assign) CGGradientDrawingOptions options;                             ///< options for quartz gradient
-@property(assign) CFStringRef              currentColorSpace;                   ///< quartz color space
-
-@property(assign) enum DrawingContext      drawingContext;                      ///< Quartz <-> CoreAnimation
-
-@property(nonatomic, getter=numberOfKinds)
-                       NSInteger           numbberOfKinds;                      ///< to check whether Conic is available
-@property(assign) enum GradientKind        kind;                                ///< Linear, radial, conic?
-
-@property(weak, nonatomic) NSTimer        *fadeOutTimer;                        ///< timer to fade out the circles
+@property(strong, atomic) NSAffineTransform        *centerTransform;            ///< I had issues with Retina display
 
 
-@property(class, readonly, strong)          NSString *defaultColorSpaceName;    ///< color space NSString enum
+@property(assign) CGGradientDrawingOptions          options;                    ///< options for quartz gradient
+@property(assign) CFStringRef                       currentColorSpace;          ///< quartz color space
+
+@property(assign) enum DrawingContext               drawingContext;             ///< Quartz <-> CoreAnimation
+
+@property(assign) enum GradientKind                 kind;                       ///< Linear, radial, conic?
+
+@property(weak, nonatomic) NSTimer                 *fadeOutTimer;               ///< timer to fade out the circles
+
+
+@property(class, readonly, strong) NSString        *defaultColorSpaceName;      ///< color space NSString enum
 @property(class, readonly, weak, nonatomic) NSArray *allColorSpaceNames;        ///< all NSString enums from documentation
 @property(class, readonly, weak, nonatomic) NSDictionary *gradientDefaults;     ///< all user defaults
 
 
 
-@property(strong, atomic) CAGradientLayer *gradientLayer;
+@property(strong, atomic) CAGradientLayer          *gradientLayer;
 
 
 
