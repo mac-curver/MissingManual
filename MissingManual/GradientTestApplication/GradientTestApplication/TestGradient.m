@@ -190,8 +190,12 @@
         _kind               = [defaults integerForKey:@"kind"];
         _options            = 0;
         _currentColorSpace  = (__bridge CFStringRef _Nonnull)(TestGradient.defaultColorSpaceName);
+
+#ifdef USE_AFFINE
         
         _centerTransform     = [NSAffineTransform transform];
+        
+#endif
         _alpha              = 1.0;
         
 
@@ -324,9 +328,19 @@
         default:
             break;
     }
-    [_centerTransform translateXBy:dx * self.window.backingScaleFactor
-                               yBy:dy * self.window.backingScaleFactor
+#ifdef USE_AFFINE
+    
+    [_centerTransform translateXBy:dx / self.window.backingScaleFactor
+                               yBy:dy / self.window.backingScaleFactor
      ];
+    
+#else
+    
+    [_points moveAllPointsByX:dx andY:dy];
+    
+#endif
+
+
 
     
 }
@@ -570,7 +584,11 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
 
+#ifdef USE_AFFINE
+    
     [_centerTransform set];
+    
+#endif
 
     switch (_drawingContext) {
         case CoreAnimation:
@@ -690,10 +708,19 @@
 }
 
 - (NSPoint)inverseTransformPoint:(NSPoint)point {
+    
+#ifdef USE_AFFINE
+    
     NSAffineTransform *xForm = [_centerTransform copy];
     [xForm invert];
     NSPoint mouseLoc = [xForm transformPoint:point];
     return mouseLoc;
+    
+#else
+    
+    return point;
+    
+#endif
 }
 
 - (NSTimer * _Nonnull)fadeCirclesOut {

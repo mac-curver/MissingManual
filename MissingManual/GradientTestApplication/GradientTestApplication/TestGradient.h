@@ -10,6 +10,8 @@
 //  The final code can be retrieved by the edit menu item: CopyGradientCode
 //
 
+#define USE_AFFINE
+
 #import <Cocoa/Cocoa.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -43,7 +45,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(strong, atomic) CALayerContentsGravity    myGravity;                  ///< use same value for all layers, but no impact?
 
+#ifdef USE_AFFINE
+
 @property(strong, atomic) NSAffineTransform        *centerTransform;            ///< I had issues with Retina display
+
+#endif
 
 
 @property(assign) CGGradientDrawingOptions          options;                    ///< options for quartz gradient
