@@ -193,7 +193,9 @@
 
 #ifdef USE_AFFINE
         
-        _centerTransform     = [NSAffineTransform transform];
+        _centerTransform    = [NSAffineTransform transform];
+        
+        caTransform         = CATransform3DMakeTranslation(0.0, 0.0, 0.0);
         
 #endif
         _alpha              = 1.0;
@@ -319,29 +321,17 @@
     [super setFrame:newFrame];
     dx = (newFrame.size.width  - dx)/2;
     dy = (newFrame.size.height - dy)/2;
-    //NSLog(@"%f", self.window.backingScaleFactor);
-    
-    switch (_drawingContext) {
-        case Quartz:
-            //[_points moveAllPointsByX:dx andY:dy];
-            break;
-        default:
-            break;
-    }
+
 #ifdef USE_AFFINE
     
-    [_centerTransform translateXBy:dx / self.window.backingScaleFactor
-                               yBy:dy / self.window.backingScaleFactor
-     ];
-    
+   [_centerTransform translateXBy:dx yBy:dy];
+    caTransform = CATransform3DTranslate(caTransform, dx, dy, 0.0);
+
 #else
     
     [_points moveAllPointsByX:dx andY:dy];
     
 #endif
-
-
-
     
 }
 
@@ -472,6 +462,8 @@
         // It seams to be faster to create a new sublayer and then to exchange it
         shapeLayer.bounds   = CGRectMake(0, 0, Radius, Radius);
         shapeLayer.position = point;
+        shapeLayer.transform = caTransform;
+
         
         CGPathRef cgPath = CGPathCreateWithEllipseInRect(shapeLayer.bounds, NULL);
         shapeLayer.path = cgPath;
@@ -497,16 +489,6 @@
 }
 
 
-- (void)createCircle2 {
-    CAShapeLayer *shapeLayer = [self createCircleShape:((NSValue *)_points[1]).pointValue
-                                                 color:_colors[1]
-                                                  name:((CALayer*)_shapeLayers[1]).name
-                                ];
-    if (shapeLayer) {
-        [self.layer replaceSublayer:_shapeLayers[1] with:shapeLayer];
-        _shapeLayers[1] = shapeLayer;
-    }
-}
 
 
 - (void)drawQuartzContext {
@@ -543,15 +525,20 @@
           , [NSNumber numberWithDouble:[defaults doubleForKey:@"endLocation"]]
         ];
     
-    gradientLayer.startPoint = NSMakePoint(
-                                    ((NSValue *)_points[0]).pointValue.x/self.bounds.size.width
-                                  , ((NSValue *)_points[0]).pointValue.y/self.bounds.size.height
-                               );
-    gradientLayer.endPoint   = NSMakePoint(
-                                    ((NSValue *)_points[1]).pointValue.x/self.bounds.size.width
-                                  , ((NSValue *)_points[1]).pointValue.y/self.bounds.size.height
-                               );
+    NSPoint startPoint = NSMakePoint(
+         [_centerTransform transformPoint:[_points pointAtIndex:0]].x/self.bounds.size.width
+       , [_centerTransform transformPoint:[_points pointAtIndex:0]].y/self.bounds.size.height
+    );
     
+    NSPoint endPoint = NSMakePoint(
+         [_centerTransform transformPoint:[_points pointAtIndex:1]].x/self.bounds.size.width
+       , [_centerTransform transformPoint:[_points pointAtIndex:1]].y/self.bounds.size.height
+    );
+
+    
+    gradientLayer.startPoint = startPoint;
+    gradientLayer.endPoint   = endPoint;
+
     switch (_kind) {
         case Conic:
             if (@available(macOS 10.14, *)) {
@@ -576,7 +563,7 @@
     _gradientLayer = gradientLayer;
     
     [self createCircle:0];
-    [self createCircle2];
+    [self createCircle:1];
 }
 
 
@@ -584,24 +571,19 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
 
-#ifdef USE_AFFINE
-    
-    [_centerTransform set];
-    
-#endif
-
     switch (_drawingContext) {
         case CoreAnimation:
             [self drawCoreAnimation];
             break;
         case Quartz:
         default:
+#ifdef USE_AFFINE
+            [_centerTransform concat];
+#endif
             [self drawQuartzContext];
             break;
     }
-    //[_centerTransform invert];
-    //[_centerTransform concat];
-    //[[NSAffineTransform transform] set];
+
 }
 
 
@@ -611,7 +593,6 @@
     switch (_drawingContext) {
         case CoreAnimation:
             self.wantsLayer = TRUE;
-            //[self addSubLayers];
             break;
         case Quartz:
         default:
@@ -708,19 +689,20 @@
 }
 
 - (NSPoint)inverseTransformPoint:(NSPoint)point {
+
+    #ifdef USE_AFFINE
+        
+        NSAffineTransform *xForm = [_centerTransform copy];
+        [xForm invert];
+        NSPoint mouseLoc = [xForm transformPoint:point];
+        return mouseLoc;
+        
+    #else
+        
+        return point;
+       
+    #endif
     
-#ifdef USE_AFFINE
-    
-    NSAffineTransform *xForm = [_centerTransform copy];
-    [xForm invert];
-    NSPoint mouseLoc = [xForm transformPoint:point];
-    return mouseLoc;
-    
-#else
-    
-    return point;
-    
-#endif
 }
 
 - (NSTimer * _Nonnull)fadeCirclesOut {
@@ -755,7 +737,7 @@
 
 - (void)mouseMoved:(NSEvent *)event {
     static int count = 0;
-    /*
+    
     NSPoint pv = event.locationInWindow;
 
     CALayer *hitLayer = [self.layer hitTest:pv];
@@ -766,7 +748,7 @@
     else {
         NSLog(@"No Layer %d", count);
     }
-     */
+     
     count++;
 }
 

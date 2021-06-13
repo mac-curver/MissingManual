@@ -33,7 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
         , N_DrawingContexts
     };
     
+#ifdef USE_AFFINE
+
+    CATransform3D                                   caTransform;
     
+#endif
 }
 
 
