@@ -10,7 +10,7 @@
 //  The final code can be retrieved by the edit menu item: CopyGradientCode
 //
 
-#define USE_AFFINE
+//#define USE_AFFINE                                                            // no positive impact, but more complicated
 
 #import <Cocoa/Cocoa.h>
 #import <QuartzCore/QuartzCore.h>
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #ifdef USE_AFFINE
 
-@property(strong, atomic) NSAffineTransform        *centerTransform;            ///< I had issues with Retina display
+@property(strong, atomic) NSAffineTransform        *centerTransform;            ///< Works now, but no improvement (see above)
 
 #endif
 
@@ -72,8 +72,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@property(strong, atomic) CAGradientLayer          *gradientLayer;
-
+@property(strong, atomic) CAGradientLayer          *gradientLayer;              ///< in case of core animation the gradient
 
 
 
@@ -100,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateContext:(NSPopUpButton *)sender;                                  ///< called from delegate
 - (NSInteger)numberOfKinds;                                                     ///< 2 or 3 if Conic is supported
-- (NSString *)code;                                                             ///< objective C-code for the clip board
+- (NSString *)code;                                                             ///< objective-C code for the clip board
 - (void)storeDefaults;                                                          ///< store other values into shared user defaults
 
 

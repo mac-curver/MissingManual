@@ -669,6 +669,12 @@
                                     <action selector="performZoom:" target="-1" id="DIl-cC-cCs"/>
                                 </connections>
                             </menuItem>
+                            <menuItem title="Show TestWindow..." id="7f4-LD-sOA">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <binding destination="sYq-Ck-Q1k" name="value" keyPath="selection.ShowTestWindow" id="1io-Nb-m8z"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
                             <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -718,7 +724,7 @@
                                     <action selector="myPanGesture:" target="abY-OY-Syh" id="jHY-sl-2ns"/>
                                 </connections>
                             </panGestureRecognizer>
-                            <clickGestureRecognizer numberOfClicksRequired="1" id="O6A-Hp-TRc">
+                            <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="O6A-Hp-TRc">
                                 <connections>
                                     <action selector="myClickGesture:" target="abY-OY-Syh" id="Pg9-Jp-bLn"/>
                                 </connections>
@@ -932,6 +938,20 @@
             <point key="canvasLocation" x="48" y="13"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="8EE-fc-SWS"/>
-        <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="Xgv-5l-l7q"/>
+        <window title="TestWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="WW2-eW-l3b">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="207" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <view key="contentView" id="ZWJ-5o-2Gc" customClass="TestView">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <connections>
+                <binding destination="sYq-Ck-Q1k" name="visible" keyPath="selection.ShowTestWindow" id="mqY-fa-DVk"/>
+            </connections>
+            <point key="canvasLocation" x="-180" y="560"/>
+        </window>
+        <objectController editable="NO" automaticallyPreparesContent="YES" id="sYq-Ck-Q1k" userLabel="Menu Controller"/>
     </objects>
 </document>

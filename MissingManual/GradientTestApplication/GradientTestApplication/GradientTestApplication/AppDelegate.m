@@ -59,4 +59,6 @@
     [kindOfGradient setEnabled:conicIsEnabled forSegment:2];
 }
 
+
+
 @end

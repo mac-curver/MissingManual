@@ -70,6 +70,10 @@
     return ((NSValue *)self[index]).pointValue;
 }
 
+- (NSString *) layerNameAtIndex:(NSUInteger)index {
+    return ((CALayer*)self[index]).name;
+}
+
 - (NSArray *) cgColorRefArray {
     NSMutableArray *outputArray = [[NSMutableArray alloc] init];
     for (id object in self) {
@@ -294,7 +298,8 @@
      kCAGravityResizeAspectFill
      */
     
- 
+    /*
+     // Just a test layer (tried to test the gravity, but no impact)
     CALayer *blueLayer = CALayer.layer;
     //blueLayer.contentsGravity = kCAGravityTopRight;
     blueLayer.bounds = CGRectMake(0, 0, 100, 100);
@@ -302,7 +307,7 @@
     blueLayer.backgroundColor = NSColor.blueColor.CGColor;
     blueLayer.name = @"Blue";
     [self.layer addSublayer:blueLayer];
-      
+    */
     
     [self.layer addSublayer:_shapeLayers[0]];
     [self.layer addSublayer:_shapeLayers[1]];
@@ -313,7 +318,8 @@
 
 
 
-
+/// Since gravity does not work, we shift all points towards the center
+/// when resizing the window
 - (void)setFrame:(CGRect)newFrame {
     CGFloat dx = self.frame.size.width;
     CGFloat dy = self.frame.size.height;
@@ -459,11 +465,16 @@
     CAShapeLayer *shapeLayer = CAShapeLayer.layer;
     if (shapeLayer) {
         const double Radius = 25;
-        // It seams to be faster to create a new sublayer and then to exchange it
+        // It seams to be faster/more efficient to create a new sublayer and
+        // then to exchange it
         shapeLayer.bounds   = CGRectMake(0, 0, Radius, Radius);
         shapeLayer.position = point;
-        shapeLayer.transform = caTransform;
+        
+#ifdef USE_AFFINE
 
+        shapeLayer.transform = caTransform;
+        
+#endif
         
         CGPathRef cgPath = CGPathCreateWithEllipseInRect(shapeLayer.bounds, NULL);
         shapeLayer.path = cgPath;
@@ -478,9 +489,9 @@
 }
 
 - (void)createCircle:(int)index {
-    CAShapeLayer *shapeLayer = [self createCircleShape:((NSValue *)_points[index]).pointValue
+    CAShapeLayer *shapeLayer = [self createCircleShape:[_points pointAtIndex:index]
                                                  color:_colors[index]
-                                                  name:((CALayer*)_shapeLayers[index]).name
+                                                  name:[_shapeLayers layerNameAtIndex:index]
                                 ];
     if (shapeLayer) {
         [self.layer replaceSublayer:_shapeLayers[index] with:shapeLayer];
@@ -525,6 +536,8 @@
           , [NSNumber numberWithDouble:[defaults doubleForKey:@"endLocation"]]
         ];
     
+#ifdef USE_AFFINE
+
     NSPoint startPoint = NSMakePoint(
          [_centerTransform transformPoint:[_points pointAtIndex:0]].x/self.bounds.size.width
        , [_centerTransform transformPoint:[_points pointAtIndex:0]].y/self.bounds.size.height
@@ -534,10 +547,22 @@
          [_centerTransform transformPoint:[_points pointAtIndex:1]].x/self.bounds.size.width
        , [_centerTransform transformPoint:[_points pointAtIndex:1]].y/self.bounds.size.height
     );
-
+#else
     
+    NSPoint startPoint = NSMakePoint(
+                             [_points pointAtIndex:0].x/self.bounds.size.width
+                           , [_points pointAtIndex:0].y/self.bounds.size.height
+                         );
+    NSPoint endPoint   = NSMakePoint(
+                             [_points pointAtIndex:1].x/self.bounds.size.width
+                           , [_points pointAtIndex:1].y/self.bounds.size.height
+                         );
+
+#endif
+
     gradientLayer.startPoint = startPoint;
     gradientLayer.endPoint   = endPoint;
+
 
     switch (_kind) {
         case Conic:
@@ -675,6 +700,7 @@
 
 
 - (double) manhattanDistanceFrom:(NSPoint)from to:(NSPoint)to {
+    NSLog(@"%f", from.x);
     return (fabs(from.x - to.x) + fabs(from.y - to.y));
 }
 
@@ -737,7 +763,7 @@
 
 - (void)mouseMoved:(NSEvent *)event {
     static int count = 0;
-    
+    /*
     NSPoint pv = event.locationInWindow;
 
     CALayer *hitLayer = [self.layer hitTest:pv];
@@ -748,6 +774,7 @@
     else {
         NSLog(@"No Layer %d", count);
     }
+     */
      
     count++;
 }

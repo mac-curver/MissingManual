@@ -14,6 +14,7 @@
 		26209BDE265A3CCC00388677 /* TestGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 26209BDD265A3CCC00388677 /* TestGradient.m */; };
 		26209BE1265A94DE00388677 /* MyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 26209BE0265A94DE00388677 /* MyLog.m */; };
 		266DB5AD266CC8BF00A61414 /* UserDefaultExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 266DB5AC266CC8BF00A61414 /* UserDefaultExtension.m */; };
+		26DC02FB267736E300462587 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 26DC02FA267736E300462587 /* TestView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		26209BE0265A94DE00388677 /* MyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLog.m; path = ../../_Common/MyLog.m; sourceTree = "<group>"; };
 		266DB5AB266CC8BF00A61414 /* UserDefaultExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultExtension.h; sourceTree = "<group>"; };
 		266DB5AC266CC8BF00A61414 /* UserDefaultExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultExtension.m; sourceTree = "<group>"; };
+		26DC02F9267736E300462587 /* TestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		26DC02FA267736E300462587 /* TestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +50,8 @@
 		26209BBF265A3B0A00388677 = {
 			isa = PBXGroup;
 			children = (
+				26DC02F9267736E300462587 /* TestView.h */,
+				26DC02FA267736E300462587 /* TestView.m */,
 				266DB5AB266CC8BF00A61414 /* UserDefaultExtension.h */,
 				266DB5AC266CC8BF00A61414 /* UserDefaultExtension.m */,
 				26209BDF265A94DE00388677 /* MyLog.h */,
@@ -158,6 +163,7 @@
 				266DB5AD266CC8BF00A61414 /* UserDefaultExtension.m in Sources */,
 				26209BCD265A3B0A00388677 /* AppDelegate.m in Sources */,
 				26209BE1265A94DE00388677 /* MyLog.m in Sources */,
+				26DC02FB267736E300462587 /* TestView.m in Sources */,
 				26209BDE265A3CCC00388677 /* TestGradient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

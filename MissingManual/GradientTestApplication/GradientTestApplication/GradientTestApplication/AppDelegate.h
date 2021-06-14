@@ -6,6 +6,10 @@
 //  Created by LegoEsprit on 23.05.21.
 //  Copyright © 2021 LegoEsprit. All rights reserved.
 //
+//  Uses "Menu Controller" with "Prepares content = YES" and "Editable = NO"
+//
+//  from Terminal: defaults read de.LegoEsprit.GradientTestApplication
+//
 
 #import <Cocoa/Cocoa.h>
 @class TestGradient;
@@ -24,11 +28,11 @@
     __weak IBOutlet NSPopUpButton *colorSpaceMenu;
     
     __weak IBOutlet TestGradient *testGradientView;
-    
 }
 
 - (IBAction)copyGradientCodeToClipboard:(NSMenuItem *)sender;
 - (IBAction)changeDrawingContext:(NSPopUpButton *)sender;
+
 
 @end
 

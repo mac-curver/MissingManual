@@ -9,6 +9,27 @@
 #import <Cocoa/Cocoa.h>
 #include "MyLog.h"
 
+char* stripped(const char *textPtr) {
+    static char buffer[1024];
+    char *bufferPtr = buffer;
+    for (int i = 0; i < 1023 && *textPtr; i++) {
+        switch (*textPtr) {
+            case '[':
+                break;
+            case ']':
+            case ':':
+                i = 1024;
+                break;
+            default:
+                *bufferPtr++ = *textPtr;
+                break;
+        }
+        textPtr++;
+    }
+    *bufferPtr = 0;
+    return buffer;
+}
+
 void MyLog(const char *file, int lineNumber, const char *functionName, NSString *format, ...) {
     // Type to hold information about variable arguments.
     va_list ap;
@@ -30,18 +51,26 @@ void MyLog(const char *file, int lineNumber, const char *functionName, NSString 
     
     NSString *fileName = [NSString stringWithUTF8String:file].lastPathComponent;
     
-    NSCharacterSet *dividers = [NSCharacterSet characterSetWithCharactersInString:@"()"];
-    NSString *functionString = [NSString stringWithCString:functionName encoding:NSISOLatin1StringEncoding];
-    functionString = [functionString componentsSeparatedByCharactersInSet:dividers].firstObject;
+    NSString *function = [NSString stringWithCString:stripped(functionName)
+                                            encoding:NSISOLatin1StringEncoding
+                          ];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm:ss.SSS"];
+    
     switch (0) {
         case 0:
-            fprintf(stderr, "(%s) %s",
-                    functionString.UTF8String, body.UTF8String);
+            fprintf(stderr, "%s %s:%s",
+                    [dateFormatter stringFromDate:[NSDate date]].UTF8String,
+                    function.UTF8String,
+                    body.UTF8String
+            );
             break;
         case 1:
             fprintf(stderr, "(%s) (%s:%d) %s",
                     functionName, fileName.UTF8String,
-                    lineNumber, body.UTF8String);
+                    lineNumber, body.UTF8String
+            );
             break;
     }
 }
