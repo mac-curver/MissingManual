@@ -15,7 +15,9 @@ The TestView.m file can be used to test the generated code! This view will be di
 
 ---
 ## History:
-Version 2.0:    2021-06-16 First completely working version (No crash anymore)
-Version 1.0:    2021-06-16 First trials (Working, but issues with retina and 2 component color spaces )
+| | | |
+|----|-----|-------| 
+|Version 2.0:|2021-06-16|First completely working version (No crash anymore)|
+|Version 1.0:|2021-06-16|First trials (Working, but issues with retina and 2 component color spaces )|
 
 
