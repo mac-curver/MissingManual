@@ -8,6 +8,4 @@ Currently the projects are written in Objective-C, but the latest Swift versions
 
 The first program is a gradient test sample code allowing to define a 2 step gradient and to retrieve the corresponding sample code. 
 
-This SW displays a 2 point linear or radial gradient that can be manipulated by the mouse and entry of some parameters. The final code can be retrieved by the edit menu item: CopyGradientCode
-
 
