@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 #endif
 }
 
+@property(assign) bool                              didFinishLaunching;         ///< activates center movement
 
 @property(assign) double                            alpha;                      ///< used to fade out the circles
 @property(strong, atomic) NSMutableArray           *colors;                     ///< all colors used
@@ -57,7 +58,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property(assign) CGGradientDrawingOptions          options;                    ///< options for quartz gradient
-@property(assign) CFStringRef                       currentColorSpace;          ///< quartz color space
 
 @property(assign) enum DrawingContext               drawingContext;             ///< Quartz <-> CoreAnimation
 
@@ -78,8 +78,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 - (IBAction)updateKind:(NSSegmentedControl *)sender;                            ///< linear, radial,... segmented control was changed
-- (IBAction)updateStartColor:(NSColorWell *)sender;                             ///< color well action for the 1st color
-- (IBAction)updateEndColor:(NSColorWell *)sender;                               ///< color well action for the 2nd color
 - (IBAction)sliderStartLocation:(NSSlider *)sender;                             ///< start location 0...1 of the gradient was changed
 - (IBAction)sliderEndLocation:(NSSlider *)sender;                               ///< end location 0...1 of the gradient was changed
 
@@ -91,16 +89,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (IBAction)setStartOver:(NSButton *)sender;                                    ///< checkbox for Quartz changes options property
 - (IBAction)setEndOver:(NSButton *)sender;                                      ///< checkbox for Quartz changes options property
 
-- (IBAction)selectColorSpace:(NSPopUpButton *)sender;                           ///< reponds to color space popup menu change
 
 - (IBAction)myPanGesture:(NSPanGestureRecognizer *)sender;                      ///< moves start and end point
 - (IBAction)myClickGesture:(NSClickGestureRecognizer *)sender;                  ///< resets alpha to 1
 - (IBAction)myPressAndHoldGesture:(NSPressGestureRecognizer *)sender;
 
++ (NSArray *)allColorSpaces;                                                    ///< list of all color spaces
+
 - (void)updateContext:(NSPopUpButton *)sender;                                  ///< called from delegate
+- (void)selectColorSpace:(NSColorSpace *)colorSpace;
+- (NSInteger)updateColor:(NSColor *)color at:(NSInteger) index;                 ///< color well change for the n th color; returns index of colorSpace if changed or -1 if color space did not change
 - (NSInteger)numberOfKinds;                                                     ///< 2 or 3 if Conic is supported
 - (NSString *)code;                                                             ///< objective-C code for the clip board
 - (void)storeDefaults;                                                          ///< store other values into shared user defaults
+- (nonnull NSColor *)colorAtIndex:(NSInteger)index;
 
 
 @end

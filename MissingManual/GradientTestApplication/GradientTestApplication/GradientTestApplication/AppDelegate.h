@@ -32,6 +32,9 @@
 
 - (IBAction)copyGradientCodeToClipboard:(NSMenuItem *)sender;
 - (IBAction)changeDrawingContext:(NSPopUpButton *)sender;
+- (IBAction)updateStartColor:(NSColorWell *)sender;
+- (IBAction)updateEndColor:(NSColorWell *)sender;
+- (IBAction)selectColorSpace:(NSPopUpButton *)sender;
 
 
 @end

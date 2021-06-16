@@ -17,12 +17,22 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    
     /// Register the defaults from the TestGradient view
     [[NSUserDefaults standardUserDefaults] registerDefaults:TestGradient.gradientDefaults];
 
     /// Fill the menu with the colorspaces from the TestGradient view
     [colorSpaceMenu removeAllItems];
-    [colorSpaceMenu addItemsWithTitles:TestGradient.allColorSpaceNames];
+    /// We can't use [colorSpaceMenu addItemWithTitle:] as it fails,
+    /// if we have multiple entries with the same name!
+    for (NSString *colorSpaceItem in TestGradient.allColorSpaceNames) {
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:colorSpaceItem
+                                                      action:NULL
+                                               keyEquivalent:@""
+                            ];
+        [colorSpaceMenu.menu addItem:item];
+    }
     [colorSpaceMenu selectItemWithTitle:TestGradient.defaultColorSpaceName];
     
     /// Disable the Conic button if not available
@@ -30,6 +40,8 @@
     
     color0.color = testGradientView.colors[0];
     color1.color = testGradientView.colors[1];
+    
+    testGradientView.didFinishLaunching = TRUE;
 }
 
 
@@ -58,6 +70,36 @@
     BOOL conicIsEnabled = 2<testGradientView.numberOfKinds;
     [kindOfGradient setEnabled:conicIsEnabled forSegment:2];
 }
+
+- (IBAction)updateStartColor:(NSColorWell *)sender {
+    NSInteger colorSpaceIndex = [testGradientView updateColor:sender.color
+                                                           at:0
+                                 ];
+    if (colorSpaceIndex >= 0) {
+        [colorSpaceMenu selectItemAtIndex:colorSpaceIndex];
+        color1.color = [testGradientView colorAtIndex:1];
+    }
+}
+
+- (IBAction)updateEndColor:(NSColorWell *)sender {
+    NSInteger colorSpaceIndex = [testGradientView updateColor:sender.color
+                                                           at:1
+                                 ];
+    if (colorSpaceIndex >= 0) {
+        [colorSpaceMenu selectItemAtIndex:colorSpaceIndex];
+        color0.color = [testGradientView colorAtIndex:0];
+    }
+}
+
+- (IBAction)selectColorSpace:(NSPopUpButton *)sender {
+    NSInteger colorSpaceIndex = sender.indexOfSelectedItem;
+    NSColorSpace *colorSpace = TestGradient.allColorSpaces[colorSpaceIndex];
+    [testGradientView selectColorSpace:colorSpace];
+
+    color0.color = [testGradientView colorAtIndex:0];
+    color1.color = [testGradientView colorAtIndex:1];
+}
+
 
 
 

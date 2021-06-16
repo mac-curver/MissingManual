@@ -19,39 +19,57 @@
 @implementation NSColor (NSColorExtension)
 
 
-- (BOOL)isLight {
+- (BOOL) isLight {
     CGFloat white = 0;
-    [self getWhite:&white alpha:nil];
+    [self getWhite:&white alpha:NULL];
     return white > 0.5;
 }
 
-- (NSColor *)opposite:(double) alpha {
+- (NSColor *) opposite:(double) alpha {
+    CGFloat components[4];
+    [self getComponents:&components[0]];
+
     double ignored;
-    return [NSColor colorWithCalibratedRed:(CGFloat)modf(0.5 + self.redComponent,   &ignored)
-                                     green:(CGFloat)modf(0.5 + self.greenComponent, &ignored)
-                                      blue:(CGFloat)modf(0.5 + self.blueComponent,  &ignored)
-                                     alpha:alpha
+    switch (self.numberOfComponents) {
+        case 4:
+            return [NSColor
+                    colorWithCalibratedRed:
+                           (CGFloat)modf(0.5 + components[0], &ignored)
+                     green:(CGFloat)modf(0.5 + components[1], &ignored)
+                      blue:(CGFloat)modf(0.5 + components[2], &ignored)
+                     alpha:alpha
             ];
+        case 2:
+        default:
+            if (components[0] < 0.5) {
+                return [NSColor.whiteColor colorWithAlphaComponent:alpha];
+            }
+            else {
+                return [NSColor.blackColor colorWithAlphaComponent:alpha];
+            }
+    }
+ 
 }
 
 
-- (NSColor *)complement:(double) alpha {
-    NSColorSpaceName colorSpaceName = self.colorSpaceName;
-    if (colorSpaceName == NSCalibratedRGBColorSpace
-     || colorSpaceName == NSDeviceRGBColorSpace
+- (NSColor *) complement:(double) alpha {
+    NSColorSpace *colorSpace = self.colorSpace;
+    if (colorSpace == NSColorSpace.genericGamma22GrayColorSpace
+     || colorSpace == NSColorSpace.extendedGenericGamma22GrayColorSpace
+     || colorSpace == NSColorSpace.genericGrayColorSpace
+     || colorSpace == NSColorSpace.deviceGrayColorSpace
     ) {
+        // Avoid crash, when not in RGB-Color space
+        // May be we should use a different algo here
+        return [NSColor.blackColor colorWithAlphaComponent:alpha];
+    }
+    else {
          return [NSColor colorWithCalibratedRed:(1.0 - self.redComponent)
                                           green:(1.0 - self.greenComponent)
                                            blue:(1.0 - self.blueComponent)
                                           alpha:alpha
                  ];
     }
-    else {
-        // Avoid crash, when not in RGB-Color space
-        // May be we should use a different algo here
-        return [NSColor.blackColor colorWithAlphaComponent:alpha];
-    }
-    
 }
 
 @end
@@ -65,12 +83,12 @@
 
 @implementation NSArray (PointsCategory)
 
-- (NSPoint)pointAtIndex:(NSUInteger)index {
+- (NSPoint) pointAtIndex:(NSUInteger)index {                                    /// used to avoid too many casts
     //return ((NSValue *)[self objectAtIndex:index]).pointValue;
     return ((NSValue *)self[index]).pointValue;
 }
 
-- (NSString *) layerNameAtIndex:(NSUInteger)index {
+- (NSString *) layerNameAtIndex:(NSUInteger)index {                             /// used to avoid too many casts
     return ((CALayer*)self[index]).name;
 }
 
@@ -80,6 +98,26 @@
         [outputArray addObject:(id)((NSColor*)object).CGColor];
     }
     return outputArray;
+}
+
+- (NSColor *) colorAtIndex:(NSUInteger)index {                                  /// used to avoid too many casts
+    return ((NSColor*)self[index]);
+}
+
++ (NSArray*) arrayByRepeatingObject:(id)obj times:(NSUInteger)times {
+    id arr[times];
+    for (int i = 0; i < times; ++i) {
+        arr[i] = obj;
+    }
+    return [NSArray arrayWithObjects:arr count:times];
+}
+
++ (NSArray*) arrayByRepeatingBlock:(NSString* (^)(int))callbackBlock times:(NSUInteger)times {
+    id arr[times];
+    for (int i = 0; i < times; ++i) {
+        arr[i] = callbackBlock(i);
+    }
+    return [NSArray arrayWithObjects:arr count:times];
 }
 
 @end
@@ -97,24 +135,52 @@
     
 }
 
+- (void) changeToColorSpace:(NSColorSpace *)newColorSpace {
+    /*
+    for (__strong NSColor *color in self) {
+        color = [color colorUsingColorSpace:newColorSpace];
+    }
+    */
+    for (int index = 0; index < self.count; index++) {
+        self[index] = [self[index] colorUsingColorSpace:newColorSpace];
+    }
+
+}
+
+@end
+
+
+@implementation NSString (RepeatCategory)
+
+- (NSString *) repeatStringByNumberOfTimes: (NSUInteger) times {
+    return [@"" stringByPaddingToLength:[self length]*times withString:self startingAtIndex:0];
+}
+
 @end
 
 
 @implementation TestGradient
 
-
+//AppDelegate *appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
+//[appDelegate->colorSpaceMenu selectItemWithTitle:[_colors colorAtIndex:0].colorSpace.localizedName];
 
 //CFStringRef const defaultColorSpaceRef = CFSTR("kCGColorSpaceGenericRGBLinear");
 
 + (NSString*) defaultColorSpaceName {
     //return CFBridgingRelease(kCGColorSpaceGenericRGBLinear);
-    return (__bridge NSString*)kCGColorSpaceGenericRGB;
+    //return (__bridge NSString*)kCGColorSpaceGenericRGB;
+    return NSColorSpace.genericRGBColorSpace.localizedName;
+}
+
++ (NSArray *) allColorSpaces {
+    return [NSColorSpace availableColorSpacesWithModel:NSColorSpaceModelUnknown]; // Contrary to expectation this returns all color name spaces
 }
 
 
 + (NSArray*) allColorSpaceNames {
-    NSArray  *array = @[
-           (NSString *)CFBridgingRelease(kCGColorSpaceGenericRGB)
+    NSMutableArray  *array = [NSMutableArray arrayWithCapacity:60];
+       /*
+           (NSString *)CFBridgingRelease(kCGColorSpaceGenericRGB)               // CG colorspaces
          , (NSString *)CFBridgingRelease(kCGColorSpaceGenericCMYK)
          , (NSString *)CFBridgingRelease(kCGColorSpaceDisplayP3)
          , (NSString *)CFBridgingRelease(kCGColorSpaceGenericRGBLinear)
@@ -134,13 +200,16 @@
          , (NSString *)CFBridgingRelease(kCGColorSpaceExtendedGray)
          , (NSString *)CFBridgingRelease(kCGColorSpaceLinearGray)
          , (NSString *)CFBridgingRelease(kCGColorSpaceExtendedLinearGray)
-    ];
+        */
+    for (NSColorSpace *colorSpace in [self allColorSpaces]) {
+        [array addObject:colorSpace.localizedName];
+    }
     
     return array;
 }
 
-+ (NSDictionary *)gradientDefaults {
-    // defaults read de.LegoEsprit.GradientTestApplication2
++ (NSDictionary *) gradientDefaults {
+    // defaults read de.LegoEsprit.GradientTestApplication
     
     return @{
                   @"endLocation"        : @1.0
@@ -165,7 +234,7 @@
             };
 };
 
-- (NSInteger)numberOfKinds {
+- (NSInteger) numberOfKinds {
     switch (_drawingContext) {
         case CoreAnimation:
             if (@available(macOS 10.14, *)) {
@@ -184,16 +253,16 @@
 
 
  
-- (instancetype)initWithCoder:(NSCoder *)decoder {
+- (instancetype) initWithCoder:(NSCoder *)decoder {
     if (self = [super initWithCoder:decoder]) {
+        
+        _didFinishLaunching         = false;
+        
         NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
-        //AppDelegate *appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
-
 
         _drawingContext     = [defaults integerForKey:@"isNotQuartz"];
         _kind               = [defaults integerForKey:@"kind"];
         _options            = 0;
-        _currentColorSpace  = (__bridge CFStringRef _Nonnull)(TestGradient.defaultColorSpaceName);
 
 #ifdef USE_AFFINE
         
@@ -205,28 +274,6 @@
         _alpha              = 1.0;
         
 
-        
-        /*
-         // copied from documentation
-         @property (class, strong, readonly) NSColorSpace *sRGBColorSpace NS_AVAILABLE_MAC(10_5);
-         @property (class, strong, readonly) NSColorSpace *genericGamma22GrayColorSpace NS_AVAILABLE_MAC(10_6);             // The grayscale color space with gamma 2.2, compatible with sRGB
-         
-         @property (class, strong, readonly) NSColorSpace *extendedSRGBColorSpace NS_AVAILABLE_MAC(10_12);                  // sRGB compatible color space that allows specifying components beyond the range of [0.0, 1.0]
-         @property (class, strong, readonly) NSColorSpace *extendedGenericGamma22GrayColorSpace NS_AVAILABLE_MAC(10_12);    // sRGB compatible gray color space that allows specifying components beyond the range of [0.0, 1.0]
-         
-         @property (class, strong, readonly) NSColorSpace *displayP3ColorSpace NS_AVAILABLE_MAC(10_12);     // Standard DCI-P3 primaries, a D65 white point, and the same gamma curve as the sRGB IEC61966-2.1 color space
-         
-         @property (class, strong, readonly) NSColorSpace *adobeRGB1998ColorSpace NS_AVAILABLE_MAC(10_5);
-         
-         @property (class, strong, readonly) NSColorSpace *genericRGBColorSpace;        // NSColorSpace corresponding to Cocoa color space name NSCalibratedRGBColorSpace
-         @property (class, strong, readonly) NSColorSpace *genericGrayColorSpace;       // NSColorSpace corresponding to Cocoa color space name NSCalibratedWhiteColorSpace
-         @property (class, strong, readonly) NSColorSpace *genericCMYKColorSpace;
-         @property (class, strong, readonly) NSColorSpace *deviceRGBColorSpace;         // NSColorSpace corresponding to Cocoa color space name NSDeviceRGBColorSpace
-         @property (class, strong, readonly) NSColorSpace *deviceGrayColorSpace;        // NSColorSpace corresponding to Cocoa color space name NSDeviceWhiteColorSpace
-         @property (class, strong, readonly) NSColorSpace *deviceCMYKColorSpace;        // NSColorSpace corresponding to Cocoa color space name NSDeviceCMYKColorSpace
-
-         */
-
         _gradientLayer = CAGradientLayer.layer;
         _gradientLayer.name = @"Gradient";
 
@@ -235,19 +282,19 @@
         
         
         NSColor *startColor  = [defaults colorForKey:@"StartColor" default:NSColor.redColor];
-        NSColor *endColor    = [defaults colorForKey:@"EndColor" default:NSColor.greenColor];
+        NSColor *endColor    = [defaults colorForKey:@"EndColor"   default:NSColor.greenColor];
         NSArray *colors = @[startColor, endColor];
         _colors = [[NSMutableArray alloc] initWithArray:colors];
 
         NSPoint startPoint  = [defaults pointForKey:@"StartPoint" default:NSMakePoint(10.0, 10.0)];
-        NSPoint endPoint    = [defaults pointForKey:@"EndPoint" default:NSMakePoint(500.0, 400.0)];
+        NSPoint endPoint    = [defaults pointForKey:@"EndPoint"   default:NSMakePoint(500.0, 400.0)];
         NSArray *points = @[[NSValue valueWithPoint:startPoint], [NSValue valueWithPoint:endPoint]];
         _points = [[NSMutableArray alloc] initWithArray:points];
 
         CAShapeLayer *shape1Layer   = CAShapeLayer.layer;
-        shape1Layer.name = @"Shape 1";
+        shape1Layer.name = @"Circle 1";
         CAShapeLayer *shape2Layer  = CAShapeLayer.layer;
-        shape2Layer.name = @"Shape 2";
+        shape2Layer.name = @"Circle 2";
 
         _shapeLayers = [[NSMutableArray alloc]init];
         [_shapeLayers addObject:shape1Layer];
@@ -279,7 +326,7 @@
     return self;
 }
 
-- (void)addSubLayers {
+- (void) addSubLayers {
     
     [self.layer addSublayer:_gradientLayer];
     //self.layer.contentsGravity = kCAGravityTopRight;
@@ -320,39 +367,26 @@
 
 /// Since gravity does not work, we shift all points towards the center
 /// when resizing the window
-- (void)setFrame:(CGRect)newFrame {
+- (void) setFrame:(CGRect)newFrame {
     CGFloat dx = self.frame.size.width;
     CGFloat dy = self.frame.size.height;
 
     [super setFrame:newFrame];
-    dx = (newFrame.size.width  - dx)/2;
+    dx = (newFrame.size.width  - dx)/2;                                         /// Distance to new center
     dy = (newFrame.size.height - dy)/2;
 
 #ifdef USE_AFFINE
     
-   [_centerTransform translateXBy:dx yBy:dy];
-    caTransform = CATransform3DTranslate(caTransform, dx, dy, 0.0);
+    [_centerTransform translateXBy:dx yBy:dy];
+     caTransform = CATransform3DTranslate(caTransform, dx, dy, 0.0);
 
 #else
-    
-    [_points moveAllPointsByX:dx andY:dy];
+    if (_didFinishLaunching) [_points moveAllPointsByX:dx andY:dy];
     
 #endif
     
 }
 
-- (NSNumber*)NumberFrom:(double)value {
-    if (value < 0) {
-        return [NSNumber numberWithDouble:0];
-    }
-    else if (value > 1) {
-        return [NSNumber numberWithDouble:1];
-    }
-    else {
-        return [NSNumber numberWithDouble:value];
-    }
-    
-}
 
 /*
 - (void)initWithDelegateValues {
@@ -366,7 +400,7 @@
 */
 
 
-- (void)circleArround:(NSPoint)point radius:(double)radius {
+- (void) circleArround:(NSPoint)point radius:(double)radius {
     NSBezierPath *path = [NSBezierPath bezierPath];
     [path appendBezierPathWithOvalInRect:
         NSMakeRect(point.x - radius
@@ -378,16 +412,16 @@
 }
 
 
-- (void)gradientWithCGContext {
+- (void) gradientWithCGContext {
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
-
     CGContextRef context = NSGraphicsContext.currentContext.graphicsPort;
-    
-    [NSGraphicsContext saveGraphicsState];
-    
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateWithName(_currentColorSpace);
 
-    NSInteger numberOfComponents = ((NSColor*)_colors[0]).numberOfComponents;
+    [NSGraphicsContext saveGraphicsState];
+
+    CGColorSpaceRef colorSpace = [_colors colorAtIndex:0].colorSpace.CGColorSpace;
+
+
+    NSInteger numberOfComponents = [_colors colorAtIndex:0].numberOfComponents;
     CGFloat *components = malloc(sizeof(CGFloat)*2*numberOfComponents);
     [_colors[0] getComponents:&components[0]];
     [_colors[1] getComponents:&components[numberOfComponents]];
@@ -395,12 +429,12 @@
     double locations[] = {[defaults doubleForKey:@"startLocation"]
                         , [defaults doubleForKey:@"endLocation"]
     };
-    
+
     CGGradientRef gradient = CGGradientCreateWithColorComponents(
                                      colorSpace, components
                                    , locations, 2
                              );
-    
+
     switch (_kind) {
         case Radial:
             CGContextDrawRadialGradient(
@@ -426,10 +460,11 @@
             break;
     }
     [NSGraphicsContext restoreGraphicsState];
+    free(components);
 }
 
 
-- (CGMutablePathRef)cgPathFromPath:(NSBezierPath *)path {
+- (CGMutablePathRef) cgPathFromPath:(NSBezierPath *)path {
     CGMutablePathRef cgPath = CGPathCreateMutable();
     
     for (NSInteger i = 0; i < [path elementCount]; i++) {
@@ -458,9 +493,9 @@
 }
 
 
-- (CAShapeLayer *)createCircleShape:(NSPoint) point
-                              color:(NSColor *)color
-                               name:(NSString *)name
+- (CAShapeLayer *) createCircleShape:(NSPoint) point
+                               color:(NSColor *)color
+                                name:(NSString *)name
 {
     CAShapeLayer *shapeLayer = CAShapeLayer.layer;
     if (shapeLayer) {
@@ -502,8 +537,9 @@
 
 
 
-- (void)drawQuartzContext {
+- (void) drawQuartzContext {
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
+    NSLog(@"1");
     [self gradientWithCGContext];
     
     [[NSColor.blackColor colorWithAlphaComponent:_alpha] set];
@@ -522,7 +558,7 @@
 
 
 
-- (void)drawCoreAnimation {
+- (void) drawCoreAnimation {
     if (!self.layer.sublayers.count) {
         [self addSubLayers];
     }
@@ -594,7 +630,7 @@
 
 
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void) drawRect:(NSRect)dirtyRect {
 
     switch (_drawingContext) {
         case CoreAnimation:
@@ -613,7 +649,7 @@
 
 
 
-- (void)updateContext:(NSPopUpButton *)sender {
+- (void) updateContext:(NSPopUpButton *)sender {
     _drawingContext = sender.indexOfSelectedItem;
     switch (_drawingContext) {
         case CoreAnimation:
@@ -628,47 +664,55 @@
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)updateKind:(NSSegmentedControl *)sender {
+- (IBAction) updateKind:(NSSegmentedControl *)sender {
     _kind = sender.selectedSegment;
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)updateStartColor:(NSColorWell *)sender {
-    _colors[0] = sender.color;
+- (NSInteger) updateColor:(nonnull NSColor *)color at:(NSInteger)index {
+    NSInteger colorSpaceIndex = -1;                                             /// no color space index change
+    NSColorSpace *originalColorSpace = [_colors colorAtIndex:index].colorSpace;
+    _colors[index] = color;                                                     /// set the new color
+    NSColorSpace *colorSpace = [_colors colorAtIndex:index].colorSpace;
+    if (colorSpace != originalColorSpace) {
+        [_colors changeToColorSpace:colorSpace];                                /// change all colors to use the same color space
+
+        /// attention: localizedName for color not localized!
+        /// Therefore we must use index here!
+        colorSpaceIndex = [TestGradient.allColorSpaces indexOfObject:colorSpace];
+    }
+    
     [self setNeedsDisplay:true];
+    return colorSpaceIndex;
 }
 
-- (IBAction)updateEndColor:(NSColorWell *)sender {
-    _colors[1] = sender.color;
+
+
+- (IBAction) sliderStartLocation:(NSSlider *)sender {
     [self setNeedsDisplay:YES];
 }
 
-
-- (IBAction)sliderStartLocation:(NSSlider *)sender {
+- (IBAction) sliderEndLocation:(NSSlider *)sender {
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)sliderEndLocation:(NSSlider *)sender {
+- (IBAction) updateStartRadius:(NSTextField *)sender {
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)updateStartRadius:(NSTextField *)sender {
+- (IBAction) updateEndRadius:(NSTextField *)sender {
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)updateEndRadius:(NSTextField *)sender {
+- (IBAction) stepperStartRadius:(NSStepper *)sender {
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)stepperStartRadius:(NSStepper *)sender {
+- (IBAction) stepperEndRadius:(NSStepper *)sender {
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)stepperEndRadius:(NSStepper *)sender {
-    [self setNeedsDisplay:YES];
-}
-
-- (IBAction)setStartOver:(NSButton *)sender {
+- (IBAction) setStartOver:(NSButton *)sender {
     switch (sender.state) {
         case NSControlStateValueOn:
             _options |= kCGGradientDrawsBeforeStartLocation;
@@ -680,7 +724,7 @@
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)setEndOver:(NSButton *)sender {
+- (IBAction) setEndOver:(NSButton *)sender {
     switch (sender.state) {
         case NSControlStateValueOn:
             _options |= kCGGradientDrawsAfterEndLocation;
@@ -692,19 +736,22 @@
     [self setNeedsDisplay:YES];
 }
 
-- (IBAction)selectColorSpace:(NSPopUpButton *)sender {
-    _currentColorSpace = (__bridge CFStringRef _Nonnull)(sender.selectedItem.title);
+- (void) selectColorSpace:(NSColorSpace *)colorSpace {
+    //AppDelegate *appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
+    [_colors changeToColorSpace:colorSpace];
+    //appDelegate->color0.color = _colors[0];
+    //appDelegate->color1.color = _colors[1];
+
     [self setNeedsDisplay:YES];
 }
 
 
 
 - (double) manhattanDistanceFrom:(NSPoint)from to:(NSPoint)to {
-    NSLog(@"%f", from.x);
     return (fabs(from.x - to.x) + fabs(from.y - to.y));
 }
 
-- (int)findElement:(NSPoint)targetPoint {
+- (int) findElement:(NSPoint)targetPoint {
     if (
         [self manhattanDistanceFrom:targetPoint to:((NSValue *)_points[0]).pointValue]
       < [self manhattanDistanceFrom:targetPoint to:((NSValue *)_points[1]).pointValue]
@@ -714,7 +761,7 @@
         return 1;
 }
 
-- (NSPoint)inverseTransformPoint:(NSPoint)point {
+- (NSPoint) inverseTransformPoint:(NSPoint)point {
 
     #ifdef USE_AFFINE
         
@@ -731,7 +778,7 @@
     
 }
 
-- (NSTimer * _Nonnull)fadeCirclesOut {
+- (NSTimer * _Nonnull) fadeCirclesOut {
     // how to do this with animation or ca animation?
     if (self.fadeOutTimer.isValid) [self.fadeOutTimer invalidate];
 
@@ -748,20 +795,9 @@
                             ];
 }
 
-//pointInWindow = [self convertPoint:[sender locationInView:self] toView:nil];
-- (void) checkHitLayer:(NSPoint)pointInWindow {
-    static int count = 0;
-    CALayer *hitLayer = [self.layer hitTest:pointInWindow];
-    if (hitLayer) {
-        NSLog(@"%@ %d", hitLayer.name, count);
-    }
-    else {
-        NSLog(@"No Layer %d", count);
-    }
-    count++;
-}
 
-- (void)mouseMoved:(NSEvent *)event {
+
+- (void) mouseMoved:(NSEvent *)event {                                          /// Requires tracking rect
     static int count = 0;
     /*
     NSPoint pv = event.locationInWindow;
@@ -779,7 +815,7 @@
     count++;
 }
 
-- (IBAction)myPanGesture:(NSPanGestureRecognizer *)sender {
+- (IBAction) myPanGesture:(NSPanGestureRecognizer *)sender {
     //static NSPoint *pointPtr;
     static int index = 0;
 
@@ -810,27 +846,39 @@
 
 
 
-- (IBAction)myClickGesture:(NSClickGestureRecognizer *)sender {
-    //[self checkHitLayer:sender];
-
+- (IBAction) myClickGesture:(NSClickGestureRecognizer *)sender {
     _alpha = 1.0;
     [self fadeCirclesOut];
 }
 
 
-- (IBAction)myPressAndHoldGesture:(NSPressGestureRecognizer *)sender {
+- (IBAction) myPressAndHoldGesture:(NSPressGestureRecognizer *)sender {
     //[self checkHitLayer:sender];
 }
 
 
 
 
-- (NSString *)generateQuartzCode {
-    NSMutableString *text;
-
-    CGFloat components[8];
+- (NSString *) componentsString {
+    NSUInteger numberOfComponents = [_colors colorAtIndex:0].numberOfComponents;
+    CGFloat components[8], *ptr;
+    ptr = components;
     [_colors[0] getComponents:&components[0]];
-    [_colors[1] getComponents:&components[4]];
+    [_colors[1] getComponents:&components[numberOfComponents]];
+    
+    NSArray  *dataArray = [NSArray arrayByRepeatingBlock:
+                           ^(int i) {
+                             return [NSString stringWithFormat:@"%f", ptr[i]];
+                           }
+                           times:numberOfComponents*2
+                         ];
+    NSString *dataFormat = [dataArray componentsJoinedByString:@", "];
+    return [NSString stringWithFormat:@"(const CGFloat[]){%@}", dataFormat];
+    
+}
+
+- (NSString *) generateQuartzCode {
+    NSString *text;
     
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     
@@ -843,12 +891,11 @@
 
     switch (_kind) {
         case Linear:
-            text = [NSMutableString stringWithFormat:
+            text = [NSString stringWithFormat:
                      @""
                      "CGGradientRef gradient = CGGradientCreateWithColorComponents(\n"
                      "    CGColorSpaceCreateWithName(%@)\n"
-                     "  , (const CGFloat[]){  %f, %f, %f, %f\n"
-                     "                      , %f, %f, %f, %f}\n"
+                     "  , %@\n"
                      "  , (const CGFloat[]){%f, %f}, 2\n"
                      ");\n"
                      "CGContextDrawLinearGradient(\n"
@@ -856,22 +903,20 @@
                      "  , gradient\n"
                      "  , NSMakePoint(%f, %f), NSMakePoint(%f, %f), %d\n"
                      ");"
-                     , _currentColorSpace
-                     , components[0], components[1], components[2], components[3]
-                     , components[4], components[5], components[6], components[7]
+                     , CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace)
+                     , [self componentsString]
                      , locations[0], locations[1]
-                     , ((NSValue *)_points[0]).pointValue.x, ((NSValue *)_points[0]).pointValue.y
-                     , ((NSValue *)_points[1]).pointValue.x, ((NSValue *)_points[1]).pointValue.y
+                     , [_points pointAtIndex:0].x, [_points pointAtIndex:0].y
+                     , [_points pointAtIndex:1].x, [_points pointAtIndex:1].y
                      , _options
                      ];
             break;
         case Radial:
-            text = [NSMutableString stringWithFormat:
+            text = [NSString stringWithFormat:
                      @""
                      "CGGradientRef gradient = CGGradientCreateWithColorComponents(\n"
                      "    CGColorSpaceCreateWithName(%@)\n"
-                     "  , (const CGFloat[]){  %f, %f, %f, %f\n"
-                     "                      , %f, %f, %f, %f}\n"
+                     "  , %@\n"
                      "  , (const CGFloat[]){%f, %f}, 2\n"
                      ");\n"
                      "CGContextDrawRadialGradient(\n"
@@ -881,110 +926,103 @@
                      "  , NSMakePoint(%f, %f), %f\n"
                      "  , %d\n"
                      ");"
-                     , _currentColorSpace
-                     , components[0], components[1], components[2], components[3]
-                     , components[4], components[5], components[6], components[7]
+                     , CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace)
+                     , [self componentsString]
                      , locations[0], locations[1]
-                     , ((NSValue *)_points[0]).pointValue.x, ((NSValue *)_points[0]).pointValue.y, startRadius
-                     , ((NSValue *)_points[1]).pointValue.x, ((NSValue *)_points[1]).pointValue.y, endRadius
+                     , [_points pointAtIndex:0].x, [_points pointAtIndex:0].y, startRadius
+                     , [_points pointAtIndex:1].x, [_points pointAtIndex:1].y, endRadius
                      , _options
                      ];
             break;
             
         case Conic:
         default:
-            text = [NSMutableString stringWithFormat:
-                    @""
-                    "// Not supported in Quartz\n"
-                    ];
+            text = @"// Not supported in Quartz\n";
             break;
     }
     return text;
 }
 
-- (NSString *)generateCoreAnimationCode {
-    NSString *text;
-    text = [NSString stringWithFormat:@"// Not yet supported\n"];
+- (NSString *) colorComponent:(NSColor *)color prefixedBy:(NSString *)prefix {
     
-#ifdef FUTURE
+    NSInteger numberOfComponents = color.numberOfComponents;
+    CGFloat components[8], *ptr;
+    ptr = components;
+    [color getComponents:components];
+    
+    NSArray  *dataArray = [NSArray arrayByRepeatingBlock:
+                             ^(int i) {
+                               return [NSString stringWithFormat:@"%f", ptr[i]];
+                             }
+                             times:numberOfComponents
+                           ];
 
-    CGFloat components[8];
-    [_startColor getComponents:&components[0]];
-    [_endColor   getComponents:&components[4]];
+    return [NSString stringWithFormat:@""
+            "    const CGFloat %@Components[] = {%@};\n"
+            "    NSColor *%@Color = [NSColor colorWithColorSpace:cs "
+                        "components:%@Components count:%ld];"
+             , prefix
+             , [dataArray componentsJoinedByString:@", "]
+             , prefix, prefix
+             , numberOfComponents
+            ];
+}
+
+- (NSString *) generateCoreAnimationCode {
     
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     
-    double locations[] = {[defaults doubleForKey:@"startLocation"]
+    double locations[] = {
+          [defaults doubleForKey:@"startLocation"]
         , [defaults doubleForKey:@"endLocation"]
     };
     
-    double startRadius = [defaults doubleForKey:@"startRadius"];
-    double endRadius   = [defaults doubleForKey:@"endRadius"];
-    
+    NSString *gradientTypeAsString;
     switch (_kind) {
-        case Linear:
-            text = [NSString stringWithFormat:
-                    @""
-                    "CGGradientRef gradient = CGGradientCreateWithColorComponents(\n"
-                    "    CGColorSpaceCreateWithName(%@)\n"
-                    "  , (const CGFloat[]){  %f, %f, %f, %f\n"
-                    "                      , %f, %f, %f, %f}\n"
-                    "  , (const CGFloat[]){%f, %f}, 2\n"
-                    ");\n"
-                    "CGContextDrawLinearGradient(\n"
-                    "    NSGraphicsContext.currentContext.graphicsPort\n"
-                    "  , gradient\n"
-                    "  , NSMakePoint(%f, %f), NSMakePoint(%f, %f), %d\n"
-                    ");"
-                    , _currentColorSpace
-                    , components[0], components[1], components[2], components[3]
-                    , components[4], components[5], components[6], components[7]
-                    , locations[0], locations[1]
-                    , _startPoint.x, _startPoint.y
-                    , _endPoint.x, _endPoint.y
-                    , _options
-                    ];
+        case Conic:
+            gradientTypeAsString = @"kCAGradientLayerConic";
             break;
         case Radial:
-            text = [NSString stringWithFormat:
-                    @""
-                    "CGGradientRef gradient = CGGradientCreateWithColorComponents(\n"
-                    "    CGColorSpaceCreateWithName(%@)\n"
-                    "  , (const CGFloat[]){  %f, %f, %f, %f\n"
-                    "                      , %f, %f, %f, %f}\n"
-                    "  , (const CGFloat[]){%f, %f}, 2\n"
-                    ");\n"
-                    "CGContextDrawRadialGradient(\n"
-                    "    NSGraphicsContext.currentContext.graphicsPort\n"
-                    "  , gradient\n"
-                    "  , NSMakePoint(%f, %f), %f\n"
-                    "  , NSMakePoint(%f, %f), %f\n"
-                    "  , %d\n"
-                    ");"
-                    , _currentColorSpace
-                    , components[0], components[1], components[2], components[3]
-                    , components[4], components[5], components[6], components[7]
-                    , locations[0], locations[1]
-                    , _startPoint.x, _startPoint.y, startRadius
-                    , _endPoint.x, _endPoint.y, endRadius
-                    , _options
-                    ];
+            gradientTypeAsString = @"kCAGradientLayerRadial";
             break;
-            
-        case Conic:
+        case Linear:
         default:
-            text = [NSString stringWithFormat:
-                    @""
-                    "// Not supported in Quartz\n"
-                    ];
+            gradientTypeAsString = @"kCAGradientLayerAxial";
             break;
     }
-#endif
-    return text;
+
+
+    return [NSString stringWithFormat:
+            @""
+            "self.wantsLayer = YES;\n"
+            "CAGradientLayer *gradientLayer = CAGradientLayer.layer;\n"
+            "gradientLayer.frame = self.bounds;\n"
+            "gradientLayer.locations = @[@%f, @%f];\n"
+            "gradientLayer.startPoint = NSMakePoint(%f, %f);\n"
+            "gradientLayer.endPoint   = NSMakePoint(%f, %f);\n"
+            "gradientLayer.type = %@;\n"
+            "NSColorSpace *cs = [[NSColorSpace alloc]\n"
+            "     initWithCGColorSpace:CGColorSpaceCreateWithName(%@)\n"
+            "];\n"
+            "%@\n"
+            "%@\n"
+            "gradientLayer.colors = @[(id)startColor.CGColor, (id)endColor.CGColor];\n"
+            "[self.layer addSublayer:gradientLayer];\n"
+            , locations[0]
+            , locations[1]
+            , [_points pointAtIndex:0].x/self.bounds.size.width, [_points pointAtIndex:0].y/self.bounds.size.height
+            , [_points pointAtIndex:1].x/self.bounds.size.width, [_points pointAtIndex:1].y/self.bounds.size.height
+            , gradientTypeAsString
+            , CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace)
+            , [self colorComponent:_colors[0] prefixedBy:@"start"]
+            , [self colorComponent:_colors[1] prefixedBy:@"end"]
+
+            ];
+
 }
 
 
-- (nonnull NSString *)code {
+- (nonnull NSString *) code {
     switch (_drawingContext) {
         case Quartz:
             return [self generateQuartzCode];
@@ -993,7 +1031,7 @@
     }
 }
 
-- (void)storeDefaults {
+- (void) storeDefaults {
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     
     //PrintComponents(_startColor)
@@ -1006,6 +1044,10 @@
 
 }
 
+
+- (nonnull NSColor *) colorAtIndex:(NSInteger)index {
+    return _colors[index];
+}
 
 
 @end

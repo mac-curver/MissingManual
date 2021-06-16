@@ -716,17 +716,17 @@
                         <gestureRecognizers>
                             <pressGestureRecognizer delaysPrimaryMouseButtonEvents="YES" id="5Hm-ge-9df">
                                 <connections>
-                                    <action selector="myPressAndHoldGesture:" target="abY-OY-Syh" id="Gmk-8c-oHD"/>
+                                    <action selector="myPressAndHoldGesture:" target="abY-OY-Syh" id="Eb6-wk-Ltb"/>
                                 </connections>
                             </pressGestureRecognizer>
                             <panGestureRecognizer delaysPrimaryMouseButtonEvents="YES" id="Ya6-1u-OiL">
                                 <connections>
-                                    <action selector="myPanGesture:" target="abY-OY-Syh" id="jHY-sl-2ns"/>
+                                    <action selector="myPanGesture:" target="abY-OY-Syh" id="JLR-fA-J5w"/>
                                 </connections>
                             </panGestureRecognizer>
                             <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="O6A-Hp-TRc">
                                 <connections>
-                                    <action selector="myClickGesture:" target="abY-OY-Syh" id="Pg9-Jp-bLn"/>
+                                    <action selector="myClickGesture:" target="abY-OY-Syh" id="7QK-0n-qRs"/>
                                 </connections>
                             </clickGestureRecognizer>
                         </gestureRecognizers>
@@ -743,8 +743,8 @@
                             </segments>
                         </segmentedCell>
                         <connections>
-                            <action selector="updateKind:" target="abY-OY-Syh" id="X4Q-um-C5f"/>
-                            <binding destination="8EE-fc-SWS" name="selectedIndex" keyPath="values.kind" id="ekA-cw-cfG"/>
+                            <action selector="updateKind:" target="abY-OY-Syh" id="w9e-Rb-oat"/>
+                            <binding destination="sYq-Ck-Q1k" name="selectedIndex" keyPath="selection.kind" id="8hZ-JR-v6l"/>
                         </connections>
                     </segmentedControl>
                     <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nu4-7q-GcB">
@@ -752,7 +752,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
-                            <action selector="updateStartColor:" target="abY-OY-Syh" id="SRd-Us-Ckh"/>
+                            <action selector="updateStartColor:" target="Voe-Tx-rLC" id="9bA-zY-aes"/>
                         </connections>
                     </colorWell>
                     <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="obv-aQ-nkG">
@@ -760,7 +760,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="color" red="1" green="0.00074388167700012442" blue="0.39627434299492514" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
-                            <action selector="updateEndColor:" target="abY-OY-Syh" id="Xnm-c5-efA"/>
+                            <action selector="updateEndColor:" target="Voe-Tx-rLC" id="KuR-IZ-4hN"/>
                         </connections>
                     </colorWell>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dbH-Lk-00z">
@@ -768,7 +768,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Pqi-Xn-awq"/>
                         <connections>
-                            <action selector="sliderStartLocation:" target="abY-OY-Syh" id="l1f-nz-zCk"/>
+                            <action selector="sliderStartLocation:" target="abY-OY-Syh" id="FyH-De-paB"/>
                             <binding destination="8EE-fc-SWS" name="maxValue" keyPath="values.endLocation" id="cmu-1x-ioW"/>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.startLocation" previousBinding="cmu-1x-ioW" id="PDI-Nn-Ja6"/>
                         </connections>
@@ -778,7 +778,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="GxY-ho-kWj"/>
                         <connections>
-                            <action selector="sliderEndLocation:" target="abY-OY-Syh" id="ZDp-Gx-8BC"/>
+                            <action selector="sliderEndLocation:" target="abY-OY-Syh" id="Pgx-34-4RT"/>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.endLocation" previousBinding="MOp-Pg-mRD" id="m9b-HP-7hE"/>
                             <binding destination="8EE-fc-SWS" name="minValue" keyPath="values.startLocation" id="MOp-Pg-mRD"/>
                         </connections>
@@ -793,7 +793,16 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <action selector="updateEndRadius:" target="abY-OY-Syh" id="ZbS-4e-0ma"/>
+                            <action selector="updateEndRadius:" target="abY-OY-Syh" id="PhN-Hy-qHd"/>
+                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="crG-VT-7gD" id="jxz-AY-sP0">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="Y5j-HZ-POP"/>
                             <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="crG-VT-7gD"/>
                         </connections>
@@ -803,7 +812,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.5" maxValue="1000" doubleValue="0.10000000000000001" id="hex-ht-vrT"/>
                         <connections>
-                            <action selector="stepperStartRadius:" target="abY-OY-Syh" id="Jnk-SV-cHn"/>
+                            <action selector="stepperStartRadius:" target="abY-OY-Syh" id="snD-XK-ebe"/>
+                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="oKk-0G-j1v" id="LUG-be-AjY">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="oKk-0G-j1v"/>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.startRadius" id="hEg-wL-Bw8"/>
                         </connections>
@@ -813,7 +831,16 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.5" maxValue="1000" doubleValue="0.90000000000000002" id="yjj-0t-uZJ"/>
                         <connections>
-                            <action selector="stepperEndRadius:" target="abY-OY-Syh" id="60V-LI-r2V"/>
+                            <action selector="stepperEndRadius:" target="abY-OY-Syh" id="4eD-fG-6aZ"/>
+                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="T36-ET-Re4" id="X5D-at-sRr">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="kqW-NM-dPd"/>
                             <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="T36-ET-Re4"/>
                         </connections>
@@ -828,32 +855,41 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <action selector="updateStartRadius:" target="abY-OY-Syh" id="BrT-f1-QvU"/>
+                            <action selector="updateStartRadius:" target="abY-OY-Syh" id="uO3-HR-s4f"/>
+                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="XJC-CD-kMc" id="DkM-JU-SWh">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="XJC-CD-kMc"/>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.startRadius" id="GWa-5l-QDh"/>
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iWS-nE-qyD">
-                        <rect key="frame" x="273" y="23" width="82" height="18"/>
+                        <rect key="frame" x="273" y="24" width="82" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="check" title="Start over" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xOp-BZ-b4R">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="setStartOver:" target="abY-OY-Syh" id="to0-t7-xXZ"/>
+                            <action selector="setStartOver:" target="abY-OY-Syh" id="tqF-Hk-QLe"/>
                             <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="vOG-BY-XtA"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A2h-1A-Ldp">
-                        <rect key="frame" x="273" y="4" width="75" height="18"/>
+                        <rect key="frame" x="273" y="3" width="75" height="18"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="check" title="End over" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9E6-FX-XHm">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="setEndOver:" target="abY-OY-Syh" id="S5h-mZ-Qrd"/>
+                            <action selector="setEndOver:" target="abY-OY-Syh" id="MTw-c6-Eb4"/>
                             <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="q2u-HL-PoZ"/>
                         </connections>
                     </button>
@@ -872,8 +908,7 @@
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="selectColorSpace:" target="abY-OY-Syh" id="Zgg-qf-JCY"/>
-                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="gOK-WI-lqH"/>
+                            <action selector="selectColorSpace:" target="Voe-Tx-rLC" id="1yW-Kf-s9P"/>
                         </connections>
                     </popUpButton>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D1r-wM-CcV">
@@ -912,6 +947,15 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="c5r-Je-lZX" id="KYR-KJ-UGN">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                             <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="c5r-Je-lZX"/>
                         </connections>
                     </textField>
@@ -935,6 +979,10 @@
                     </popUpButton>
                 </subviews>
             </view>
+            <connections>
+                <binding destination="8EE-fc-SWS" name="contentHeight" keyPath="values.Height" id="gcu-Hm-OLB"/>
+                <binding destination="8EE-fc-SWS" name="contentWidth" keyPath="values.Width" previousBinding="gcu-Hm-OLB" id="gzI-rC-qNH"/>
+            </connections>
             <point key="canvasLocation" x="48" y="13"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="8EE-fc-SWS"/>
@@ -952,6 +1000,6 @@
             </connections>
             <point key="canvasLocation" x="-180" y="560"/>
         </window>
-        <objectController editable="NO" automaticallyPreparesContent="YES" id="sYq-Ck-Q1k" userLabel="Menu Controller"/>
+        <objectController editable="NO" automaticallyPreparesContent="YES" id="sYq-Ck-Q1k" userLabel="Gradient Controller"/>
     </objects>
 </document>
