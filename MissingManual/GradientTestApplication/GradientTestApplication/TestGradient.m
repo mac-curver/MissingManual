@@ -52,25 +52,6 @@
 }
 
 
-- (NSColor *) complement:(double) alpha {
-    NSColorSpace *colorSpace = self.colorSpace;
-    if (colorSpace == NSColorSpace.genericGamma22GrayColorSpace
-     || colorSpace == NSColorSpace.extendedGenericGamma22GrayColorSpace
-     || colorSpace == NSColorSpace.genericGrayColorSpace
-     || colorSpace == NSColorSpace.deviceGrayColorSpace
-    ) {
-        // Avoid crash, when not in RGB-Color space
-        // May be we should use a different algo here
-        return [NSColor.blackColor colorWithAlphaComponent:alpha];
-    }
-    else {
-         return [NSColor colorWithCalibratedRed:(1.0 - self.redComponent)
-                                          green:(1.0 - self.greenComponent)
-                                           blue:(1.0 - self.blueComponent)
-                                          alpha:alpha
-                 ];
-    }
-}
 
 @end
 
@@ -290,7 +271,7 @@
         NSPoint endPoint    = [defaults pointForKey:@"EndPoint"   default:NSMakePoint(500.0, 400.0)];
         NSArray *points = @[[NSValue valueWithPoint:startPoint], [NSValue valueWithPoint:endPoint]];
         _points = [[NSMutableArray alloc] initWithArray:points];
-
+        
         CAShapeLayer *shape1Layer   = CAShapeLayer.layer;
         shape1Layer.name = @"Circle 1";
         CAShapeLayer *shape2Layer  = CAShapeLayer.layer;
@@ -461,6 +442,7 @@
     }
     [NSGraphicsContext restoreGraphicsState];
     free(components);
+    CGGradientRelease(gradient);
 }
 
 
@@ -489,6 +471,7 @@
                 break;
         }
     }
+    CGPathRelease(cgPath);
     return cgPath;
 }
 
@@ -519,6 +502,7 @@
         shapeLayer.lineDashPattern = @[@5, @5];
         shapeLayer.lineDashPhase = _alpha*100;
         shapeLayer.name = name;
+        CGPathRelease(cgPath);                                                  // cgPath must be released
     }
     return shapeLayer;
 }
@@ -878,8 +862,6 @@
 }
 
 - (NSString *) generateQuartzCode {
-    NSString *text;
-    
     NSUserDefaults* defaults = NSUserDefaults.standardUserDefaults;
     
     double locations[] = {[defaults doubleForKey:@"startLocation"]
@@ -891,10 +873,11 @@
 
     switch (_kind) {
         case Linear:
-            text = [NSString stringWithFormat:
+            return [NSString stringWithFormat:
                      @""
+                     "CGColorSpaceRef cgColorSpace = CGColorSpaceCreateWithName(%@);\n"
                      "CGGradientRef gradient = CGGradientCreateWithColorComponents(\n"
-                     "    CGColorSpaceCreateWithName(%@)\n"
+                     "    cgColorSpace\n"
                      "  , %@\n"
                      "  , (const CGFloat[]){%f, %f}, 2\n"
                      ");\n"
@@ -902,8 +885,10 @@
                      "    NSGraphicsContext.currentContext.graphicsPort\n"
                      "  , gradient\n"
                      "  , NSMakePoint(%f, %f), NSMakePoint(%f, %f), %d\n"
-                     ");"
-                     , CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace)
+                     ");\n"
+                     "CGColorSpaceRelease(cgColorSpace);\n"
+                     "CGGradientRelease(gradient);\n"
+                     , CFBridgingRelease(CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace))
                      , [self componentsString]
                      , locations[0], locations[1]
                      , [_points pointAtIndex:0].x, [_points pointAtIndex:0].y
@@ -912,10 +897,11 @@
                      ];
             break;
         case Radial:
-            text = [NSString stringWithFormat:
+            return [NSString stringWithFormat:
                      @""
+                     "CGColorSpaceRef cgColorSpace = CGColorSpaceCreateWithName(%@);\n"
                      "CGGradientRef gradient = CGGradientCreateWithColorComponents(\n"
-                     "    CGColorSpaceCreateWithName(%@)\n"
+                     "    cgColorSpace\n"
                      "  , %@\n"
                      "  , (const CGFloat[]){%f, %f}, 2\n"
                      ");\n"
@@ -925,8 +911,10 @@
                      "  , NSMakePoint(%f, %f), %f\n"
                      "  , NSMakePoint(%f, %f), %f\n"
                      "  , %d\n"
-                     ");"
-                     , CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace)
+                     ");\n"
+                     "CGColorSpaceRelease(cgColorSpace);\n"
+                     "CGGradientRelease(gradient);\n"
+                     , CFBridgingRelease(CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace))
                      , [self componentsString]
                      , locations[0], locations[1]
                      , [_points pointAtIndex:0].x, [_points pointAtIndex:0].y, startRadius
@@ -937,10 +925,10 @@
             
         case Conic:
         default:
-            text = @"// Not supported in Quartz\n";
+            return @"// Not supported in Quartz\n";
             break;
     }
-    return text;
+    return @"";
 }
 
 - (NSString *) colorComponent:(NSColor *)color prefixedBy:(NSString *)prefix {
@@ -1001,19 +989,22 @@
             "gradientLayer.startPoint = NSMakePoint(%f, %f);\n"
             "gradientLayer.endPoint   = NSMakePoint(%f, %f);\n"
             "gradientLayer.type = %@;\n"
+            "CGColorSpaceRef cgColorSpace = CGColorSpaceCreateWithName(%@);\n"
             "NSColorSpace *cs = [[NSColorSpace alloc]\n"
-            "     initWithCGColorSpace:CGColorSpaceCreateWithName(%@)\n"
+            "     initWithCGColorSpace:cgColorSpace\n"
             "];\n"
             "%@\n"
             "%@\n"
             "gradientLayer.colors = @[(id)startColor.CGColor, (id)endColor.CGColor];\n"
             "[self.layer addSublayer:gradientLayer];\n"
+            "CGColorSpaceRelease(cgColorSpace);\n"
+            
             , locations[0]
             , locations[1]
             , [_points pointAtIndex:0].x/self.bounds.size.width, [_points pointAtIndex:0].y/self.bounds.size.height
             , [_points pointAtIndex:1].x/self.bounds.size.width, [_points pointAtIndex:1].y/self.bounds.size.height
             , gradientTypeAsString
-            , CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace)
+            , CFBridgingRelease(CGColorSpaceCopyName([_colors colorAtIndex:0].colorSpace.CGColorSpace))
             , [self colorComponent:_colors[0] prefixedBy:@"start"]
             , [self colorComponent:_colors[1] prefixedBy:@"end"]
 

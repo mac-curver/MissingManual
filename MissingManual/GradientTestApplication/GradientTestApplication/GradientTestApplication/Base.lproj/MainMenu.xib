@@ -744,7 +744,7 @@
                         </segmentedCell>
                         <connections>
                             <action selector="updateKind:" target="abY-OY-Syh" id="w9e-Rb-oat"/>
-                            <binding destination="sYq-Ck-Q1k" name="selectedIndex" keyPath="selection.kind" id="8hZ-JR-v6l"/>
+                            <binding destination="8EE-fc-SWS" name="selectedIndex" keyPath="values.kind" id="Nq2-zh-Zvi"/>
                         </connections>
                     </segmentedControl>
                     <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nu4-7q-GcB">
@@ -794,7 +794,7 @@
                         </textFieldCell>
                         <connections>
                             <action selector="updateEndRadius:" target="abY-OY-Syh" id="PhN-Hy-qHd"/>
-                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="crG-VT-7gD" id="jxz-AY-sP0">
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="crG-VT-7gD" id="DlD-Jl-KXg">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -813,7 +813,7 @@
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.5" maxValue="1000" doubleValue="0.10000000000000001" id="hex-ht-vrT"/>
                         <connections>
                             <action selector="stepperStartRadius:" target="abY-OY-Syh" id="snD-XK-ebe"/>
-                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="oKk-0G-j1v" id="LUG-be-AjY">
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="oKk-0G-j1v" id="V3s-Z3-6j8">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -832,7 +832,7 @@
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.5" maxValue="1000" doubleValue="0.90000000000000002" id="yjj-0t-uZJ"/>
                         <connections>
                             <action selector="stepperEndRadius:" target="abY-OY-Syh" id="4eD-fG-6aZ"/>
-                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="T36-ET-Re4" id="X5D-at-sRr">
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="T36-ET-Re4" id="FHS-z8-C2S">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -856,7 +856,7 @@
                         </textFieldCell>
                         <connections>
                             <action selector="updateStartRadius:" target="abY-OY-Syh" id="uO3-HR-s4f"/>
-                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="XJC-CD-kMc" id="DkM-JU-SWh">
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="XJC-CD-kMc" id="6Y7-UN-0hQ">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -947,7 +947,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <binding destination="sYq-Ck-Q1k" name="hidden2" keyPath="selection.kind" previousBinding="c5r-Je-lZX" id="KYR-KJ-UGN">
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="c5r-Je-lZX" id="qQa-yX-1ff">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                     <integer key="NSNoSelectionPlaceholder" value="-1"/>
