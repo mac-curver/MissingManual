@@ -101,8 +101,13 @@
 		26209BC0265A3B0A00388677 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+<<<<<<< Updated upstream:GradientTestApplication/GradientTestApplication/GradientTestApplication.xcodeproj/project.pbxproj
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Heinz-Jörg";
+=======
+				LastUpgradeCheck = 1320;
+				ORGANIZATIONNAME = legoesprit;
+>>>>>>> Stashed changes:MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication.xcodeproj/project.pbxproj
 				TargetAttributes = {
 					26209BC7265A3B0A00388677 = {
 						CreatedOnToolsVersion = 10.1;
@@ -196,6 +201,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -255,6 +261,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

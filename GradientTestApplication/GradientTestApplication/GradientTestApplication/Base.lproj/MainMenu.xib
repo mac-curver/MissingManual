@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -698,8 +698,13 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="690" height="392"/>
+<<<<<<< Updated upstream:GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <value key="minSize" type="size" width="500" height="200"/>
+=======
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <value key="minSize" type="size" width="600" height="200"/>
+>>>>>>> Stashed changes:MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="690" height="392"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -777,8 +782,23 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+<<<<<<< Updated upstream:GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                             <action selector="updateEndRadius:" target="abY-OY-Syh" id="ZbS-4e-0ma"/>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="Y5j-HZ-POP"/>
+=======
+                            <action selector="updateEndRadius:" target="abY-OY-Syh" id="PhN-Hy-qHd"/>
+                            <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="Y5j-HZ-POP"/>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="crG-VT-7gD"/>
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="crG-VT-7gD" id="DlD-Jl-KXg">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+>>>>>>> Stashed changes:MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                         </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGx-3I-Owp">
@@ -786,7 +806,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.5" maxValue="1000" doubleValue="0.10000000000000001" id="hex-ht-vrT"/>
                         <connections>
+<<<<<<< Updated upstream:GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                             <action selector="stepperStartRadius:" target="abY-OY-Syh" id="Jnk-SV-cHn"/>
+=======
+                            <action selector="stepperStartRadius:" target="abY-OY-Syh" id="snD-XK-ebe"/>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="oKk-0G-j1v"/>
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="oKk-0G-j1v" id="V3s-Z3-6j8">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+>>>>>>> Stashed changes:MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.startRadius" id="hEg-wL-Bw8"/>
                         </connections>
                     </stepper>
@@ -795,8 +829,23 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.5" maxValue="1000" doubleValue="0.90000000000000002" id="yjj-0t-uZJ"/>
                         <connections>
+<<<<<<< Updated upstream:GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                             <action selector="stepperEndRadius:" target="abY-OY-Syh" id="60V-LI-r2V"/>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="kqW-NM-dPd"/>
+=======
+                            <action selector="stepperEndRadius:" target="abY-OY-Syh" id="4eD-fG-6aZ"/>
+                            <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="kqW-NM-dPd"/>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="T36-ET-Re4"/>
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="T36-ET-Re4" id="FHS-z8-C2S">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+>>>>>>> Stashed changes:MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                         </connections>
                     </stepper>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pFS-xj-QNG">
@@ -809,7 +858,21 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+<<<<<<< Updated upstream:GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                             <action selector="updateStartRadius:" target="abY-OY-Syh" id="BrT-f1-QvU"/>
+=======
+                            <action selector="updateStartRadius:" target="abY-OY-Syh" id="uO3-HR-s4f"/>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="XJC-CD-kMc"/>
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="XJC-CD-kMc" id="6Y7-UN-0hQ">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+>>>>>>> Stashed changes:MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.startRadius" id="GWa-5l-QDh"/>
                         </connections>
                     </textField>
@@ -888,11 +951,44 @@
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+<<<<<<< Updated upstream:GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
+=======
+                        <connections>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="c5r-Je-lZX"/>
+                            <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="c5r-Je-lZX" id="qQa-yX-1ff">
+                                <dictionary key="options">
+                                    <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                    <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                    <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                    <integer key="NSNullPlaceholder" value="-1"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+>>>>>>> Stashed changes:MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
                     </textField>
                 </subviews>
             </view>
             <point key="canvasLocation" x="48" y="13"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="8EE-fc-SWS"/>
+<<<<<<< Updated upstream:GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
+=======
+        <window title="TestWindow" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="WW2-eW-l3b">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="207" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="875"/>
+            <view key="contentView" id="ZWJ-5o-2Gc" customClass="TestView">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <connections>
+                <binding destination="sYq-Ck-Q1k" name="visible" keyPath="selection.ShowTestWindow" id="mqY-fa-DVk"/>
+            </connections>
+            <point key="canvasLocation" x="-180" y="560"/>
+        </window>
+        <objectController editable="NO" automaticallyPreparesContent="YES" id="sYq-Ck-Q1k" userLabel="Gradient Controller"/>
+>>>>>>> Stashed changes:MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication/Base.lproj/MainMenu.xib
     </objects>
 </document>
