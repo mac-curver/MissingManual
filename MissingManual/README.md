@@ -17,7 +17,8 @@ The TestView.m file can be used to test the generated code! This view will be di
 ## History:
 |Version|Date|Comment|
 |----|-----|-------| 
-|Version 2.1:|2021-06-17|Potential leaks correctd|
+|Version 2.2:|2021-06-17|Quartz circle also disappears, xcode documentation support added|
+|Version 2.1:|2021-06-17|Potential leaks corrected|
 |Version 2.0:|2021-06-16|First completely working version (No crash anymore)|
 |Version 1.0:|2021-06-16|First trials (Working, but issues with retina and 2 component color spaces )|
 

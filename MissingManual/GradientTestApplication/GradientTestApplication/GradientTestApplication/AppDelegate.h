@@ -2,16 +2,16 @@
 //  AppDelegate.h
 //  GradientTestApplication
 //
+//  V 2.20
 //  Changed by LegoEsprit on 04.06.21.
 //  Created by LegoEsprit on 23.05.21.
-//  Copyright © 2021 LegoEsprit. All rights reserved.
+//  Copyright © 2021-2023 LegoEsprit. All rights reserved.
 //
 //  Uses "Menu Controller" with "Prepares content = YES" and "Editable = NO"
 //
 //  from Terminal: defaults read de.LegoEsprit.GradientTestApplication
 //
 //  Ort: /Users/hj/Documents/Development/GitHub/Public/MissingManual/MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication
-//  V 1.00 Quartz does not disappear
 
 #import <Cocoa/Cocoa.h>
 @class TestGradient;
