@@ -16,6 +16,14 @@
 
 @implementation AppDelegate
 
+/// Notification when application did finish launching.
+///
+/// Register the defaults from the TestGradient view.
+/// Fill the menu with the colorspaces from the TestGradient view.
+/// We can't use [colorSpaceMenu addItemWithTitle:] as it is failing,
+/// in case we have multiple entries with the same name!
+/// Disable the Conic button if not available and finally initialize
+/// starting colors.
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
     
@@ -38,22 +46,25 @@
     /// Disable the Conic button if not available
     [self changeDrawingContext:drawingContext];
     
+    /// Initialize starting colors
     color0.color = testGradientView.colors[0];
     color1.color = testGradientView.colors[1];
     
     testGradientView.didFinishLaunching = TRUE;
 }
 
-
+/// Notification when application will terminate.
+///
+/// Overwritten to write into user defaults preferences.
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     /// Store defaults into the shared defaults
     [testGradientView storeDefaults];
 }
 
+
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return true;
 }
-
 
 - (IBAction)copyGradientCodeToClipboard:(NSMenuItem *)sender {
     NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
@@ -61,6 +72,7 @@
     NSData *data = [[testGradientView code] dataUsingEncoding:NSUTF8StringEncoding];
     [pasteboard setData:data forType:NSPasteboardTypeString];
 }
+
 
 - (IBAction)changeDrawingContext:(NSPopUpButton *)sender {
     /// propagate the drawing context to the TestGradient view

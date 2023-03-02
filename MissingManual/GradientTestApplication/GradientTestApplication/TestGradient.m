@@ -154,8 +154,9 @@
     return NSColorSpace.genericRGBColorSpace.localizedName;
 }
 
-+ (NSArray *) allColorSpaces {
-    return [NSColorSpace availableColorSpacesWithModel:NSColorSpaceModelUnknown]; // Contrary to expectation this returns all color name spaces
+
++ (NSArray *)allColorSpaces {
+    return [NSColorSpace availableColorSpacesWithModel:NSColorSpaceModelUnknown];
 }
 
 
@@ -215,6 +216,8 @@
 
             };
 };
+
+
 
 - (NSInteger) numberOfKinds {
     switch (self.drawingContext) {
@@ -645,6 +648,9 @@
             break;
         case Quartz:
         default:
+            if (self.kind == Conic) {
+                self.kind = Linear;                                             // Conic not supported in quartz
+            }
             self.wantsLayer = FALSE;
             self.layer.sublayers = nil;
             break;
@@ -660,10 +666,10 @@
 - (NSInteger) updateColor:(nonnull NSColor *)color at:(NSInteger)index {
     NSInteger colorSpaceIndex = -1;                                             /// no color space index change
     NSColorSpace *originalColorSpace = [self.colors colorAtIndex:index].colorSpace;
-    self.colors[index] = color;                                                     /// set the new color
+    self.colors[index] = color;                                                 /// set the new color
     NSColorSpace *colorSpace = [self.colors colorAtIndex:index].colorSpace;
     if (colorSpace != originalColorSpace) {
-        [self.colors changeToColorSpace:colorSpace];                                /// change all colors to use the same color space
+        [self.colors changeToColorSpace:colorSpace];                            /// change all colors to use the same color space
 
         /// attention: localizedName for color not localized!
         /// Therefore we must use index here!
