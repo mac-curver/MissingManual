@@ -13,6 +13,8 @@
 		26209BD5265A3B0D00388677 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26209BD4265A3B0D00388677 /* main.m */; };
 		26209BDE265A3CCC00388677 /* TestGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 26209BDD265A3CCC00388677 /* TestGradient.m */; };
 		26209BE1265A94DE00388677 /* MyLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 26209BE0265A94DE00388677 /* MyLog.m */; };
+		263804D829B0F01B00BFFD27 /* GradientTestApplication.doccarchive in Resources */ = {isa = PBXBuildFile; fileRef = 263804D729B0F01B00BFFD27 /* GradientTestApplication.doccarchive */; };
+		263804DA29B0F02300BFFD27 /* GradientTestApplication.app in Resources */ = {isa = PBXBuildFile; fileRef = 263804D929B0F02300BFFD27 /* GradientTestApplication.app */; };
 		266DB5AD266CC8BF00A61414 /* UserDefaultExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 266DB5AC266CC8BF00A61414 /* UserDefaultExtension.m */; };
 		26A79371298ADCE300BD8BA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A79370298ADCE300BD8BA7 /* AppDelegate.m */; };
 		26A79374298ADCE300BD8BA7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A79373298ADCE300BD8BA7 /* ViewController.m */; };
@@ -54,6 +56,8 @@
 		26209BDD265A3CCC00388677 /* TestGradient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestGradient.m; sourceTree = "<group>"; };
 		26209BDF265A94DE00388677 /* MyLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLog.h; path = ../../_Common/MyLog.h; sourceTree = "<group>"; };
 		26209BE0265A94DE00388677 /* MyLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLog.m; path = ../../_Common/MyLog.m; sourceTree = "<group>"; };
+		263804D729B0F01B00BFFD27 /* GradientTestApplication.doccarchive */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GradientTestApplication.doccarchive; sourceTree = "<group>"; };
+		263804D929B0F02300BFFD27 /* GradientTestApplication.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = GradientTestApplication.app; sourceTree = "<group>"; };
 		266DB5AB266CC8BF00A61414 /* UserDefaultExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDefaultExtension.h; sourceTree = "<group>"; };
 		266DB5AC266CC8BF00A61414 /* UserDefaultExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDefaultExtension.m; sourceTree = "<group>"; };
 		26A7936D298ADCE300BD8BA7 /* GradientiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GradientiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +112,8 @@
 		26209BBF265A3B0A00388677 = {
 			isa = PBXGroup;
 			children = (
+				263804D629B0EFC200BFFD27 /* Documentation */,
+				263804D529B0EFAA00BFFD27 /* Application */,
 				26DC02F9267736E300462587 /* TestView.h */,
 				26DC02FA267736E300462587 /* TestView.m */,
 				266DB5AB266CC8BF00A61414 /* UserDefaultExtension.h */,
@@ -146,6 +152,22 @@
 				26209BD6265A3B0D00388677 /* GradientTestApplication.entitlements */,
 			);
 			path = GradientTestApplication;
+			sourceTree = "<group>";
+		};
+		263804D529B0EFAA00BFFD27 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				263804D929B0F02300BFFD27 /* GradientTestApplication.app */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		263804D629B0EFC200BFFD27 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				263804D729B0F01B00BFFD27 /* GradientTestApplication.doccarchive */,
+			);
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 		26A7936E298ADCE300BD8BA7 /* GradientiPad */ = {
@@ -293,8 +315,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				263804DA29B0F02300BFFD27 /* GradientTestApplication.app in Resources */,
 				26DC02FD267A043A00462587 /* README.md in Resources */,
 				26209BCF265A3B0D00388677 /* Assets.xcassets in Resources */,
+				263804D829B0F01B00BFFD27 /* GradientTestApplication.doccarchive in Resources */,
 				26209BD2265A3B0D00388677 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
