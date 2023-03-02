@@ -10,6 +10,8 @@
 //
 //  from Terminal: defaults read de.LegoEsprit.GradientTestApplication
 //
+//  Ort: /Users/hj/Documents/Development/GitHub/Public/MissingManual/MissingManual/GradientTestApplication/GradientTestApplication/GradientTestApplication
+//  V 1.00 Quartz does not disappear
 
 #import <Cocoa/Cocoa.h>
 @class TestGradient;
