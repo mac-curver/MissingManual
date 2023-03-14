@@ -26,10 +26,10 @@
     __weak IBOutlet NSSegmentedControl *kindOfGradient;
     
     /// Color well for the starting color.
-    __weak IBOutlet NSColorWell *color0;
+    __weak IBOutlet NSColorWell *colorWell0;
     
     /// Color well for the ending color.
-    __weak IBOutlet NSColorWell *color1;
+    __weak IBOutlet NSColorWell *colorWell1;
     
     /// Text field to enter the starting radius.
     __weak IBOutlet NSTextField *startRadius;
@@ -53,11 +53,13 @@
 /// button if not available.
 - (IBAction)changeDrawingContext:(NSPopUpButton *)sender;
 
+
 /// ColorWell event for the start color.
 - (IBAction)updateStartColor:(NSColorWell *)sender;
 
 /// ColorWell event for the end color.
 - (IBAction)updateEndColor:(NSColorWell *)sender;
+
 
 /// Popupbutton action to select the color space.
 - (IBAction)selectColorSpace:(NSPopUpButton *)sender;

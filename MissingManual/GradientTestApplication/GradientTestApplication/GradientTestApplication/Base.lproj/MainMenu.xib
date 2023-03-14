@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,9 +15,9 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
-                <outlet property="color0" destination="nu4-7q-GcB" id="ge6-NX-tga"/>
-                <outlet property="color1" destination="obv-aQ-nkG" id="AsG-44-vVK"/>
                 <outlet property="colorSpaceMenu" destination="OIb-EI-0QK" id="KIH-yr-b7r"/>
+                <outlet property="colorWell0" destination="nu4-7q-GcB" id="ge6-NX-tga"/>
+                <outlet property="colorWell1" destination="obv-aQ-nkG" id="AsG-44-vVK"/>
                 <outlet property="drawingContext" destination="BH8-pQ-WvK" id="ciM-m8-VoU"/>
                 <outlet property="endRadius" destination="JZb-xq-fgS" id="zzV-d4-V2v"/>
                 <outlet property="kindOfGradient" destination="Esg-2F-Ei8" id="qtq-C4-ula"/>
@@ -704,7 +704,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="690" height="392"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1496" height="933"/>
             <value key="minSize" type="size" width="600" height="200"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="690" height="392"/>
@@ -794,6 +794,8 @@
                         </textFieldCell>
                         <connections>
                             <action selector="updateEndRadius:" target="abY-OY-Syh" id="PhN-Hy-qHd"/>
+                            <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="Y5j-HZ-POP"/>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="crG-VT-7gD"/>
                             <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="crG-VT-7gD" id="DlD-Jl-KXg">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -803,8 +805,6 @@
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="Y5j-HZ-POP"/>
-                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="crG-VT-7gD"/>
                         </connections>
                     </textField>
                     <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGx-3I-Owp">
@@ -813,6 +813,7 @@
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.5" maxValue="1000" doubleValue="0.10000000000000001" id="hex-ht-vrT"/>
                         <connections>
                             <action selector="stepperStartRadius:" target="abY-OY-Syh" id="snD-XK-ebe"/>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="oKk-0G-j1v"/>
                             <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="oKk-0G-j1v" id="V3s-Z3-6j8">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -822,7 +823,6 @@
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="oKk-0G-j1v"/>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.startRadius" id="hEg-wL-Bw8"/>
                         </connections>
                     </stepper>
@@ -832,6 +832,8 @@
                         <stepperCell key="cell" continuous="YES" alignment="left" increment="0.5" maxValue="1000" doubleValue="0.90000000000000002" id="yjj-0t-uZJ"/>
                         <connections>
                             <action selector="stepperEndRadius:" target="abY-OY-Syh" id="4eD-fG-6aZ"/>
+                            <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="kqW-NM-dPd"/>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="T36-ET-Re4"/>
                             <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="T36-ET-Re4" id="FHS-z8-C2S">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -841,8 +843,6 @@
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="8EE-fc-SWS" name="value" keyPath="values.endRadius" id="kqW-NM-dPd"/>
-                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="T36-ET-Re4"/>
                         </connections>
                     </stepper>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pFS-xj-QNG">
@@ -856,6 +856,7 @@
                         </textFieldCell>
                         <connections>
                             <action selector="updateStartRadius:" target="abY-OY-Syh" id="uO3-HR-s4f"/>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="XJC-CD-kMc"/>
                             <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="XJC-CD-kMc" id="6Y7-UN-0hQ">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -865,7 +866,6 @@
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="XJC-CD-kMc"/>
                             <binding destination="8EE-fc-SWS" name="value" keyPath="values.startRadius" id="GWa-5l-QDh"/>
                         </connections>
                     </textField>
@@ -947,6 +947,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
+                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="c5r-Je-lZX"/>
                             <binding destination="8EE-fc-SWS" name="hidden2" keyPath="values.kind" previousBinding="c5r-Je-lZX" id="qQa-yX-1ff">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -956,7 +957,6 @@
                                     <string key="NSValueTransformerName">NSNegateBoolean</string>
                                 </dictionary>
                             </binding>
-                            <binding destination="8EE-fc-SWS" name="hidden" keyPath="values.isNotQuartz" id="c5r-Je-lZX"/>
                         </connections>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BH8-pQ-WvK">
@@ -990,7 +990,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="207" width="480" height="270"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1496" height="933"/>
             <view key="contentView" id="ZWJ-5o-2Gc" customClass="TestView">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>

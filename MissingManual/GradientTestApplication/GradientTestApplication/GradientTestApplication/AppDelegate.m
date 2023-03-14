@@ -47,8 +47,8 @@
     [self changeDrawingContext:drawingContext];
     
     /// Initialize starting colors
-    color0.color = testGradientView.colors[0];
-    color1.color = testGradientView.colors[1];
+    colorWell0.color = testGradientView.colors[0];
+    colorWell1.color = testGradientView.colors[1];
     
     testGradientView.didFinishLaunching = TRUE;
 }
@@ -83,13 +83,14 @@
     [kindOfGradient setEnabled:conicIsEnabled forSegment:2];
 }
 
+
 - (IBAction)updateStartColor:(NSColorWell *)sender {
     NSInteger colorSpaceIndex = [testGradientView updateColor:sender.color
                                                            at:0
                                  ];
     if (colorSpaceIndex >= 0) {
         [colorSpaceMenu selectItemAtIndex:colorSpaceIndex];
-        color1.color = [testGradientView colorAtIndex:1];
+        colorWell0.color = [testGradientView colorAtIndex:0];
     }
 }
 
@@ -99,17 +100,17 @@
                                  ];
     if (colorSpaceIndex >= 0) {
         [colorSpaceMenu selectItemAtIndex:colorSpaceIndex];
-        color0.color = [testGradientView colorAtIndex:0];
+        colorWell1.color = [testGradientView colorAtIndex:1];
     }
 }
+
 
 - (IBAction)selectColorSpace:(NSPopUpButton *)sender {
     NSInteger colorSpaceIndex = sender.indexOfSelectedItem;
     NSColorSpace *colorSpace = TestGradient.allColorSpaces[colorSpaceIndex];
     [testGradientView selectColorSpace:colorSpace];
-
-    color0.color = [testGradientView colorAtIndex:0];
-    color1.color = [testGradientView colorAtIndex:1];
+    colorWell0.color = [testGradientView colorAtIndex:0];
+    colorWell1.color = [testGradientView colorAtIndex:1];
 }
 
 

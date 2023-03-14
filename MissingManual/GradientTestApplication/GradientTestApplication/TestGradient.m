@@ -27,11 +27,20 @@
 }
 
 - (NSColor *) opposite:(double) alpha {
-    CGFloat components[4];
+    CGFloat components[self.numberOfComponents];
     [self getComponents:&components[0]];
 
     double ignored;
     switch (self.numberOfComponents) {
+        case 5:
+            // cyan, magenta, yellow, black, and alpha
+            return [NSColor colorWithDeviceCyan:
+                             (CGFloat)modf(0.5 + components[0], &ignored)
+                     magenta:(CGFloat)modf(0.5 + components[1], &ignored)
+                      yellow:(CGFloat)modf(0.5 + components[2], &ignored)
+                       black:(CGFloat)modf(0.5 + components[3], &ignored)
+                       alpha:alpha
+                   ];
         case 4:
             return [NSColor
                     colorWithCalibratedRed:
@@ -39,14 +48,15 @@
                      green:(CGFloat)modf(0.5 + components[1], &ignored)
                       blue:(CGFloat)modf(0.5 + components[2], &ignored)
                      alpha:alpha
-            ];
+                    ];
+        case 3:
         case 2:
         default:
-            if (components[0] < 0.5) {
-                return [NSColor.whiteColor colorWithAlphaComponent:alpha];
+            if ([self isLight]) {
+                return [NSColor.blackColor colorWithAlphaComponent:alpha];
             }
             else {
-                return [NSColor.blackColor colorWithAlphaComponent:alpha];
+                return [NSColor.whiteColor colorWithAlphaComponent:alpha];
             }
     }
  
@@ -731,10 +741,7 @@
 }
 
 - (void) selectColorSpace:(NSColorSpace *)colorSpace {
-    //AppDelegate *appDelegate = (AppDelegate *)NSApplication.sharedApplication.delegate;
     [self.colors changeToColorSpace:colorSpace];
-    //appDelegate->color0.color = self.colors[0];
-    //appDelegate->color1.color = self.colors[1];
 
     [self setNeedsDisplay:YES];
 }
@@ -786,7 +793,7 @@
                                           }
                                           [self setNeedsDisplay:YES];
                                       }
-                            ];
+                                ];
 }
 
 
@@ -855,7 +862,7 @@
 
 - (NSString *) componentsString {
     NSUInteger numberOfComponents = [self.colors colorAtIndex:0].numberOfComponents;
-    CGFloat components[8], *ptr;
+    CGFloat components[2*numberOfComponents], *ptr;
     ptr = components;
     [self.colors[0] getComponents:&components[0]];
     [self.colors[1] getComponents:&components[numberOfComponents]];
