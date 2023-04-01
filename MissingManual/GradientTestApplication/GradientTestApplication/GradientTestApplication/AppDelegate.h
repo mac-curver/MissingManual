@@ -2,7 +2,8 @@
 //  AppDelegate.h
 //  GradientTestApplication
 //
-//  V 2.20
+//  V 2.30
+//  Changed by LegoEsprit on 2023-03-14
 //  Changed by LegoEsprit on 04.06.21.
 //  Created by LegoEsprit on 23.05.21.
 //  Copyright © 2021-2023 LegoEsprit. All rights reserved.
